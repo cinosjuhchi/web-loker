@@ -15,5 +15,4 @@ class AuthController extends Controller
         return view("pages.RegisterUser", compact("title"));
     }
 
-     
 }

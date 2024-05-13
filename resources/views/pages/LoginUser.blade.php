@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title }}</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="overflow-hidden">
-    <div class="flex">
-        <div class="w-[40%] relative h-screen">
-            <img src="{{ Vite::asset('resources/assets/login.svg') }}" alt="" class="bg-cover" width="100%">
+@extends('layouts.GuestLayout')
+@section('loginUser')
+    <div class="flex h-screen">
+        <div class="lg:block min-[300px]:hidden  relative h-screen">
+            <img src="{{ Vite::asset('resources/assets/login.svg') }}" alt="" class="bg-cover h-screen object-cover" width="100%" >
         </div>
-        <div class=" m-[50px] font-inter bg-white">
-            <div class="p-10 mt-[5%]">
+        <div class="h-screen mx-auto flex justify-center items-center min-[300px]:p-5">
+            <div class="font-inter">
                 <h1 class="font-bold text-3xl mb-[40px]" >Logo Here</h1>
                 <h1 class="font-bold text-3xl">Selamat datang kembali 👋</h1>
                 <p class="text-xl mt-2">Bergabung dengan kami dan dapatkan pekerjaan yang kamu inginkan</p>
@@ -39,8 +31,4 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
-
-</html>
+@endsection
