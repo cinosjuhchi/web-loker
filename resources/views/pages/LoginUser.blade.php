@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,3 +45,10 @@
 </html>
 
 </html>
+=======
+@extends('layouts.GuestLayout')
+
+@section('content')
+<h1 class="text-xl font-bold">Hello Login</h1>
+@endsection
+>>>>>>> be5cbfbfb22a4c6762830f4778975332b9014477

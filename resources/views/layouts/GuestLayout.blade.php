@@ -11,7 +11,9 @@
     {{-- Misal Kasih Navbar --}}
 
     {{-- content --}}
-    @yield('content')
+    <div class="m-12">
+        @yield('content')
+    </div>
     {{-- content --}}
     
     {{-- Misal Kasih Footer --}}
