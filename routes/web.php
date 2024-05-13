@@ -23,7 +23,6 @@ Route::get('/register', function (){
     $title = 'Register User';
     return view('pages.RegisterUser', compact('title'));
 });
-Route::get('/login', function (){
-    $title = 'Login User';
-    return view('pages.LoginUser', compact('title'));
-});
+
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
