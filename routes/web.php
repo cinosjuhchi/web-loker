@@ -17,3 +17,12 @@ Route::get('/', function () {
     $title = 'Dashboard';
     return view('pages.DashboardUser', compact('title'));
 });
+
+Route::get('/register', function (){
+    $title = 'Register User';
+    return view('pages.RegisterUser', compact('title'));
+});
+Route::get('/login', function (){
+    $title = 'Login User';
+    return view('pages.LoginUser', compact('title'));
+});
