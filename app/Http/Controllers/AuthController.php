@@ -10,4 +10,9 @@ class AuthController extends Controller
         $title = "Login Page";
         return view("pages.LoginUser", compact("title"));
     }
+    public function register(Request $request){
+        $title = "Register Page";
+        return view("pages.RegisterUser", compact("title"));
+    }
+
 }

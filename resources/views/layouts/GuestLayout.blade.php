@@ -11,8 +11,12 @@
     {{-- Misal Kasih Navbar --}}
 
     {{-- content --}}
-    <div class="font-bold">
-        @yield('content')
+    <div class="regis-user">
+        @yield('registerUser')
+    </div>
+
+    <div class="login-user">
+        @yield('loginUser')
     </div>
     {{-- content --}}
     @include('components.FooterUser')

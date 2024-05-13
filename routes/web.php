@@ -19,10 +19,9 @@ Route::get('/', function () {
     return view('pages.DashboardUser', compact('title'));
 });
 
-Route::get('/register', function (){
-    $title = 'Register User';
-    return view('pages.RegisterUser', compact('title'));
-});
+
 
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+Route::get('/register', [AuthController::class, 'register'])->name('register');
