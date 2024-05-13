@@ -7,7 +7,7 @@
 <p>1. Clone Project (terminal)</p>
 
 ```
-git clone https://github.com/cinosjuhchi/web-loker.git
+git clone https://github.com/cinosjuhchi/web-loker
 ```
 
 <p>2. Change Directory</p>
