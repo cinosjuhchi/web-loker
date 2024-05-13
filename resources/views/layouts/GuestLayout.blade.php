@@ -11,11 +11,11 @@
     {{-- Misal Kasih Navbar --}}
 
     {{-- content --}}
-    <div class="m-12">
+    <div class="font-bold">
         @yield('content')
     </div>
     {{-- content --}}
-    
+    @include('components.FooterUser')
     {{-- Misal Kasih Footer --}}
 </body>
 </html>

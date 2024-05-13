@@ -13,7 +13,7 @@
 
     {{-- content --}}
     <div class="m-12">
-        @yield('content')
+        @yield('main')
     </div>
     {{-- content --}}
     {{-- Misal Kasih Footer --}}

@@ -9,6 +9,7 @@
 </head>
 <body>
     {{-- Misal Kasih Navbar --}}
+    @include('components.NavbarUser')
 
     {{-- content --}}
     @yield('content')
