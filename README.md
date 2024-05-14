@@ -34,6 +34,10 @@ npm install
 php artisan key:generate
 ```
 
+```
+php artisan storage:link
+```
+
 <p>6. Copy ENV File</p>
 
 ```
