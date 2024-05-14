@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
         
-        // Memeriksa apakah request berhasil
+       
         if ($response->successful()) {
             $provinces = $response->json();
         } else {
