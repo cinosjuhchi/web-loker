@@ -25,25 +25,24 @@ class CompanyAuthController extends Controller
     }
 
     public function register(Request $request)
-    {
+    {        
         $request->validate([
             'company_name' => 'required|string|max:255',
-            'company_email' => 'required|string|email|max:100|unique:companies',
-            'slug' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
+            'company_email' => 'required|string|email|max:100|unique:companies',            
+            'password' => 'required|string|min:8',
             'address' => 'required|string',
             'number_phone' => 'required|string|max:30',
-            'photo_profile' => 'nullable|string|max:255',
-            'photo_banner' => 'nullable|string|max:255',
+            // 'photo_profile' => 'nullable|string|max:255',
+            // 'photo_banner' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'category_id' => 'required|string|max:255',
-            'status' => 'required|in:active,pending,suspend',
+            'category_id' => 'required|string|max:255',            
         ]);
-
+        $slug = "akun-aja-satu";
+        $status = "pending";
         $company = Company::create([
             'company_name' => $request->company_name,
             'company_email' => $request->company_email,
-            'slug' => $request->slug,
+            'slug' => $slug,
             'password' => Hash::make($request->password),
             'address' => $request->address,
             'number_phone' => $request->number_phone,
@@ -51,11 +50,10 @@ class CompanyAuthController extends Controller
             'photo_banner' => $request->photo_banner,
             'description' => $request->description,
             'category_id' => $request->category_id,
-            'status' => $request->status,
+            'status' => $status,
         ]);
 
-        Auth::guard('company')->login($company);
 
-        return redirect()->route('company.home');
+        return redirect()->intended('/login');
     }
 }

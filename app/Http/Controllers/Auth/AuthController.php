@@ -19,6 +19,12 @@ class AuthController extends Controller
     public function registerCompany(Request $request){
         $title = "Register Company Page";
         $category = Category::all();
+        if($category == null){
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
         return view("pages.RegisterCompany", compact("title", "category"));
     }
 

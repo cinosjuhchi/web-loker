@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\CompanyAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register-user', [AuthController::class, 'register'])->name('register');
 
 Route::get('/register-company', [AuthController::class, 'registerCompany'])->name('registerCompany');
+Route::post('company-registration', [CompanyAuthController::class, 'register'])->name('company-registration');
