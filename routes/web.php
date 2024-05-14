@@ -25,3 +25,8 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/landing-page', function () {
+    $title = 'Landing Page';
+    return view('pages.LandingPageUser', compact('title'));
+});
