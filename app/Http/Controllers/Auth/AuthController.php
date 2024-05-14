@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -17,7 +18,8 @@ class AuthController extends Controller
 
     public function registerCompany(Request $request){
         $title = "Register Company Page";
-        return view("pages.RegisterCompany", compact("title"));
+        $category = Category::all();
+        return view("pages.RegisterCompany", compact("title", "category"));
     }
 
 }

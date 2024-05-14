@@ -13,37 +13,31 @@
             <h1 class="font-semibold text-2xl mt-10">Informasi Perusahaan</h1>
             <p class="mt-2 ">Silahkan masukkan informasi perusahaan anda</p>
                 <form action="" class="mt-5 lg:mr-10 min-[300px]:mr-0">
+                    @csrf
                     <label for="" class="text-lg font-semibold">Nama Perusahaan</label>
                     <div>
-                        <input type="text" placeholder="Masukkan nama perusahaan" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                        <input type="text" name="company_name" placeholder="Masukkan nama perusahaan" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                     </div>
                     <label for="" class="text-lg font-semibold">Nama Penanggung Jawab</label>
-                    <div>
+                    {{-- <div>
                         <input type="text" placeholder="Masukkan nama penanggung jawab" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
-                    </div>
+                    </div> --}}
                     <label for="" class="text-lg font-semibold">Nomor Telepon Penanggung Jawab</label>
-                    <div>
-                        <input type="text" placeholder="Masukkan nomor telepon penanggung jawab" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
-                    </div>
+                    {{-- <div>
+                        <input type="text" name="number_phone" placeholder="Masukkan nomor telepon penanggung jawab" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                    </div> --}}
                     <label for="" class="text-lg font-semibold">Nomor Telepon Kantor</label>
                     <p class="text-gray-500">*Jika tidak ada, diisi dengan telepon penanggung jawab</p>
                     <div>
-                        <input type="text" placeholder="Masukkan nomor telepon kantor" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                        <input type="text" name="number_phone" placeholder="Masukkan nomor telepon kantor" class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                     </div>
                     <label for="" class="text-lg font-semibold">Bidang Perusahaan</label>
                     <div>
-                        <select name="" id="" class="py-4 px-5 w-full rounded-md mt-3 mb-5 border-2 ring-2 text-gray-500 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                        <select name="category_id" id="" class="py-4 px-5 w-full rounded-md mt-3 mb-5 border-2 ring-2 text-gray-500 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                             <option value="" >Pilih bidang perusahaan</option>
-                            <option value="Pengembangan Perangkat Lunak">Pengembangan Perangkat Lunak</option>
-                            <option value="Analisis Data">Analisis Data</option>
-                            <option value="Administrator Sistem Jaringan">Administrator Sistem Jaringan</option>
-                            <option value="Ahli Keamanan Informasi">Ahli Keamanan Informasi</option>
-                            <option value="Spesialis Cloud Computing">Spesialis Cloud Computing</option>
-                            <option value="Pengembang Aplikasi Mobile">Pengembang Aplikasi Mobile</option>
-                            <option value="Spesialis Kecerdasan Buatan (AI)">Spesialis Kecerdasan Buatan (AI)</option>
-                            <option value="Ahli Robotik">Ahli Robotik</option>
-                            <option value="Pengembang Game">Pengembang Game</option>
-                            <option value="Analisis Keamanan Siber">Analisis Keamanan Siber</option>
+                            @foreach ($category as $item)
+                            <option value="{{ $item->id }}" >{{ $item->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <label for="" class="text-lg font-semibold">Deskripsi Perusahaan</label>
