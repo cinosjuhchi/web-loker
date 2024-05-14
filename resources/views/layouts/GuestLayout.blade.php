@@ -27,6 +27,11 @@
         @yield('LandingPage')
     </div>
 
+
+    <div class="landingpage-user">
+        @yield('LandingPage2')
+    </div>
+
      {{-- content --}}
      @include('components.FooterUser')
     {{-- Misal Kasih Footer --}}

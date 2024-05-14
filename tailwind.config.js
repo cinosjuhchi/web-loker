@@ -14,6 +14,8 @@ module.exports = {
         'DarkBlueish' : '#1866B7',
         'OrangeIsh' : '#FFAB00',
         'BlueDark' : '#003974',
+        'biru-muda' : '#D5E9FA',
+        'biru-tuwak' : '#003974'
       },
       fontFamily : {
         JakartaSans : ['Plus Jakarta Sans'],
