@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\Models\Category;
 
 class AuthController extends Controller
 {
@@ -25,7 +26,17 @@ class AuthController extends Controller
                 'id' => null
             ];
         }
-        return view("pages.RegisterCompany", compact("title", "category"));
+
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        
+        // Memeriksa apakah request berhasil
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+
+        return view("pages.RegisterCompany", compact("title", "category", "provinces"));
     }
 
 }
