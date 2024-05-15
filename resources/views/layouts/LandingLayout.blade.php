@@ -15,7 +15,7 @@
 
     @include('components.NavbarUser')
 
-    <div class="landingpage-user">
+    <div class="landingpage-user lg:mx-10 min-[300px]:mx-3 m-14">
         @yield('LandingPage')
     </div>
 

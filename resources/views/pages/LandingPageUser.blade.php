@@ -7,13 +7,15 @@
 <h1 class="mt-6">Di sini, Anda akan menemukan lingkungan kerja yang inklusif dan kolaboratif, di mana setiap suara dihargai dan setiap ide didorong untuk  tumbuh. Kami percaya bahwa keragaman adalah kunci untuk inovasi, dan  kami berkomitmen untuk merangkul perbedaan agar dapat menciptakan  solusi yang lebih baik.</h1>
 </div>
 
-<img src="{{ Vite::asset('resources/assets/Rectangle26.png') }}" alt="" class="mt-4 w-80 h-72">
-   
+<div class="w-full flex h-1/2">
+    <img src="{{ Vite::asset('resources/assets/Rectangle26.png') }}" alt="" class="h-72 ps-[270px] mt-2">
+
+</div>
 </div>
 <div class="flex justify-center mt-10 font-bold text-3xl">
     <h1 class="font-bold text-3xl mb-10">Apa Pekerjaan Yang Anda Inginkan?</h1>
 </div>
-<div class=" px-6 flex justify-items-center">
+<div class="px-6 flex justify-center">
     <div class="rounded-lg border-black border-2 mb-10 mx-1">
         <img src="{{ Vite::asset('resources/assets/Rectangle34.png') }}" alt="image caption"
          class="w-full">

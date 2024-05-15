@@ -16,8 +16,13 @@
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
     {{-- content --}}
+
     <div class="regis-company">
         @yield('registerCompany')
+    </div>
+
+    <div class="pasang-loker">
+        @yield('pasangLoker')
     </div>
 
 
@@ -30,7 +35,7 @@
     </div>
    
 
-    <div class="landingpage-user mx-10 m-14">
+    <div class="landingpage-user  min-[300px]:mx-5 ">
         @yield('LandingPage')
     </div>
 
@@ -42,11 +47,7 @@
     
 
      {{-- content --}}
-<<<<<<< HEAD
      
-=======
-     {{-- @include('components.FooterUser') --}}
->>>>>>> ed0f7f2fb899a77e9df6125a7f8233cee10eb986
     {{-- Misal Kasih Footer --}}
 </body>
 </html>
