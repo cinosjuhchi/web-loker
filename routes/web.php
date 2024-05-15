@@ -1,10 +1,11 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\CompanyAuthController;
-use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::get('/landing-page', function () {
 Route::middleware('auth.company')->group(function () {
     Route::get('/after-login', function () {
         $title = "After-Login";
-        return view('pages.DashboardUser', compact('title'));
+        $company = Auth::guard('company')->user();        
+        return view('pages.company.DashboardUser', compact('title', 'company'));
     });
 });
