@@ -47,6 +47,7 @@ Route::get('/cari-lowongan', function () {
 
 
 
+
 // companies 
 Route::middleware('auth.company')->group(function () {
     Route::get('/after-login', function () {

@@ -6,7 +6,10 @@
     </div>
     <div class="mx-auto flex justify-center items-center min-[300px]:p-5 ">
         <div class="font-inter">
-            <h1 class="font-bold text-3xl mb-[40px]" >Logo Here</h1>
+            <div class="flex items-center">
+                <img class="h-14" src="{{ Vite::asset("resources/assets/logo/logo_outline_text_none.png") }}" alt="image description">
+                <h2 class="text-5xl font-bold text-blue-700 font-JakartaSans">Work<span class="text-yellow-300">Seeker</span></h2>
+            </div>
             <h1 class="font-bold text-3xl">Daftarkan dirimu sekarang!</h1>
             <p class="text-xl mt-2">Bergabung dengan kami dan dapatkan pekerjaan yang kamu inginkan</p>
 
