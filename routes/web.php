@@ -30,7 +30,17 @@ Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 
+
 Route::get('/landing-page', function () {
     $title = 'Landing Page';
     return view('pages.LandingPageUser', compact('title'));
+});
+
+
+// companies 
+Route::middleware('auth.company')->group(function () {
+    Route::get('/after-login', function () {
+        $title = "After-Login";
+        return view('pages.DashboardUser', compact('title'));
+    });
 });

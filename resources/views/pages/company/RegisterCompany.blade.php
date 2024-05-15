@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <button type="submit" class="mt-10 py-4 w-full rounded-3xl text-white font-semibold" style="background: #003974" type="submit">Daftar</button>
-                    <p class="text-sm text-center mt-2">Sudah punya akun? <a href="#" style="color: #003974">Masuk</a></p>
+                    <p class="text-sm text-center mt-2">Sudah punya akun? <a href="{{ route('company.login') }}" style="color: #003974">Masuk</a></p>
                 </div>
             </div>
         </form>

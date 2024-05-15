@@ -36,7 +36,7 @@
                         </div>
                         <button type="submit" class="mt-10 py-4 w-full rounded-3xl text-white font-semibold" style="background: #003974" type="submit">Masuk</button>
                     </form>
-                    <p class="text-sm text-center mt-2">Belum punya akun? <a href="/register" style="color: #003974">Daftar</a></p>
+                    <p class="text-sm text-center mt-2">Belum punya akun? <a href="{{ route('company.register') }}" style="color: #003974">Daftar</a></p>
                 </div>
             </div>
         </div>

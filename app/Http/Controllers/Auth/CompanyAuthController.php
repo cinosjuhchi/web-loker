@@ -62,8 +62,8 @@ class CompanyAuthController extends Controller
         
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+            'company_email' => 'Email atau password tidak ada.',
+        ])->withInput($request->except('password'));
     }
 
     public function registerPost(Request $request)
