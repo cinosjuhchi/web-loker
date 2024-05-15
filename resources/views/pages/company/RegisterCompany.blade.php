@@ -5,7 +5,7 @@
        <div>
        
         <div class="flex items-center">
-            <img class="h-24 max-w-xl" src="{{ Vite::asset("resources/assets/logo/logo_outline_text_none.png") }}" alt="image description">
+            <img class="h-14" src="{{ Vite::asset("resources/assets/logo/logo_outline_text_none.png") }}" alt="image description">
             <h2 class="text-5xl font-bold text-blue-700 font-JakartaSans">Work<span class="text-yellow-300">Seeker</span></h2>
         </div>
 
@@ -78,7 +78,7 @@
                         <label for="" class="text-lg font-semibold">Foto Profil Perusahaan</label>
                         <p class="text-gray-500">*Bisa diisi dengan Logo Perusahaan, Gambar Produk, atau Kantor Perusahaan</p>
                         <div class="mb-5">
-                            <input type="file" id="file-input" accept=”.jpg, .jpeg, .png” name="photo_profile" placeholder="Pilih File" class="py-4 px-5 w-full rounded-md mt-0 mb-5  text-black border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                            <input type="file" id="file-input" accept=”.jpg, .jpeg, .png” name="photo_profile" placeholder="Pilih File" class=" w-full  mt-0 mb-5  text-black border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                             <img class="h-40 w-40 object-cover mb-4 object-center" src="{{ Vite::asset('resources/assets/placeholder.png') }}" id="file-preview" alt="image description">
                             <p class="text-gray-500 mt-[-10px]">Ukuran maksimal : 3MB</p>                            
                             @error('photo_profile')

@@ -40,11 +40,11 @@ class CompanyAuthController extends Controller
     public function loginPost(Request $request)
     {
         $customMessages = [            
-            'company_email.required' => 'Email perusahaan wajib diisi.',
-            'company_email.email' => 'Email harus berupa alamat email yang valid.',
-            'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',            
-            'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password harus minimal 6 karakter.',            
+            'company_email.required' => '*Email perusahaan wajib diisi.',
+            'company_email.email' => '*Email harus berupa alamat email yang valid.',
+            'company_email.max' => '*Email perusahaan tidak boleh lebih dari 100 karakter.',            
+            'password.required' => '*Password wajib diisi.',
+            'password.min' => '*Password harus minimal 6 karakter.',            
         ];
 
         $request->validate([
@@ -70,23 +70,23 @@ class CompanyAuthController extends Controller
     {                
 
         $customMessages = [
-            'company_name.required' => 'Nama perusahaan wajib diisi.',
-            'company_name.max' => 'Nama perusahaan tidak boleh lebih dari 255 karakter.',
-            'company_name.unique' => 'Nama perusahaan sudah terdaftar.',
-            'company_email.required' => 'Email perusahaan wajib diisi.',
-            'company_email.email' => 'Email perusahaan harus berupa alamat email yang valid.',
-            'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',
-            'company_email.unique' => 'Email perusahaan sudah terdaftar.',
-            'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password harus minimal 6 karakter.',
-            'address.required' => 'Alamat wajib diisi.',
-            'province.required' => 'Provinsi wajib diisi.',
-            'number_phone.required' => 'Nomor telepon wajib diisi.',
-            'number_phone.max' => 'Nomor telepon tidak boleh lebih dari 30 karakter.',
-            'photo_profile.image' => 'Foto profil harus berupa gambar.',
-            'photo_profile.file' => 'Foto profil harus berupa file.',
-            'photo_profile.max' => 'Foto profil tidak boleh lebih dari 3 MB.',
-            'category_id.required' => 'Bidang perusahaan wajib dipilih.',
+            'company_name.required' => '*Nama perusahaan wajib diisi.',
+            'company_name.max' => '*Nama perusahaan tidak boleh lebih dari 255 karakter.',
+            'company_name.unique' => '*Nama perusahaan sudah terdaftar.',
+            'company_email.required' => '*Email perusahaan wajib diisi.',
+            'company_email.email' => '*Email perusahaan harus berupa alamat email yang valid.',
+            'company_email.max' => '*Email perusahaan tidak boleh lebih dari 100 karakter.',
+            'company_email.unique' => '*Email perusahaan sudah terdaftar.',
+            'password.required' => '*Password wajib diisi.',
+            'password.min' => '*Password harus minimal 6 karakter.',
+            'address.required' => '*Alamat wajib diisi.',
+            'province.required' => '*Provinsi wajib diisi.',
+            'number_phone.required' => '*Nomor telepon wajib diisi.',
+            'number_phone.max' => '*Nomor telepon tidak boleh lebih dari 30 karakter.',
+            'photo_profile.image' => '*Foto profil harus berupa gambar.',
+            'photo_profile.file' => '*Foto profil harus berupa file.',
+            'photo_profile.max' => '*Foto profil tidak boleh lebih dari 3 MB.',
+            'category_id.required' => '*Bidang perusahaan wajib dipilih.',
         ];
          
         $request->validate([
