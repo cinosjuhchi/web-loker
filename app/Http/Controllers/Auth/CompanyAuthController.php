@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Company;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class CompanyAuthController extends Controller
 
     public function login(Request $request){
         $title = "Login Company";
-        return view("pages.LoginUser", compact("title"));
+        return view("pages.company.LoginCompany", compact("title"));
     }
     public function register(Request $request){
         $title = "Register Company";
@@ -38,11 +39,27 @@ class CompanyAuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $customMessages = [            
+            'company_email.required' => 'Email perusahaan wajib diisi.',
+            'company_email.email' => 'Email harus berupa alamat email yang valid.',
+            'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',            
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password harus minimal 6 karakter.',            
+        ];
+
+        $request->validate([
+            'company_email' => "required|email:dns|string|max:255",
+            'password' => "required|min:6",
+        ], $customMessages);
+
+        $credentials = $request->only('company_email', 'password');
+        
 
         if (Auth::guard('company')->attempt($credentials)) {
             return redirect()->intended('/');
         }
+
+        
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -50,20 +67,41 @@ class CompanyAuthController extends Controller
     }
 
     public function registerPost(Request $request)
-    {        
+    {                
+
+        $customMessages = [
+            'company_name.required' => 'Nama perusahaan wajib diisi.',
+            'company_name.max' => 'Nama perusahaan tidak boleh lebih dari 255 karakter.',
+            'company_name.unique' => 'Nama perusahaan sudah terdaftar.',
+            'company_email.required' => 'Email perusahaan wajib diisi.',
+            'company_email.email' => 'Email perusahaan harus berupa alamat email yang valid.',
+            'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',
+            'company_email.unique' => 'Email perusahaan sudah terdaftar.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password harus minimal 6 karakter.',
+            'address.required' => 'Alamat wajib diisi.',
+            'province.required' => 'Provinsi wajib diisi.',
+            'number_phone.required' => 'Nomor telepon wajib diisi.',
+            'number_phone.max' => 'Nomor telepon tidak boleh lebih dari 30 karakter.',
+            'photo_profile.image' => 'Foto profil harus berupa gambar.',
+            'photo_profile.file' => 'Foto profil harus berupa file.',
+            'photo_profile.max' => 'Foto profil tidak boleh lebih dari 3 MB.',
+            'category_id.required' => 'Bidang perusahaan wajib dipilih.',
+        ];
+         
         $request->validate([
-            'company_name' => 'required|string|max:255',
-            'company_email' => 'required|string|email|max:100|unique:companies',            
-            'password' => 'required|string|min:8',
+            'company_name' => 'required|string|max:255|unique:companies',
+            'company_email' => 'required|string|email:dns|max:100|unique:companies',            
+            'password' => 'required|string|min:6',
             'address' => 'required|string',
             'province' => 'required|string',
             'number_phone' => 'required|string|max:30',
-            // 'photo_profile' => 'nullable|string|max:255',
-            // 'photo_banner' => 'nullable|string|max:255',
+            'photo_profile.*' => 'image|file|max:3014',        
             'description' => 'nullable|string',
-            'category_id' => 'required|string|max:255',            
-        ]);
-        $slug = "akun-aja-satu";
+            'category_id' => 'required',            
+        ], $customMessages);
+        $image = $request->photo_profile->store("company/images/profiles");        
+        $slug = Str::slug($request->company_name) . '-' . Str::random(5);
         $status = "pending";
         $company = Company::create([
             'company_name' => $request->company_name,
@@ -73,14 +111,14 @@ class CompanyAuthController extends Controller
             'address' => $request->address,
             'province' => $request->province,
             'number_phone' => $request->number_phone,
-            'photo_profile' => $request->photo_profile,
-            'photo_banner' => $request->photo_banner,
-            'description' => "Deskripsi Kosong",
+            'photo_profile' => $image,
+            'description' => $request->description,
             'category_id' => $request->category_id,
             'status' => $status,
         ]);
 
+        
 
-        return redirect()->intended('/login');
+        return redirect()->route('company.login');
     }
 }
