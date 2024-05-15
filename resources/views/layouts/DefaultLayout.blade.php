@@ -18,9 +18,13 @@
     @include('components.NavbarUser')
 
     {{-- content --}}
+
+
     <div class="m-12">
         @yield('main')
     </div>
+
+    
     {{-- content --}}
     {{-- Misal Kasih Footer --}}
     @include('components.FooterUser')
