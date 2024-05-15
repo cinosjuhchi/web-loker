@@ -8,7 +8,7 @@
         <p class="mt-2 ">Bergabung dengan kami dan dapatkan pekerja yang anda inginkan</p>
      
 
-        <form action="{{ route('company-registration') }}" method="POST" class="mt-5 lg:mr-10 min-[300px]:mr-0">
+        <form action="{{ route('company.register.post') }}" method="POST" class="mt-5 lg:mr-10 min-[300px]:mr-0">
             @csrf
             <div class="lg:flex min-[300px]:block">
                 <div class="w-full">
@@ -24,7 +24,7 @@
                             <select name="province" id="province" class="py-4 px-5 w-full rounded-md mt-3 mb-5 border-2 ring-2 text-gray-500 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10">
                                 <option value="#">Pilih Provinsi</option>
                                 @foreach ($provinces as $province)
-                                    <option value="{{ $province['id'] }}">{{ $province['name'] }}</option>
+                                    <option value="{{ $province['name'] }}">{{ $province['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>

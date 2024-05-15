@@ -3,15 +3,40 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Company;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class CompanyAuthController extends Controller
 {
 
-    public function login(Request $request)
+    public function login(Request $request){
+        $title = "Login Company";
+        return view("pages.LoginUser", compact("title"));
+    }
+    public function register(Request $request){
+        $title = "Register Company";
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        $category = Category::all();
+        if($category == null){
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
+       
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages.company.RegisterCompany", compact("title", "provinces", "category"));
+    }
+
+    public function loginPost(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -24,7 +49,7 @@ class CompanyAuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function registerPost(Request $request)
     {        
         $request->validate([
             'company_name' => 'required|string|max:255',

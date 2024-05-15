@@ -23,6 +23,10 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
+Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
+Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
+Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
+
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/landing-page', function () {

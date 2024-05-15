@@ -12,8 +12,13 @@
 </head>
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
- @include('components.NavbarUser')
+ {{-- @include('components.NavbarUser') --}}
     {{-- content --}}
+    <div class="regis-company">
+        @yield('registerCompany')
+    </div>
+
+
     <div class="regis-user">
         @yield('registerUser')
     </div>
@@ -33,7 +38,7 @@
     </div>
 
      {{-- content --}}
-     @include('components.FooterUser')
+     {{-- @include('components.FooterUser') --}}
     {{-- Misal Kasih Footer --}}
 </body>
 </html>
