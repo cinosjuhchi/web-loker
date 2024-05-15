@@ -52,7 +52,7 @@ class CompanyAuthController extends Controller
     }
 
     public function registerPost(Request $request)
-    {        
+    {                
         $request->validate([
             'company_name' => 'required|string|max:255',
             'company_email' => 'required|string|email|max:100|unique:companies',            
@@ -63,7 +63,7 @@ class CompanyAuthController extends Controller
             // 'photo_profile' => 'nullable|string|max:255',
             // 'photo_banner' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'category_id' => 'required|string|max:255',            
+            'category_id' => 'required',            
         ]);
         $slug = "akun-aja-satu";
         $status = "pending";
@@ -82,7 +82,7 @@ class CompanyAuthController extends Controller
             'status' => $status,
         ]);
 
-        Auth::guard('company')->login($company);
+        
 
         return redirect()->intended('/login');
     }
