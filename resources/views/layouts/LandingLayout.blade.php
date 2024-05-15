@@ -23,6 +23,9 @@
         @yield('LandingPage2')
     </div>
     
+    <div class="tampilan-cariLowongan" >
+   @yield('Carilowongan')
+    </div>
      {{-- content --}}
      @include('components.FooterUser')
     {{-- Misal Kasih Footer --}}

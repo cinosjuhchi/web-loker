@@ -15,7 +15,8 @@ module.exports = {
         'OrangeIsh' : '#FFAB00',
         'BlueDark' : '#003974',
         'biru-muda' : '#D5E9FA',
-        'biru-tuwak' : '#003974'
+        'biru-tuwak' : '#003974',
+        'biru-baru' : '#4FA3C6',
       },
       fontFamily : {
         JakartaSans : ['Plus Jakarta Sans'],
