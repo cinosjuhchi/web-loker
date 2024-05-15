@@ -79,8 +79,8 @@
                         <p class="text-gray-500">*Bisa diisi dengan Logo Perusahaan, Gambar Produk, atau Kantor Perusahaan</p>
                         <div class="mb-5">
                             <input type="file" id="file-input" accept=”.jpg, .jpeg, .png” name="photo_profile" placeholder="Pilih File" class="py-4 px-5 w-full rounded-md mt-0 mb-5  text-black border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
-                            <p class="text-gray-500 mt-[-10px] text-right">Ukuran maksimal : 3MB</p>                            
-                            <img class="h-40 w-40 object-cover object-center" src="{{ Vite::asset('resources/assets/lamaran.jpg') }}" id="file-preview" alt="image description">
+                            <img class="h-40 w-40 object-cover mb-4 object-center" src="{{ Vite::asset('resources/assets/placeholder.png') }}" id="file-preview" alt="image description">
+                            <p class="text-gray-500 mt-[-10px]">Ukuran maksimal : 3MB</p>                            
                             @error('photo_profile')
                                 <p class="text-red-600 text-sm">{{ $message }}</p>
                             @enderror

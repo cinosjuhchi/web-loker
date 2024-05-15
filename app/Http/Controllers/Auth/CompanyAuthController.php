@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Company;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,7 @@ class CompanyAuthController extends Controller
         $customMessages = [
             'company_name.required' => 'Nama perusahaan wajib diisi.',
             'company_name.max' => 'Nama perusahaan tidak boleh lebih dari 255 karakter.',
+            'company_name.unique' => 'Nama perusahaan sudah terdaftar.',
             'company_email.required' => 'Email perusahaan wajib diisi.',
             'company_email.email' => 'Email perusahaan harus berupa alamat email yang valid.',
             'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',
@@ -69,23 +71,23 @@ class CompanyAuthController extends Controller
             'number_phone.max' => 'Nomor telepon tidak boleh lebih dari 30 karakter.',
             'photo_profile.image' => 'Foto profil harus berupa gambar.',
             'photo_profile.file' => 'Foto profil harus berupa file.',
-            'photo_profile.max' => 'Foto profil tidak boleh lebih dari 50014 kilobyte.',
+            'photo_profile.max' => 'Foto profil tidak boleh lebih dari 3 MB.',
             'category_id.required' => 'Bidang perusahaan wajib dipilih.',
         ];
          
         $request->validate([
-            'company_name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255|unique:companies',
             'company_email' => 'required|string|email:dns|max:100|unique:companies',            
             'password' => 'required|string|min:6',
             'address' => 'required|string',
             'province' => 'required|string',
             'number_phone' => 'required|string|max:30',
-            'photo_profile.*' => 'image|file|max:50014',        
+            'photo_profile.*' => 'image|file|max:3014',        
             'description' => 'nullable|string',
             'category_id' => 'required',            
         ], $customMessages);
         $image = $request->photo_profile->store("company/images/profiles");        
-        $slug = "akun-aja-satu";
+        $slug = Str::slug($request->company_name) . '-' . Str::random(5);
         $status = "pending";
         $company = Company::create([
             'company_name' => $request->company_name,
