@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug', 255);
             $table->string('password', 100);
             $table->text('address');
+            $table->string('province', 255);
             $table->string('number_phone', 30);
             $table->string('photo_profile', 255)->nullable();
             $table->string('photo_banner', 255)->nullable();

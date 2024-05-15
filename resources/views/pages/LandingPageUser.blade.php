@@ -69,7 +69,7 @@
     </div>
     <div class="w-[700px] h-15 bg-LightBlue  rounded-md mb-4 flex" >
     <div class="rounded-full text-white bg-biru-tuwak h-[28px] w-[28px] text-center pt-0.5 text-semibold text-sm my-auto ml-5">4</div>
-        <h1 class=" mx-5 pt-3.5 font-bold text-xl flex justify-items-center mb-4 ml-[8px]" >Ajukan lowongan pekerjaan anda</h1>
+        <h1 class=" mx-5 pt-3.5 font-bold text-xl flex justify-items-center mb-4 ml-[8px]" >Ajukan lowongan perkerjaan anda</h1>
     </div>
     
   </div>
@@ -85,7 +85,7 @@
 #WorkSeeker
 </h1>
 <h1 class="absolute px-4 text-white top-28 font-semibold text-4xl text-center">
-Temukan Pekerjaan, <br/>
+Temukan Perkejaan, <br/>
 Capai Impian!   
 </h1>
 
