@@ -1,17 +1,16 @@
 @extends('layouts.LandingLayout')
 @section('LandingPage')
-<div class=" container px-6 max-w-md mx-auto sm:max-w-xl md:max-w-5xl lg:flex lg:max-w-full lg:p-0 ">
- <div class="lg:p-12 lg:flex-1">
- <h1 class="font-extrabold text-3xl ">Temukan pekerjaan sesuai minat & keterampilan Anda.  Cek lowongan di situs kami!
-</h1>
-<h1 class="mt-6">Di sini, Anda akan menemukan lingkungan kerja yang inklusif dan kolaboratif, di mana setiap suara dihargai dan setiap ide didorong untuk  tumbuh. Kami percaya bahwa keragaman adalah kunci untuk inovasi, dan  kami berkomitmen untuk merangkul perbedaan agar dapat menciptakan  solusi yang lebih baik.</h1>
-</div>
 
-<div class="w-full flex h-1/2">
-    <img src="{{ Vite::asset('resources/assets/Rectangle26.png') }}" alt="" class="h-72 ps-[270px] mt-2">
+<div class="lg:m-[70px] lg:flex min-[300px]:block min-[300px]:m-[15px]">
+                <div class="lg:w-[90%] lg:mt-[40px] min-[300px]:w-full min-[300px]:mt-[100px] min-[300px]:block">
+                    <h1 class="font-bold lg:text-2xl min-[300px]:text-2xl lg:w-[600px] min-[300px]:w-full min-[300px]:text-center lg:text-left">Temukan pekerjaan sesuai minat & keterampilan <br> anda. Cek lowongan di situs kami!</h1>
+                    <h1 class="mt-6">Di sini, Anda akan menemukan lingkungan kerja yang inklusif <br> dan kolaboratif, di mana setiap suara dihargai dan setiap ide didorong <br> untuk  tumbuh. Kami percaya bahwa keragaman adalah kunci untuk <br> inovasi, dan  kami berkomitmen untuk merangkul perbedaan agar <br> dapat menciptakan  solusi yang lebih baik.</h1>
+                </div>   
+                <div class="lg:w-[40%] lg:block min-[300px]:hidden">
+                  <img src="{{ Vite::asset('resources/assets/Rectangle26.png') }}"  alt="" class="h-[300px] ">
+                </div>   
+            </div>
 
-</div>
-</div>
 <div class="flex justify-center mt-10 font-bold text-3xl">
     <h1 class="font-bold text-3xl mb-10">Apa Pekerjaan Yang Anda Inginkan?</h1>
 </div>
@@ -81,7 +80,7 @@
 @section('LandingPage2')
 <div class="flex justify-center relative" >
 <img class="w-full" src="{{ Vite::asset('resources/assets/Rectangle86.png')}}" alt="image description">
-<h1 class="absolute px-4 text-white top-10 font-semibold text-4xl text-center">
+<h1 class="absolute px-4 text-white top-10 font-semibold text-4xl text-center w-fit">
 #WorkSeeker
 </h1>
 <h1 class="absolute px-4 text-white top-28 font-semibold text-4xl text-center">
