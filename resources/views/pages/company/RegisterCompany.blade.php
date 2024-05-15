@@ -3,9 +3,14 @@
 
     <div class="lg:m-[50px] min-[300px]:m-[10px]">
        <div>
-       <h1 class="font-bold text-3xl mb-8">Logo Here</h1>
+       
+        <div class="flex items-center">
+            <img class="h-24 max-w-xl" src="{{ Vite::asset("resources/assets/logo/logo_outline_text_none.png") }}" alt="image description">
+            <h2 class="text-5xl font-bold text-blue-700 font-JakartaSans">Work<span class="text-yellow-300">Seeker</span></h2>
+        </div>
+
         <h1 class="font-semibold text-2xl">Daftarkan Perusahaanmu sekarang!</h1>
-        <p class="mt-2 ">Bergabung dengan kami dan dapatkan pekerja yang anda inginkan</p>
+        <p class="mt-2">Bergabung dengan kami dan dapatkan pekerja yang anda inginkan</p>
      
 
         <form action="{{ route('company.register.post') }}" enctype="multipart/form-data" method="POST" class="mt-5 lg:mr-10 min-[300px]:mr-0">
@@ -13,7 +18,7 @@
             <div class="lg:flex min-[300px]:block">
                 <div class="w-full">
                 <h1 class="font-semibold text-2xl mt-10">Informasi Perusahaan</h1>
-                <p class="mt-2 ">Silahkan masukkan informasi perusahaan anda</p>
+                <p class="mt-2 mb-4">Silahkan masukkan informasi perusahaan anda</p>
                         <label for="" class="text-lg font-semibold">Nama Perusahaan</label>
                         <div class="mb-5">
                             <input type="text" name="company_name" placeholder="Masukkan nama perusahaan" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10">
@@ -84,7 +89,7 @@
 
             <div class="w-full lg:ml-8 min-[300px]:ml-0">
                 <h1 class="font-semibold text-2xl mt-10">Informasi Akun</h1>
-                <p class="mt-2 ">Silahkan masukkan informasi akun anda</p>
+                <p class="mt-2 mb-4">Silahkan masukkan informasi akun anda</p>
                 <div class="">                
                     <div class="mb-5">
                         <label for="" class="text-lg font-semibold">Alamat Email</label>
