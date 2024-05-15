@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     @vite(['resources/css/app.css','resources/js/app.js'])
-    <link rel="shortcut icon" type="image/x-icon" href="{{ Vite::asset("resources/assets/logo/logo_outline.png") }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ Vite::asset("resources/assets/logo/favicon.ico") }}" />
 </head>
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
