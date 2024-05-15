@@ -8,7 +8,7 @@
         <p class="mt-2 ">Bergabung dengan kami dan dapatkan pekerja yang anda inginkan</p>
      
 
-        <form action="{{ route('company.register.post') }}" method="POST" class="mt-5 lg:mr-10 min-[300px]:mr-0">
+        <form action="{{ route('company.register.post') }}" enctype="multipart/form-data" method="POST" class="mt-5 lg:mr-10 min-[300px]:mr-0">
             @csrf
             <div class="lg:flex min-[300px]:block">
                 <div class="w-full">
@@ -58,8 +58,9 @@
                         <label for="" class="text-lg font-semibold">Foto Profil Perusahaan</label>
                         <p class="text-gray-500">*Bisa diisi dengan Logo Perusahaan, Gambar Produk, atau Kantor Perusahaan</p>
                         <div>
-                            <input type="file" placeholder="Pilih File" class="py-4 px-5 w-full rounded-md mt-0 mb-5  text-black border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
-                            <p class="text-gray-500 mt-[-10px] text-right">Ukuran maksimal : 3MB</p>
+                            <input type="file" id="file-input" accept=”.jpg, .jpeg, .png” name="photo_profile" placeholder="Pilih File" class="py-4 px-5 w-full rounded-md mt-0 mb-5  text-black border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                            <p class="text-gray-500 mt-[-10px] text-right">Ukuran maksimal : 3MB</p>                            
+                            <img class="h-40 w-40 object-cover object-center" src="{{ Vite::asset('resources/assets/lamaran.jpg') }}" id="file-preview" alt="image description">
                         </div>
                     </div>
 
@@ -88,5 +89,21 @@
         
        </div>
     </div>
+
+    <script>
+        const input = document.getElementById('file-input');
+        const previewPhoto = () => {
+            const file = input.files;
+            if (file) {
+                const fileReader = new FileReader();
+                const preview = document.getElementById('file-preview');
+        fileReader.onload = function (event) {
+                    preview.setAttribute('src', event.target.result);
+                }
+                fileReader.readAsDataURL(file[0]);
+            }
+        }
+        input.addEventListener("change", previewPhoto);
+    </script>
      
 @endsection

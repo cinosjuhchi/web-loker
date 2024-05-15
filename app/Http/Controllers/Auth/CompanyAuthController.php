@@ -53,18 +53,19 @@ class CompanyAuthController extends Controller
 
     public function registerPost(Request $request)
     {                
+         
         $request->validate([
             'company_name' => 'required|string|max:255',
-            'company_email' => 'required|string|email|max:100|unique:companies',            
-            'password' => 'required|string|min:8',
+            'company_email' => 'required|string|email:dns|max:100|unique:companies',            
+            'password' => 'required|string|min:6',
             'address' => 'required|string',
             'province' => 'required|string',
             'number_phone' => 'required|string|max:30',
-            // 'photo_profile' => 'nullable|string|max:255',
-            // 'photo_banner' => 'nullable|string|max:255',
+            'photo_profile.*' => 'image|file|max:50014',        
             'description' => 'nullable|string',
             'category_id' => 'required',            
         ]);
+        $image = $request->photo_profile->store("company/images/profiles");        
         $slug = "akun-aja-satu";
         $status = "pending";
         $company = Company::create([
@@ -75,9 +76,8 @@ class CompanyAuthController extends Controller
             'address' => $request->address,
             'province' => $request->province,
             'number_phone' => $request->number_phone,
-            'photo_profile' => $request->photo_profile,
-            'photo_banner' => $request->photo_banner,
-            'description' => "Deskripsi Kosong",
+            'photo_profile' => $image,
+            'description' => $request->description,
             'category_id' => $request->category_id,
             'status' => $status,
         ]);
