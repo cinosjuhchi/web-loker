@@ -16,7 +16,7 @@ class CompanyAuthController extends Controller
 
     public function login(Request $request){
         $title = "Login Company";
-        return view("pages.LoginUser", compact("title"));
+        return view("pages.company.LoginCompany", compact("title"));
     }
     public function register(Request $request){
         $title = "Register Company";
@@ -39,7 +39,21 @@ class CompanyAuthController extends Controller
 
     public function loginPost(Request $request)
     {
+        $customMessages = [            
+            'company_email.required' => 'Email perusahaan wajib diisi.',
+            'company_email.email' => 'Email harus berupa alamat email yang valid.',
+            'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',            
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password harus minimal 6 karakter.',            
+        ];
+
+        $request->validate([
+            'company_email' => "required|email:dns|string|max:255",
+            'password' => "required|min:6",
+        ], $customMessages);
+
         $credentials = $request->only('company_email', 'password');
+        
 
         if (Auth::guard('company')->attempt($credentials)) {
             return redirect()->intended('/');
@@ -105,6 +119,6 @@ class CompanyAuthController extends Controller
 
         
 
-        return redirect()->intended('/login');
+        return redirect()->route('company.login');
     }
 }
