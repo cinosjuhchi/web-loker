@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\CompanyAuthController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', function () {
     return view('pages.DashboardUser', compact('title'));
 });
 
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
@@ -28,6 +30,7 @@ Route::get('/register-company', [CompanyAuthController::class, 'register'])->nam
 Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 
 Route::get('/landing-page', function () {
     $title = 'Landing Page';
