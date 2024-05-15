@@ -15,7 +15,7 @@
 
     @include('components.NavbarUser')
 
-    <div class="landingpage-user mx-10 m-14">
+    <div class="landingpage-user">
         @yield('LandingPage')
     </div>
 
