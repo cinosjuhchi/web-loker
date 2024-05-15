@@ -1,3 +1,4 @@
+
 <nav class="bg-LightBlue w-full top-0 start-0 h-[70px]">
   <div class="max-w-screen flex flex-wrap items-center mx-10 p-4 px-6">
   <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
