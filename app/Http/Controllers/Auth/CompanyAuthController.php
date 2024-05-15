@@ -53,6 +53,25 @@ class CompanyAuthController extends Controller
 
     public function registerPost(Request $request)
     {                
+
+        $customMessages = [
+            'company_name.required' => 'Nama perusahaan wajib diisi.',
+            'company_name.max' => 'Nama perusahaan tidak boleh lebih dari 255 karakter.',
+            'company_email.required' => 'Email perusahaan wajib diisi.',
+            'company_email.email' => 'Email perusahaan harus berupa alamat email yang valid.',
+            'company_email.max' => 'Email perusahaan tidak boleh lebih dari 100 karakter.',
+            'company_email.unique' => 'Email perusahaan sudah terdaftar.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password harus minimal 6 karakter.',
+            'address.required' => 'Alamat wajib diisi.',
+            'province.required' => 'Provinsi wajib diisi.',
+            'number_phone.required' => 'Nomor telepon wajib diisi.',
+            'number_phone.max' => 'Nomor telepon tidak boleh lebih dari 30 karakter.',
+            'photo_profile.image' => 'Foto profil harus berupa gambar.',
+            'photo_profile.file' => 'Foto profil harus berupa file.',
+            'photo_profile.max' => 'Foto profil tidak boleh lebih dari 50014 kilobyte.',
+            'category_id.required' => 'Bidang perusahaan wajib dipilih.',
+        ];
          
         $request->validate([
             'company_name' => 'required|string|max:255',
@@ -64,7 +83,7 @@ class CompanyAuthController extends Controller
             'photo_profile.*' => 'image|file|max:50014',        
             'description' => 'nullable|string',
             'category_id' => 'required',            
-        ]);
+        ], $customMessages);
         $image = $request->photo_profile->store("company/images/profiles");        
         $slug = "akun-aja-satu";
         $status = "pending";
