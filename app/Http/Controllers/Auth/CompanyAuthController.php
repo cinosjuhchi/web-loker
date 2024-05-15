@@ -38,11 +38,13 @@ class CompanyAuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('company_email', 'password');
 
         if (Auth::guard('company')->attempt($credentials)) {
             return redirect()->intended('/');
         }
+
+        
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -80,6 +82,7 @@ class CompanyAuthController extends Controller
             'status' => $status,
         ]);
 
+        Auth::guard('company')->login($company);
 
         return redirect()->intended('/login');
     }
