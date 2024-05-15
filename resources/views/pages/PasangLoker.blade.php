@@ -14,12 +14,11 @@
                 </div>   
             </div>
 
-            <div class="mt-[100px] mx-[70px]">
-                <h1 class="font-semibold text-3xl text-center">Hanya dengan 3 langkah sederhana</h1>
-                <div class="card flex mt-10 justify-between">
-                    <div class="max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="mt-[100px] lg:mx-[70px] min-[300px]:px-10 ">
+                <h1 class="font-semibold lg:text-4xl min-[300px]:text-2xl  text-center">Hanya dengan 3 langkah sederhana</h1>
+                <div class="card lg:flex mt-10 justify-between min-[300px]:block px-5 py-5 grid grid-cols-3 lg:gap-3">
+                    <div class="w-full bg-white border mb-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="p-5">
-                    
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-biru-tuwak dark:text-white">1</h5>
                             <img src="{{ Vite::asset('resources/assets/pasangloker2.svg') }}" alt="">
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Buat akun baru </h5>
@@ -27,9 +26,8 @@
                         </div>
                     </div>
 
-                    <div class="max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="w-full  bg-white border mb-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="p-5">
-                    
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-biru-tuwak dark:text-white">2</h5>
                             <img src="{{ Vite::asset('resources/assets/pasangloker3.svg') }}" alt="">
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Lengkapi Informasi Profile</h5>
@@ -37,26 +35,27 @@
                         </div>
                     </div>
 
-                    <div class="max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class=" w-full  bg-white border mb-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="p-5">
                     
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-biru-tuwak dark:text-white">3</h5>
-                            <img src="{{ Vite::asset('resources/assets/pasangloker4.svg') }}" alt="">
+                            <img src="{{ Vite::asset('resources/assets/pasangloker4.svg') }}"  alt="">
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Pasang Lowongan Anda</h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Setelah itu, anda dapat mengisi judul, deskripsi, dan lokasi ke pemasangan lowongan anda. Selamat lowongan anda sudah siap</p>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <div class="w-full mt-40 flex">
-                <div class="w-fit">
+            <div class="w-full lg:mt-40 min-[300px]:mt-10 flex">
+                <div class="w-fit lg:block min-[300px]:hidden">
                     <img src="{{ Vite::asset('resources/assets/pasangloker5.svg') }}" alt="" class=" w-[600px] object-cover">
                 </div>
 
                 <div class="bg-LightBlue w-full">
-                    <div class="mt-[110px]  ml-10 ">
-                        <div class="flex space-x-4 w-fit">
+                    <div class="lg:ml-10 px-10 py-10">
+                        <div class="flex space-x-4 w-fit justify-center min-[300px]:mt-10">
                             <img src="{{ Vite::asset('resources/assets/Star 1.svg') }}" alt="">
                             <img src="{{ Vite::asset('resources/assets/Star 1.svg') }}" alt="">
                             <img src="{{ Vite::asset('resources/assets/Star 1.svg') }}" alt="">
@@ -65,7 +64,7 @@
                         </div>
 
                         <div class="mt-5">
-                            <h1 class="text-gray-900 font-semibold lg:text-4xl w-[600px]">Rekrutmen jadi lebih efisien dengan WorkSeeker. Cepat dan mudah digunakan!</h1>
+                            <h1 class="text-gray-900 font-semibold lg:text-4xl lg:w-[600px] min-[300px]:w-full">Rekrutmen jadi lebih efisien dengan WorkSeeker. Cepat dan mudah digunakan!</h1>
                             <h1 class=" mt-5 font-light text-gray-900 text-xl">Dimas - HRD PT. SEMUDAH</h1>
                         </div>
                     </div>
@@ -73,9 +72,9 @@
                 </div>   
             </div>
 
-            <div class="h-[428.9px]  pt-[120px]">
-                <div class=" block">
-                    <h1 class="text-gray-900 font-semibold lg:text-4xl w-[600px] mx-auto block text-center">Pasangkan lowongan pekerjaanmu <span class="underline underline-offset-4 text-biru-tuwak">Sekarang!</span></h1>
+            <div class="my-20">
+                <div class=" block ">
+                    <h1 class="text-gray-900 font-semibold lg:text-4xl lg:w-[600px] mx-auto block text-center min-[300px]:w-full">Pasangkan lowongan pekerjaanmu <span class="underline underline-offset-4 text-biru-tuwak">Sekarang!</span></h1>
                     <a href="#"><button class="mx-auto lg:mt-10 min-[300px]:mt-5 min-[300px]:mx-auto min-[300px]:block  rounded-full bg-biru-tuwak py-2 px-5 text-white text-semibold">Pasang Lowongan</button></a>
                 </div>
            
