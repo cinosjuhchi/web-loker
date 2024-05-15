@@ -16,12 +16,13 @@
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
     {{-- content --}}
-    <div class="pasang-loker h-screen">
-        @yield('pasangLoker')
-    </div>
 
     <div class="regis-company">
         @yield('registerCompany')
+    </div>
+
+    <div class="pasang-loker">
+        @yield('pasangLoker')
     </div>
 
 
