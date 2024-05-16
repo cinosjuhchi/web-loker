@@ -11,6 +11,10 @@ class IndexController extends Controller
         $title = "Work Seeker";
         return view("pages.PasangLoker", compact("title"));
     }
+    public function profilUser(Request $request){
+        $title = "Work Seeker";
+        return view("pages.ProfileUser", compact("title"));
+    }
     public function aboutUs(Request $request){
         $title = "Work Seeker";
         return view("pages.AboutUs", compact("title"));
