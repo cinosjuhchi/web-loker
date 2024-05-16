@@ -33,16 +33,13 @@
     <div class="login-user">
         @yield('loginUser')
     </div>
+
+    <div class="about-us">
+        @yield('aboutUs')
+    </div>
    
 
-    <div class="landingpage-user  min-[300px]:mx-5 ">
-        @yield('LandingPage')
-    </div>
-
-
-    <div class="landingpage-user">
-        @yield('LandingPage2')
-    </div>
+   
 
    
 

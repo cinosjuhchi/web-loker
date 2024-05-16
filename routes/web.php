@@ -18,11 +18,7 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 |
 */
 
-Route::get('/', function () {
-    $title = 'Dashboard-User';
-    return view('pages.DashboardUser', compact('title'));
-});
-
+Route::get('/', [IndexController::class, 'dashboardUser'])->name('dashboardUser');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
@@ -35,6 +31,7 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 Route::get('/landing-page', [IndexController::class, 'landingPage'])->name('landingPage');
 Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
+Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 
 
 

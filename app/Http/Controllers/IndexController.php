@@ -11,6 +11,10 @@ class IndexController extends Controller
         $title = "Work Seeker";
         return view("pages.PasangLoker", compact("title"));
     }
+    public function aboutUs(Request $request){
+        $title = "Work Seeker";
+        return view("pages.AboutUs", compact("title"));
+    }
     public function landingPage(Request $request){
         $title = "Work Seeker";
         return view("pages.LandingPageUser", compact("title"));
@@ -24,5 +28,15 @@ class IndexController extends Controller
             $provinces = [];
         }
         return view("pages.CariLowonganKerja", compact("title", "provinces"));
+    }
+    public function dashboardUser(Request $request){
+        $title = "Work Seeker";
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages.DashboardUser", compact("title", "provinces"));
     }
 }
