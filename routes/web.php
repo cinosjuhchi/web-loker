@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\AuthController;
@@ -50,7 +51,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard-user', function () {
         $title = 'Dashboard';
         $user = Auth::user();        
-        return view('pages.DashboardUser', compact('title', 'user'));
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view('pages.DashboardUser', compact('title', 'user', 'provinces'));
     })->name('user.dashboard');
     
 });
