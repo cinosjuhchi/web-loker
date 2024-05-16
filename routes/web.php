@@ -37,7 +37,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
     Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
     Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
-    
+
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('user.login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard-user', function () {
         $title = 'Dashboard';
-        $user = Auth::user();        
+        $user = Auth::user();
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
         if ($response->successful()) {
             $provinces = $response->json();
@@ -59,14 +59,14 @@ Route::middleware('auth')->group(function () {
         }
         return view('pages.DashboardUser', compact('title', 'user', 'provinces'));
     })->name('user.dashboard');
-    
+
 });
 
-// companies 
+// companies
 Route::middleware('auth.company')->group(function () {
     Route::get('/after-login', function () {
         $title = "After-Login";
-        $company = Auth::guard('company')->user();        
+        $company = Auth::guard('company')->user();
         return view('pages.company.DashboardUser', compact('title', 'company'));
     });
 });

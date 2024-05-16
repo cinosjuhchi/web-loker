@@ -4,7 +4,7 @@
 
                 <h2 class="font-bold text-2xl">Tentang WorkSeeker</h2>
                 <p class="">
-                    WorkSeeker adalah platform yang menghubungkan pencari kerja dengan perusahaan. 
+                    WorkSeeker adalah platform yang menghubungkan pencari kerja dengan perusahaan.
                     Pencari kerja dapat menemukan lowongan, membuat profil, dan menerima pemberitahuan, sementara perusahaan dapat memposting lowongan dan mencari kandidat.
                 </p>
             </div>
