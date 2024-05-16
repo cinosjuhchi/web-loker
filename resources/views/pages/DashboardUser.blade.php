@@ -27,4 +27,5 @@
     <h1 class="ml-[70px] font-semibold text-3xl" >Rekomendasi Lowongan Kerja Untukmu</h1>
 
 </div>
+
 @endsection
