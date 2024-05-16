@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -13,7 +13,24 @@ class IndexController extends Controller
     }
     public function profilUser(Request $request){
         $title = "Work Seeker";
-        return view("pages.ProfileUser", compact("title"));
+
+        $category = Category::all();
+        if ($category == null) {
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
+
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+
+
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages.ProfileUser", compact("title" , "category", "provinces"));
     }
     public function aboutUs(Request $request){
         $title = "Work Seeker";

@@ -1,8 +1,8 @@
 @extends('layouts.GuestLayout')
 @section('cardLowongan')
 
-<div class="grid lg:grid-cols-4 min-[300px]:cols-6 gap-5  lg:mx-[100px]  mt-16">
-    <div class="max-w-[300px]  mx-auto p-4 bg-white shadow-md rounded-lg">
+<div class="grid lg:grid-cols-4 min-[300px]:cols-6 gap-5  mx-[20px] lg:mx-[70px]  mt-16">
+    <div class="max-w-[400px]  mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4">
             <img src="https://via.placeholder.com/50x50.png?text=Alfamart" alt="Alfamart Logo" class="w-12 h-12 mr-3">
             <div>
@@ -26,7 +26,7 @@
            <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>
     </div>
 
-    <div class="max-w-[300px] mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div class="max-w-[400px] mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4">
             <img src="https://via.placeholder.com/50x50.png?text=Alfamart" alt="Alfamart Logo" class="w-12 h-12 mr-3">
             <div>
@@ -50,7 +50,7 @@
            <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>
     </div>
 
-    <div class="max-w-[300px] mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div class="max-w-[400px] mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4">
             <img src="https://via.placeholder.com/50x50.png?text=Alfamart" alt="Alfamart Logo" class="w-12 h-12 mr-3">
             <div>
@@ -74,7 +74,7 @@
            <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>
     </div>
 
-    <div class="max-w-[300px] mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div class="max-w-[400px] mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4">
             <img src="https://via.placeholder.com/50x50.png?text=Alfamart" alt="Alfamart Logo" class="w-12 h-12 mr-3">
             <div>
@@ -99,7 +99,7 @@
         <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="transition-all duration-1000 ease-in-out w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>
     </div>
 
-    <div class="max-w-[300px] mx-auto p-4 bg-white shadow-md rounded-lg">
+    <div class="max-w-[400px] mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4">
             <img src="https://via.placeholder.com/50x50.png?text=Alfamart" alt="Alfamart Logo" class="w-12 h-12 mr-3">
             <div>
