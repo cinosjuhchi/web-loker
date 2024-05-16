@@ -21,6 +21,14 @@ Route::get('/', function () {
     return view('pages.DashboardUser', compact('title'));
 });
 
+Route::get('/register-user', function() {
+    return view('pages.RegisterUser');
+})->name('register.user');
+
+Route::get('/register-company', function() {
+    return view('pages.RegisterCompany');
+})->name('register.company');
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -28,4 +36,9 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/landing-page', function () {
     $title = 'Landing Page';
     return view('pages.LandingPageUser', compact('title'));
+});
+
+Route::get('/pilihrole', function () {
+    $title = 'Pilih Registrasi';
+    return view('pages.PilihRegist', compact('title'));
 });

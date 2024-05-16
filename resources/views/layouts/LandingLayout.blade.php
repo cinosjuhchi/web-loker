@@ -12,27 +12,15 @@
 </head>
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
-    {{-- content --}}
-    <div class="regis-user">
-        @yield('registerUser')
-    </div>
 
-    <div class="login-user">
-        @yield('loginUser')
-    </div>
-   
+    @include('components.NavbarUser')
 
     <div class="landingpage-user mx-10 m-14">
         @yield('LandingPage')
     </div>
 
-
-    <div class="landingpage-user">
-        @yield('LandingPage2')
-    </div>
-
      {{-- content --}}
-     
+     @include('components.FooterUser')
     {{-- Misal Kasih Footer --}}
 </body>
 </html>

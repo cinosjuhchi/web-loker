@@ -20,6 +20,6 @@
     </div>
     {{-- content --}}
     {{-- Misal Kasih Footer --}}
-    @include('components.FooterUser')
+    {{-- @include('components.FooterUser') --}}
 </body>
 </html>

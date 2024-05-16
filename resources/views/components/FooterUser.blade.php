@@ -1,6 +1,6 @@
 <footer class="bg-LightBlue w-full pb-3">
     <div class="grid grid-cols-3 mx-16 gap-10 py-5 ">
-            <div class="me-auto">
+            <div class="me-auto md:">
 
                 <h2 class="font-bold text-2xl">Tentang WorkSeeker</h2>
                 <p class="">

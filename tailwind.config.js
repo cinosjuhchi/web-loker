@@ -8,14 +8,20 @@ module.exports = {
   ],
   theme: {
     extend: {
-
+      screens: {
+        'smaller' : [
+          {'min': '100px', 'max': '768px'}
+        ],
+      },
       colors : {
         'LightBlue' : '#B8D8E5',
         'DarkBlueish' : '#1866B7',
         'OrangeIsh' : '#FFAB00',
         'BlueDark' : '#003974',
         'biru-muda' : '#D5E9FA',
-        'biru-tuwak' : '#003974'
+        'biru-tuwak' : '#003974',
+        'LightGrey' : '#A8A8A8',
+        'DarkWhite' : '#E0E0E0'
       },
       fontFamily : {
         JakartaSans : ['Plus Jakarta Sans'],
@@ -27,4 +33,3 @@ module.exports = {
     require('flowbite/plugin')
   ],
 }
-
