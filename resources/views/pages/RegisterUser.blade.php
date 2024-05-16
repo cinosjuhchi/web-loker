@@ -17,7 +17,7 @@
                 <p class="text-xl mt-2">Bergabung dengan kami dan dapatkan pekerjaan yang kamu inginkan</p>
 
                 <div class="mt-5">
-                    <form action="{{ route('register.user.post') }}" method="post">
+                    <form action="{{ route('user.register.post') }}" method="post">
                         @csrf
                         <div>
                             <label for="email" class="text-lg font-semibold">Alamat Email</label>

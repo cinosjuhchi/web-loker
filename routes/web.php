@@ -18,10 +18,6 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 |
 */
 
-Route::get('/', function () {
-    $title = 'Dashboard-User';
-    return view('pages.DashboardUser', compact('title'));
-})->name('home');
 
 
 
@@ -31,12 +27,12 @@ Route::post('register-company-post', [CompanyAuthController::class, 'registerPos
 Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('login.user.post');
-Route::post('/register', [AuthController::class, 'registerPost'])->name('register.user.post');
+Route::get('/login', [AuthController::class, 'login'])->name('user.login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('user.register.post');
 
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
-Route::get('/landing-page', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
 Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 
 
@@ -45,8 +41,15 @@ Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoke
 
 
 
+// user
+Route::middleware('auth')->group(function () {
 
-
+    Route::get('/dashboard', function () {
+        $title = 'Dashboard-User';
+        return view('pages.DashboardUser', compact('title'));
+    })->name('user.dashboard');
+    
+});
 
 // companies 
 Route::middleware('auth.company')->group(function () {

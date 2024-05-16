@@ -54,7 +54,7 @@ class AuthController extends Controller
         ]);
 
         session()->flash('success', 'Registrasi berhasil! Silahan login.');
-        return redirect()->route('login');
+        return redirect()->route('user.login');
     }
 
     public function loginPost(Request $request)
