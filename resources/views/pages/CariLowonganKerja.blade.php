@@ -1,7 +1,7 @@
 @extends('layouts.landingLayout')
 @section('Carilowongan')
     <div class="lg:mx-[100px] min-[300px]:mx-[40px]  h-auto rounded-lg block mb-10 bg-image px-10 py-10 "
-        style="background-image: url( {{ Vite::asset('resources/assets/bg-lowonganphp.png') }} )">
+        style="background-image: url( {{ Vite::asset('resources/assets/bg-lowongan.png') }} )">
         {{-- <img src="{{ Vite::asset('resources/assets/bg-lowongan.png') }}" alt="image caption" class="mx-auto w-[1200px] relative"> --}}
         <h1 class="text-white font-semibold lg:text-2xl min-[300px]:text-md"> Cari lowongan pekerjaan</h1>
 
