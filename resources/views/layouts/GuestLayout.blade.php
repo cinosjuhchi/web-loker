@@ -44,6 +44,9 @@
         @yield('LandingPage2')
     </div>
 
+   
+
+
     
 
      {{-- content --}}
