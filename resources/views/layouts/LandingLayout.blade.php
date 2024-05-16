@@ -18,14 +18,14 @@
 
     @include('components.NavbarUser')
 
-    <div class="landingpage-user lg:mx-10 min-[300px]:mx-3 m-14">
+    <div class="landingpage-user ">
         @yield('LandingPage')
     </div>
 
     <div class="landingpage-user">
         @yield('LandingPage2')
     </div>
-    
+
     <div class="tampilan-cariLowongan" >
    @yield('Carilowongan')
     </div>
