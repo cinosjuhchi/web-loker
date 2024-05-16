@@ -44,8 +44,8 @@ Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoke
 // user
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', function () {
-        $title = 'Dashboard-User';
+    Route::get('/dashboard-user', function () {
+        $title = 'Dashboard';
         return view('pages.DashboardUser', compact('title'));
     })->name('user.dashboard');
     
