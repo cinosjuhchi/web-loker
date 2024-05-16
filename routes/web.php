@@ -18,11 +18,7 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', [IndexController::class, 'dashboardUser'])->name('dashboardUser');
-=======
-
->>>>>>> 3c2b7b1bad3320a1ff75bcb4693a06af80eae0d6
+// Route::get('/', [IndexController::class, 'dashboardUser'])->name('dashboardUser');
 
 
 
