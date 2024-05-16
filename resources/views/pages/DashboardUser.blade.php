@@ -32,4 +32,8 @@
     <h1 class=" font-semibold lg:text-3xl min-[300px]:text-2xl" >Rekomendasi Lowongan Kerja Untukmu</h1>
 </div>
 
+<div class="min-[300px]:mt-[-30px] mb-20">
+    @include('components/card.cardLowongan')
+</div>
+
 @endsection
