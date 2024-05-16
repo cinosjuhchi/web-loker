@@ -20,9 +20,10 @@
     {{-- content --}}
 
 
-    <div class="m-12">
+    <div class="">
         @yield('main')
     </div>
+
 
     
     {{-- content --}}
