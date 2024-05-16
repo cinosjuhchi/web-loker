@@ -30,6 +30,10 @@ Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoke
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
 
+Route::get('/pilih-akun', function () {
+    $title = 'Akun';
+    return view('pages.PilihRegist', compact('title'));
+});
 
 
 
@@ -39,7 +43,7 @@ Route::middleware('guest')->group(function () {
     Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
     Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
 
-    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/register', [AuthController::class, 'register'])->name('user.register');
     Route::get('/login', [AuthController::class, 'login'])->name('user.login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('user.register.post');
@@ -71,3 +75,4 @@ Route::middleware('auth.company')->group(function () {
         return view('pages.company.DashboardUser', compact('title', 'company'));
     });
 });
+

@@ -1,9 +1,9 @@
-@extends('layouts.PilihRegistrasi')
-@section('contentusercomp')
+@extends('layouts.GuestLayout')
+@section('pilihAkun')
     <div class="w-full h-screen">
 
-        <div class=" flex justify-center flex-row w-full pt-20 pb-5">
-            <img class="size-20" src="{{ Vite::asset('resources/assets/logo3.svg')}}" alt="">
+        <div class="block mt-12 mb-5">
+            <img class="size-16 mx-auto" src="{{ Vite::asset('resources/assets/logo3.svg')}}" alt="">
         </div>
 
         <div class="flex flex-col text-center font-bold text-2xl">
@@ -38,4 +38,31 @@
         </div>
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const card1 = document.getElementById('selectcard1');
+            const card2 = document.getElementById('selectcard2');
+            const button = document.getElementById('registbtn');
+            const registlink = document.getElementById('registlink');
+
+            function handleCardSelect(route) {
+                return function() {
+                    // Toggle card selection
+                    card1.classList.remove('border-blue-500', 'ring-2', 'ring-blue-500');
+                    card2.classList.remove('border-blue-500', 'ring-2', 'ring-blue-500');
+                    this.classList.add('border-blue-500', 'ring-2', 'ring-blue-500');
+
+                    // Enable button
+                    button.classList.remove('bg-DarkWhite', 'cursor-not-allowed');
+                    button.classList.add('bg-blue-500', 'cursor-pointer', 'text-white');
+
+                    // Set the href attribute of the link
+                    registlink.href = route;
+                }
+            }
+
+            card1.addEventListener('click', handleCardSelect('{{ route('company.register') }}'));
+            card2.addEventListener('click', handleCardSelect('{{ route('user.register') }}'));
+        });
+    </script>
 @endsection
