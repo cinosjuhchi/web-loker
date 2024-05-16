@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 
 use Illuminate\Support\Facades\Auth;
@@ -18,29 +18,46 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', [IndexController::class, 'dashboardUser'])->name('dashboardUser');
+=======
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+>>>>>>> 3c2b7b1bad3320a1ff75bcb4693a06af80eae0d6
 
-Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
-Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
-Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
-Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+
+
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
-Route::get('/landing-page', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
 Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 
 
 
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
+    Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
+    Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
+    Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
+    
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/login', [AuthController::class, 'login'])->name('user.login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('user.register.post');
+});
 
 
+// user
+Route::middleware('auth')->group(function () {
 
-
-
+    Route::get('/dashboard-user', function () {
+        $title = 'Dashboard';
+        $user = Auth::user();        
+        return view('pages.DashboardUser', compact('title', 'user'));
+    })->name('user.dashboard');
+    
+});
 
 // companies 
 Route::middleware('auth.company')->group(function () {
