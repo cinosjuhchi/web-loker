@@ -18,7 +18,7 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 |
 */
 
-Route::get('/DashboardUser', function () {
+Route::get('/', function () {
     $title = 'Dashboard-User';
     return view('pages.DashboardUser', compact('title'));
 });

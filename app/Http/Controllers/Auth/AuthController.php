@@ -17,26 +17,6 @@ class AuthController extends Controller
         return view("pages.RegisterUser", compact("title"));
     }
 
-    public function registerCompany(Request $request){
-        $title = "Register Company Page";
-        $category = Category::all();
-        if($category == null){
-            $category = [
-                'name' => 'Data kosong',
-                'id' => null
-            ];
-        }
-
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-        
-       
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
-
-        return view("pages.RegisterCompany", compact("title", "category", "provinces"));
-    }
+    
 
 }
