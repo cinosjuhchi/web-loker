@@ -45,8 +45,8 @@
                 }
             }
 
-            card1.addEventListener('click', handleCardSelect('{{ route('register.company') }}'));
-            card2.addEventListener('click', handleCardSelect('{{ route('register.user') }}'));
+            card1.addEventListener('click', handleCardSelect('{{ route('company.register') }}'));
+            card2.addEventListener('click', handleCardSelect('{{ route('user.register') }}'));
         });
     </script>
 </body>
