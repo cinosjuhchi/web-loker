@@ -28,6 +28,8 @@ Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
+
 Route::get('/pilih-akun', function () {
     $title = 'Akun';
     return view('pages.PilihRegist', compact('title'));
