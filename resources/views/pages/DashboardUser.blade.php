@@ -1,12 +1,7 @@
 @extends('layouts.DefaultLayout')
 @section('main')
-<<<<<<< HEAD
-<div class="lg:mx-[70px] min-[300px]:mx-10 mt-12">
-<h1 class="text-3xl font-semibold" >Selamat datang, @username👋</h1>
-=======
 <div class="mx-[70px] mt-12">
 <h1 class="text-3xl font-semibold" >Selamat datang, {{ $user->username }}👋</h1>
->>>>>>> 3c2b7b1bad3320a1ff75bcb4693a06af80eae0d6
 <p class="font-medium mt-2" >Cari pekerjaan yang anda inginkan sekarang!</p>
 </div>
 
