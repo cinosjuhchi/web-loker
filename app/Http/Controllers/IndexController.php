@@ -10,4 +10,8 @@ class IndexController extends Controller
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
+    public function landingPage(Request $request){
+        $title = "Home";
+        return view("pages.LandingPageUser", compact("title"));
+    }
 }
