@@ -23,8 +23,8 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 
 
 
-Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 
