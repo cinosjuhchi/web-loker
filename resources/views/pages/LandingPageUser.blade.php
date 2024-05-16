@@ -12,7 +12,7 @@
             </div>
 
 <div class="mt-10">
-    <h1 class="font-bold text-2xl mb-10 lg:text-center min-[300px]:text-left mx-2 ">Apa Pekerjaan Yang Anda Inginkan?</h1>
+    <h1 class="font-bold text-2xl mb-10 lg:text-center min-[300px]:text-left lg:mx-[70px] min-[300px]:mx-[15px] ">Apa Pekerjaan Yang Anda Inginkan?</h1>
 </div>
 <div class="container mx-auto px-6 sm:flex">
     <div class="rounded-md shadow-lg mb-10 mx-2">
