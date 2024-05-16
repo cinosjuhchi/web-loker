@@ -62,3 +62,13 @@ Route::middleware('auth.company')->group(function () {
         return view('pages.company.DashboardUser', compact('title', 'company'));
     });
 });
+
+Route::get('profil-perusahaan-user', function () {
+    $title = "profil-perusahaan-user";
+    return view('pages.ProfilPerusahaanUser', compact('title'));
+});
+
+Route::get('disimpan-User', function () {
+    $title = "disimpan-User";
+    return view('pages.DisimpanUser', compact('title'));
+});

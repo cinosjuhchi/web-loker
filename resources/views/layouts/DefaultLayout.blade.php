@@ -24,7 +24,7 @@
         @yield('main')
     </div>
 
-
+ 
     
     {{-- content --}}
     {{-- Misal Kasih Footer --}}
