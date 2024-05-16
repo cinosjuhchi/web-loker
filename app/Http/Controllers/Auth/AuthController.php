@@ -106,7 +106,7 @@ class AuthController extends Controller
         return view("pages.RegisterCompany", compact("title", "category", "provinces"));
     }
 =======
-    
+        
 
 >>>>>>> 60da29063bc03d405bfad310292ed43f07964ca3
 }
