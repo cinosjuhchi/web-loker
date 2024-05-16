@@ -1,6 +1,6 @@
 <footer class="bg-LightBlue w-full pb-3">
-    <div class="grid grid-cols-3 mx-16 gap-10 py-5 ">
-            <div class="me-auto">
+    <div class="grid lg:grid-cols-3 min-[300px]:cols-12 lg:mx-16 min-[300px]:mx-5 lg:gap-10 min-[300px]:gap-3 py-5 ">
+            <div class="lg:me-auto">
 
                 <h2 class="font-bold text-2xl">Tentang WorkSeeker</h2>
                 <p class="">
@@ -8,7 +8,7 @@
                     Pencari kerja dapat menemukan lowongan, membuat profil, dan menerima pemberitahuan, sementara perusahaan dapat memposting lowongan dan mencari kandidat.
                 </p>
             </div>
-            <div class="mx-auto">
+            <div class="lg:mx-auto">
 
                 <h2 class="font-bold text-2xl">Pencari Kerja</h2>
                 <ul>
@@ -24,7 +24,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="ms-auto">
+            <div class="lg:ms-auto">
                 <h2 class="font-bold text-2xl">Perusahaan</h2>
                 <ul>
                     <li>
@@ -42,7 +42,7 @@
     </div>
     <hr class="w-[92%] border-black mx-auto">
 
-    <div class="flex justify-between px-10">
+    <div class="flex justify-between lg:px-10">
         <p class="ms-6">Hak Cipta © 2024 WorkSeeker.Id</p>
 
         <div class="flex gap-4 pt-10 me-3">
