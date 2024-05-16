@@ -12,8 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(CategorySeeder::class);
 
+        // Menambahkan beberapa user contoh
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@gmail.com',
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'selesai',
             'status' => 'pending'
         ]);
-        $this->call(CategorySeeder::class);
+
+        // Menambahkan 10 user contoh lainnya
+        \App\Models\User::factory(10)->create();
     }
 }
