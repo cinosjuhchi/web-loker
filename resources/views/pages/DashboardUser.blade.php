@@ -1,7 +1,7 @@
 @extends('layouts.DefaultLayout')
 @section('main')
 <div class="mx-[70px] mt-12">
-<h1 class="text-3xl font-semibold" >Selamat datang, @username👋</h1>
+<h1 class="text-3xl font-semibold" >Selamat datang, {{ $user->username }}👋</h1>
 <p class="font-medium mt-2" >Cari pekerjaan yang anda inginkan sekarang!</p>
 </div>
 

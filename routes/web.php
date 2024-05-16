@@ -21,15 +21,7 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 
 
 
-Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
-Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
-Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
-Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/login', [AuthController::class, 'login'])->name('user.login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
-Route::post('/register', [AuthController::class, 'registerPost'])->name('user.register.post');
 
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
@@ -38,15 +30,26 @@ Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoke
 
 
 
-
+Route::middleware('guest')->group(function () {
+    Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
+    Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
+    Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
+    Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
+    
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/login', [AuthController::class, 'login'])->name('user.login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('user.register.post');
+});
 
 
 // user
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', function () {
-        $title = 'Dashboard-User';
-        return view('pages.DashboardUser', compact('title'));
+    Route::get('/dashboard-user', function () {
+        $title = 'Dashboard';
+        $user = Auth::user();        
+        return view('pages.DashboardUser', compact('title', 'user'));
     })->name('user.dashboard');
     
 });

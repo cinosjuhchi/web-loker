@@ -21,7 +21,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect(RouteServiceProvider::DASHBOARD_USER);
+            }
+            if (Auth::guard('company')->check()) {
+                return redirect('/after-login'); // Ganti dengan halaman yang sesuai
             }
         }
 
