@@ -28,7 +28,7 @@
                 <h2 class="font-bold text-2xl">Perusahaan</h2>
                 <ul>
                     <li>
-                        <a href="#register-company"><p>
+                        <a href="/register-company"><p>
                             Registrasi Perusahaan
                         </p></a>
                     </li>

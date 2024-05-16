@@ -34,14 +34,12 @@ Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 Route::get('/landing-page', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 
 
 
 
-Route::get('/cari-lowongan', function () {
-    $title = 'cariLowongan';
-    return view('pages.CariLowonganKerja', compact('title'));
-});
+
 
 
 
