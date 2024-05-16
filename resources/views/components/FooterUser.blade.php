@@ -13,12 +13,12 @@
                 <h2 class="font-bold text-2xl">Pencari Kerja</h2>
                 <ul>
                     <li>
-                        <a href=""><p>
+                        <a href="#"><p>
                             Registrasi Pencari Kerja
                         </p></a>
                     </li>
                     <li>
-                        <a href=""><p>
+                        <a href="#"><p>
                             Cari Lowongan Kerja
                         </p></a>
                     </li>
@@ -28,12 +28,12 @@
                 <h2 class="font-bold text-2xl">Perusahaan</h2>
                 <ul>
                     <li>
-                        <a href=""><p>
+                        <a href="#register-company"><p>
                             Registrasi Perusahaan
                         </p></a>
                     </li>
                     <li>
-                        <a href=""><p>
+                        <a href="#"><p>
                             Pasang Lowongan Kerja
                         </p></a>
                     </li>

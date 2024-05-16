@@ -88,8 +88,8 @@ Temukan Perkejaan, <br/>
 Capai Impian!   
 </h1>
 
-<button type="button" class="absolute lg:top-56 min-[300px]:my-8 lg:my-0 ease-in duration-75 text-white bg-biru-tuwak  hover:bg-blue-300 font-medium rounded-3xl text-sm px-9 py-2.5 me-32 mb-2 ">Daftar</button>
+<button type="button" class="absolute lg:top-56 min-[300px]:my-8 lg:my-0 ease-in duration-75 text-white bg-biru-tuwak  hover:bg-blue-300 font-medium rounded-3xl text-sm px-9 py-2.5 me-32 mb-2 "><a href="/register">Daftar</a></button>
 
-<button type="button" class="absolute lg:top-56  min-[300px]:my-8 lg:my-0 text-white outline outline-2 hover:bg-black font-medium rounded-3xl text-sm px-9 py-2 me-2 mx-32 mb-2 ">Masuk</button>
+<button type="button" class="absolute lg:top-56  min-[300px]:my-8 lg:my-0 text-white outline outline-2 hover:bg-black font-medium rounded-3xl text-sm px-9 py-2 me-2 mx-32 mb-2 "><a href="/login">Masuk</a></button>
 </div>
 @endsection
