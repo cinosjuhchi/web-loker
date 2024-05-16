@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +21,9 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 Route::get('/', function () {
     $title = 'Dashboard';
     return view('pages.DashboardUser', compact('title'));
-});
+})->name('home');
 
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
 Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
@@ -32,6 +31,10 @@ Route::post('register-company-post', [CompanyAuthController::class, 'registerPos
 Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login.user.post');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register.user.post');
+
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
 
 
