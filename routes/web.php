@@ -19,7 +19,7 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 */
 
 Route::get('/', function () {
-    $title = 'Dashboard';
+    $title = 'Dashboard-User';
     return view('pages.DashboardUser', compact('title'));
 })->name('home');
 
@@ -36,16 +36,13 @@ Route::post('/login', [AuthController::class, 'loginPost'])->name('login.user.po
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register.user.post');
 
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
+Route::get('/landing-page', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 
 
-Route::get('/landing-page', function () {
-    $title = 'Landing Page';
-    return view('pages.LandingPageUser', compact('title'));
-});
-Route::get('/cari-lowongan', function () {
-    $title = 'cariLowongan';
-    return view('pages.CariLowonganKerja', compact('title'));
-});
+
+
+
 
 
 

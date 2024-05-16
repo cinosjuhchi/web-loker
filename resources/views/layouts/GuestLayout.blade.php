@@ -16,7 +16,7 @@
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
     {{-- content --}}
-
+    @yield('cardLowongan')
     <div class="regis-company">
         @yield('registerCompany')
     </div>
@@ -43,6 +43,9 @@
     <div class="landingpage-user">
         @yield('LandingPage2')
     </div>
+
+   
+
 
     
 
