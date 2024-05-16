@@ -12,12 +12,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call(CategorySeeder::class);
+
+        // Menambahkan beberapa user contoh
+        \App\Models\User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@gmail.com',
+            'username' => 'test',
+            'password' => bcrypt('12345678'),
+            'number_phone' => '087732762247',
+            'category_id' => 1,
+            'academy' => 'SMA',
+            'description' => 'selesai',
+            'status' => 'pending'
+        ]);
+
+        // Menambahkan 10 user contoh lainnya
+        \App\Models\User::factory(10)->create();
     }
 }

@@ -21,7 +21,8 @@ module.exports = {
         'biru-muda' : '#D5E9FA',
         'biru-tuwak' : '#003974',
         'LightGrey' : '#A8A8A8',
-        'DarkWhite' : '#E0E0E0'
+        'DarkWhite' : '#E0E0E0',
+        'biru-baru' : '#4FA3C6',
       },
       fontFamily : {
         JakartaSans : ['Plus Jakarta Sans'],

@@ -1,7 +1,10 @@
-<?php
+    <?php
 
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\CompanyAuthController;
 
@@ -16,29 +19,54 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 |
 */
 
-Route::get('/', function () {
-    $title = 'Dashboard';
-    return view('pages.DashboardUser', compact('title'));
+// Route::get('/', [IndexController::class, 'dashboardUser'])->name('dashboardUser');
+
+
+
+
+Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
+Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
+Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
+
+
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
+    Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
+    Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
+    Route::post('login-company-post', [CompanyAuthController::class, 'loginPost'])->name('company.login.post');
+
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/login', [AuthController::class, 'login'])->name('user.login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('user.login.post');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('user.register.post');
 });
 
-Route::get('/register-user', function() {
-    return view('pages.RegisterUser');
-})->name('register.user');
 
-Route::get('/register-company', function() {
-    return view('pages.RegisterCompany');
-})->name('register.company');
+// user
+Route::middleware('auth')->group(function () {
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/dashboard-user', function () {
+        $title = 'Dashboard';
+        $user = Auth::user();
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view('pages.DashboardUser', compact('title', 'user', 'provinces'));
+    })->name('user.dashboard');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-
-Route::get('/landing-page', function () {
-    $title = 'Landing Page';
-    return view('pages.LandingPageUser', compact('title'));
 });
 
-Route::get('/pilihrole', function () {
-    $title = 'Pilih Registrasi';
-    return view('pages.PilihRegist', compact('title'));
+// companies
+Route::middleware('auth.company')->group(function () {
+    Route::get('/after-login', function () {
+        $title = "After-Login";
+        $company = Auth::guard('company')->user();
+        return view('pages.company.DashboardUser', compact('title', 'company'));
+    });
 });
