@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
             $provinces = $response->json();
         } else {
             $provinces = [];
-        }
+        }               
         return view('pages.DashboardUser', compact('title', 'user', 'provinces'));
     })->name('user.dashboard');
     Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');

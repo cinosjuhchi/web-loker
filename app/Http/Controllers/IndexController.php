@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Http;
 class IndexController extends Controller
 {
     public function pasangLoker(Request $request){
-        $title = "Work Seeker";
+        $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
     public function profilUser(Request $request){
-        $title = "Work Seeker";
+        $title = "Profil";
 
         $category = Category::all();
         if ($category == null) {
@@ -35,7 +35,7 @@ class IndexController extends Controller
         return view("pages.ProfileUser", compact("title" , "category", "provinces"));
     }
     public function aboutUs(Request $request){
-        $title = "Work Seeker";
+        $title = "About Us";
         return view("pages.AboutUs", compact("title"));
     }
     public function landingPage(Request $request){
@@ -43,15 +43,32 @@ class IndexController extends Controller
         return view("pages.LandingPageUser", compact("title"));
     }
     public function cariLoker(Request $request){
-        $title = "Work Seeker";
+        $title = "Cari Loker";
+        $search = $request->query('search_input');
+        $province = $request->input('province');
+
+        // Mengambil data provinsi dari API
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
+        $provinces = $response->successful() ? $response->json() : [];
+
+        $postsQuery = Post::query();
+
+        // Menambahkan filter pencarian berdasarkan judul
+        if ($search) {
+            $postsQuery->where('title', 'like', '%' . $search . '%');
         }
-        $posts = Post::all();        
+
+        // Menambahkan filter pencarian berdasarkan provinsi dari company
+        if ($province) {
+            $postsQuery->whereHas('company', function($query) use ($province) {
+                $query->where('province', $province);
+            });
+        }
+
+        $posts = $postsQuery->get();
+
         return view("pages.CariLowonganKerja", compact("title", "provinces", "posts"));
+
     }
     public function dashboardUser(Request $request){
         $title = "Work Seeker";
