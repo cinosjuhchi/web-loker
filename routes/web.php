@@ -29,6 +29,8 @@ Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasa
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
 Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
+Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
 
 Route::get('/pilih-akun', function () {
     $title = 'Akun';
@@ -77,12 +79,12 @@ Route::middleware('auth.company')->group(function () {
     });
 });
 
-Route::get('profil-perusahaan-user', function () {
-    $title = "profil-perusahaan-user";
-    return view('pages.ProfilPerusahaanUser', compact('title'));
-});
+// Route::get('profil-perusahaan-user', function () {
+//     $title = "profil-perusahaan-user";
+//     return view('pages.ProfilPerusahaanUser', compact('title'));
+// });
 
-Route::get('disimpan-User', function () {
-    $title = "disimpan-User";
-    return view('pages.DisimpanUser', compact('title'));
-});
+// Route::get('disimpan-User', function () {
+//     $title = "disimpan-User";
+//     return view('pages.DisimpanUser', compact('title'));
+// });

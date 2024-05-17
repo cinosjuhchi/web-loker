@@ -35,6 +35,50 @@ class IndexController extends Controller
         return view("pages.ProfileUser", compact("title" , "category", "provinces"));
     }
 
+    public function disimpanUser(Request $request){
+        $title = "Profil";
+
+        $category = Category::all();
+        if ($category == null) {
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
+
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+
+
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages.DisimpanUser", compact("title" , "category", "provinces"));
+    }
+
+    public function profilPerusahaanUserPage(Request $request){
+        $title = "Profil";
+
+        $category = Category::all();
+        if ($category == null) {
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
+
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+
+
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages.ProfilPerusahaanUser", compact("title" , "category", "provinces"));
+    }
+
     public function detailPerusahaanUserPage(Request $request){
         $title = "Work Seeker";
 
