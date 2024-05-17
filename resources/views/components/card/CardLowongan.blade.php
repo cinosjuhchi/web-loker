@@ -2,12 +2,14 @@
 @section('cardLowongan')
 
 <div class="grid lg:grid-cols-4 min-[300px]:cols-6 gap-5  mx-[20px] lg:mx-[70px]  mt-8">
+    @foreach($posts as $post)
     <div class="max-w-[400px]  mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4 ">
-            <img src="{{ Vite::asset('resources/assets/contoh.png') }}" alt="Alfamart Logo" class="w-12 h-12 mr-3">
+            <img src="{{ $post->company->photo_profile ? asset($post->company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}" alt="Alfamart Logo" class="w-12 h-12 rounded-full mr-3 object-cover object-center">
+
             <div>
                 <h2 class="text-md font-semibold">Tukang Parkir</h2>
-                <p class="text-gray-500">PT. Alfamart</p>
+                <p class="text-gray-500">{{ $post->company->company_name }}</p>
             </div>
         </div>
         <div class="mb-2">
@@ -24,6 +26,7 @@
             <p class="text-gray-700 text-sm">Menjadi seorang tukang parkir yang jujur baik dan tidak sombong</p>
         </div>
            <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>
+<<<<<<< HEAD
     </div>
     <div class="max-w-[400px]  mx-auto p-4 bg-white shadow-md rounded-lg">
         <div class="flex items-center mb-4">
@@ -186,6 +189,10 @@
         </div>
            <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>
     </div>
+=======
+    </div>    
+    @endforeach
+>>>>>>> 7276aa4322887ab75c667d2dcac775e609ae9c72
 </div>
 
 

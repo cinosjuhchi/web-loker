@@ -26,7 +26,6 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 
 Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
-Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
 Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
@@ -53,7 +52,7 @@ Route::middleware('guest')->group(function () {
 
 // user
 Route::middleware('auth')->group(function () {
-
+    
     Route::get('/dashboard-user', function () {
         $title = 'Dashboard';
         $user = Auth::user();
@@ -62,10 +61,11 @@ Route::middleware('auth')->group(function () {
             $provinces = $response->json();
         } else {
             $provinces = [];
-        }
+        }               
         return view('pages.DashboardUser', compact('title', 'user', 'provinces'));
     })->name('user.dashboard');
-
+    Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
+    
 });
 
 // companies
