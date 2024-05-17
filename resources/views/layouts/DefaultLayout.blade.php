@@ -26,6 +26,9 @@
     <div class="profile-user">
         @yield('profileUser')
     </div>
+    <div class="detail-perusahaan-user">
+        @yield('detailPerusahaanUserPage')
+    </div>
 
  
     

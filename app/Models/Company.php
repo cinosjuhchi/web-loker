@@ -17,9 +17,9 @@ class Company extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function post(): HasMany
+    public function posts(): HasMany
     {
-        return $this->hasMany(Post::class, 'id_company', 'id');
+        return $this->hasMany(Post::class);
     }
 
     

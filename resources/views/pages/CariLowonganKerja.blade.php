@@ -3,9 +3,10 @@
 <div class="lg:mx-[70px] mx-[20px] rounded-lg block mb-10 bg-cover bg-center px-6 py-8 mt-10" 
 style="background-image: url({{ Vite::asset('resources/assets/bg-lowongan.png') }});">
     <h1 class="text-white font-semibold text-md lg:text-2xl">Cari lowongan pekerjaan</h1>
-    <form class="lg:flex block mt-3 gap-4">
+    <form method="GET" class="lg:flex block mt-3 gap-4">
+        @csrf
         <div>
-            <input type="text" id="small-input" placeholder="Masukkan Nama Pekerjaan"
+            <input type="text" name="search_inpur" id="small-input" placeholder="Masukkan Nama Pekerjaan"
                 class="mb-2 block w-full lg:w-60 p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div>
