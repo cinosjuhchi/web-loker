@@ -42,9 +42,10 @@
                                         class=" w-full  mt-5 mb-5  text-black border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10">
                                 </div>
 
-                                <div class="flex gap-3 lg:mt-5 mt-8 mb-5">
-                                    <button class="w-[50%] border border-biru-tuwak py-2 text-biru-tuwak font-semibold rounded-full">Batal</button>
-                                    <button class="w-[50%] bg-biru-tuwak font-semibold rounded-full text-white ">Submit Lamaran</button>
+                                <div class="flex gap-3 lg:mt-5 mt-4 mb-10 w-full justify-end">
+                                    <button
+                                        class=" border px-5 border-biru-tuwak py-2 text-biru-tuwak font-semibold rounded-full">Batal</button>
+                                    <button id="submitLamaranButton" class="px-5  bg-biru-tuwak font-semibold rounded-full text-white ">Kirim</button>
                                 </div>
                             </div>
                         </div>
@@ -58,4 +59,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('submitLamaranButton').addEventListener('click', function() {
+                Swal.fire({
+                    title: "Lamaran Anda Berhasil Dikirim",
+                    text: "Pihak perusahaan akan segera mengkontakmu",
+                    icon: "success",
+                });
+        });
+    </script>
 @endsection

@@ -34,5 +34,6 @@
      {{-- content --}}
      @include('components.FooterUser')
     {{-- Misal Kasih Footer --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -49,5 +49,6 @@
             card2.addEventListener('click', handleCardSelect('{{ route('user.register') }}'));
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
