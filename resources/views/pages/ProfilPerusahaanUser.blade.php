@@ -31,30 +31,13 @@
     </form>
 </div>
 
-<div class="mb-10 mx-[20px] lg:mx-[60px]">
+<div class="mb-10 mx-[20px] lg:mx-[70px]">
    
     <h1 class="font-semibold text-2xl lg:text-3xl">Rekomendasi Lowongan Kerja Untukmu</h1>
 </div>
 
-    <div class="mx-[4.5rem] gap-5 grid grid-cols-4 mt-12 mb-12">
-        <div class="">
-            <div class=" mx-auto w-72 p-4 bg-white border-2 rounded-lg">
-                <div class="flex items-center">
-                    <img src="{{ Vite::asset('resources/assets/contoh.png') }}" alt="Alfamart Logo" class=" mr-3">
-                    <div>
-                        <p>PT. Alfamart</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-       
-       
-       
-        
-       
-       
-       
-        
-    </div>
+<div>
+    @include('components/card.cardProfilePerusahaan')
+</div>
+
 @endsection

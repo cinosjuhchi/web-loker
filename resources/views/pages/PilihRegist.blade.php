@@ -1,6 +1,6 @@
 @extends('layouts.GuestLayout')
 @section('pilihAkun')
-    <div class="w-full h-screen">
+    <div class="w-full min-h-screen">
 
         <div class="block mt-12 mb-5">
             <img class="size-16 mx-auto" src="{{ Vite::asset('resources/assets/logo3.svg')}}" alt="">
@@ -11,25 +11,23 @@
             <p>Perusahaan atau Pekerja</p>
         </div>
 
-        <div class="flex justify-center mt-7 mb-5 gap-5">
-            <div class="w-[300px] bg-white rounded-lg shadow p-5 border transition-all duration-300 ease-in-out border-LightGrey focus:border-blue-500" id="selectcard1">
-
-                    <img class="rounded-t-lg" src="{{ Vite::asset('resources/assets/Rectangle 25 (1).svg') }}" alt="" />
-                <div class="text-xl font-semibold text-start w-60">
+        <div class="flex flex-col lg:flex-row justify-center mt-7 mb-5 gap-5">
+            <div class="w-full mx-[32px] lg:mx-0 max-w-xs bg-white rounded-lg shadow p-5 border transition-all duration-300 ease-in-out border-LightGrey focus:border-blue-500" id="selectcard1">
+                <img class="rounded-t-lg mx-auto md:mx-0" src="{{ Vite::asset('resources/assets/Rectangle 25 (1).svg') }}" alt="" />
+                <div class="text-xl font-semibold text-start w-full md:w-60">
                     <h2>Perusahaan yang mencari Pekerja🏢</h2>
                 </div>
             </div>
 
-
-            <div class="w-[300px] bg-white rounded-lg shadow p-5 border transition-all duration-300 ease-in-out border-LightGrey focus:border-blue-500" id="selectcard2">
-                    <img class="rounded-t-lg" src="{{ Vite::asset('resources/assets/Rectangle 25.svg') }}" alt="" />
-                <div class="text-xl font-semibold text-start w-60">
+            <div class="w-full mx-[32px] lg:mx-0  max-w-xs bg-white rounded-lg shadow p-5 border transition-all duration-300 ease-in-out border-LightGrey focus:border-blue-500" id="selectcard2">
+                <img class="rounded-t-lg mx-auto md:mx-0" src="{{ Vite::asset('resources/assets/Rectangle 25.svg') }}" alt="" />
+                <div class="text-xl font-semibold text-start w-full md:w-60">
                     <h2>Pekerja yang mencari Pekerjaan🧑‍🏭</h2>
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center text-LightGrey">
+        <div class="flex justify-center text-LightGrey mb-5 lg:mb-0">
             <a href="" id="registlink">
                 <button class="bg-DarkWhite rounded-full py-2 px-4 cursor-not-allowed transition-all duration-300 ease-in-out" id="registbtn" type="button">
                     Daftar Sekarang
@@ -47,16 +45,16 @@
 
             function handleCardSelect(route) {
                 return function() {
-                    // Toggle card selection
+                    
                     card1.classList.remove('border-blue-500', 'ring-2', 'ring-blue-500');
                     card2.classList.remove('border-blue-500', 'ring-2', 'ring-blue-500');
                     this.classList.add('border-blue-500', 'ring-2', 'ring-blue-500');
 
-                    // Enable button
+                  
                     button.classList.remove('bg-DarkWhite', 'cursor-not-allowed');
                     button.classList.add('bg-blue-500', 'cursor-pointer', 'text-white');
 
-                    // Set the href attribute of the link
+                   
                     registlink.href = route;
                 }
             }

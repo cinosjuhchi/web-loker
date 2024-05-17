@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
+    public function uploadLamaranUser(Request $request){
+        $title = "Upload Lamaran";
+        return view("pages.UploadLamaranUser", compact("title"));
+    }
     public function pasangLoker(Request $request){
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));

@@ -1,7 +1,7 @@
 @extends('layouts.GuestLayout')
 @section('registerCompany')
 
-    <div class="lg:m-[50px] min-[300px]:m-[10px]">
+    <div class="lg:m-[50px] m-[10px]">
        <div>
        
         <div class="flex items-center">
@@ -13,9 +13,9 @@
         <p class="mt-2">Bergabung dengan kami dan dapatkan pekerja yang anda inginkan</p>
      
 
-        <form action="{{ route('company.register.post') }}" enctype="multipart/form-data" method="POST" class="mt-5 lg:mr-10 min-[300px]:mr-0">
+        <form action="{{ route('company.register.post') }}" enctype="multipart/form-data" method="POST" class="mt-5 lg:mr-10 mr-0">
             @csrf
-            <div class="lg:flex min-[300px]:block">
+            <div class="lg:flex block">
                 <div class="w-full">
                 <h1 class="font-semibold text-2xl mt-10">Informasi Perusahaan</h1>
                 <p class="mt-2 mb-4">Silahkan masukkan informasi perusahaan anda</p>
@@ -41,7 +41,7 @@
                         </div>
                         <label for="" class="text-lg font-semibold">Alamat</label>
                         <div class="mb-5">
-                            <input type="text" name="address" placeholder="Masukkan nama penanggung jawab" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                            <input type="text" name="address" placeholder="Masukkan Alamat Perusahaan" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                             @error('address')
                                 <p class="text-red-600 text-sm">{{ $message }}</p>
                             @enderror
@@ -51,7 +51,7 @@
                             <input type="text" name="number_phone" placeholder="Masukkan nomor telepon penanggung jawab" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                         </div> --}}
                         <label for="" class="text-lg font-semibold">Nomor Telepon Kantor</label>
-                        <p class="text-gray-500">*Jika tidak ada, diisi dengan telepon penanggung jawab</p>
+                       
                         <div class="mb-5">
                             <input type="text" name="number_phone" placeholder="Masukkan nomor telepon kantor" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                             @error('number_phone')
@@ -87,7 +87,7 @@
                         </div>
                     </div>
 
-            <div class="w-full lg:ml-8 min-[300px]:ml-0">
+            <div class="w-full lg:ml-8 ml-0">
                 <h1 class="font-semibold text-2xl mt-10">Informasi Akun</h1>
                 <p class="mt-2 mb-4">Silahkan masukkan informasi akun anda</p>
                 <div class="">                

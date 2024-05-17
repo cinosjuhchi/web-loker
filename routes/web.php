@@ -30,6 +30,7 @@ Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
 Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
 Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
 Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
 
 Route::get('/pilih-akun', function () {

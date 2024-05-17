@@ -54,7 +54,8 @@
                 <p class="text-gray-500">Ukuran maksimal 3MB</p>
                 <div class="mt-4">
                     <input type="file" id="file" name="file" class="hidden" onchange="displayFileName()">
-                    <label for="file" class="flex items-center text-base mx-auto bg-biru-tuwak w-[160px] hover:bg-LightBlue text-center px-5 py-2 select-none cursor-pointer rounded-2xl text-white">
+                    <label for="file"
+                        class="flex items-center text-base mx-auto bg-biru-tuwak w-[160px] hover:bg-LightBlue text-center px-5 py-2 select-none cursor-pointer rounded-2xl text-white">
                         <i class='bx bx-cloud-upload text-2xl'></i>
                         <span class="mx-auto">Add File</span>
                     </label>
@@ -165,36 +166,35 @@
 
 
     <script>
+        function displayFileName() {
+            var fileInput = document.getElementById('file');
+            var filePreview = document.getElementById('file-preview');
+            var file = fileInput.files[0];
 
-function displayFileName() {
-        var fileInput = document.getElementById('file');
-        var filePreview = document.getElementById('file-preview');
-        var file = fileInput.files[0];
-        
-        if (file) {
-            var fileName = file.name;
-            var fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-            
-            if (file.type.startsWith('image/')) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    filePreview.innerHTML = `
+            if (file) {
+                var fileName = file.name;
+                var fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+
+                if (file.type.startsWith('image/')) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        filePreview.innerHTML = `
                         <p><strong>File Name:</strong> ${fileName}</p>
                         <p><strong>File Size:</strong> ${fileSize}</p>
                         <img src="${e.target.result}" alt="Image Preview" class="mt-2 max-w-full h-auto rounded-lg border border-gray-300">
                     `;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                filePreview.innerHTML = `
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    filePreview.innerHTML = `
                     <p><strong>File Name:</strong> ${fileName}</p>
                     <p><strong>File Size:</strong> ${fileSize}</p>
                 `;
+                }
+            } else {
+                filePreview.innerHTML = '<p>No file chosen</p>';
             }
-        } else {
-            filePreview.innerHTML = '<p>No file chosen</p>';
         }
-    }
         document.addEventListener("DOMContentLoaded", function() {
             const ubahDataButton = document.getElementById("ubahDataButton");
             const afterClick = document.getElementById("afterClick");

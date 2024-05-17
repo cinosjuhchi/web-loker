@@ -29,6 +29,9 @@
     <div class="detail-perusahaan-user">
         @yield('detailPerusahaanUserPage')
     </div>
+    <div class="upload-lamaran">
+        @yield('uploadLamaran')
+    </div>
 
  
     
