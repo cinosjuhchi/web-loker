@@ -61,7 +61,7 @@ class IndexController extends Controller
         // Menambahkan filter pencarian berdasarkan provinsi dari company
         if ($province) {
             $postsQuery->whereHas('company', function($query) use ($province) {
-                $query->where('province', $province);
+                $query->where('province', 'like', '%' . $province . '%');
             });
         }
 
