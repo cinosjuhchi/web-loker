@@ -2,7 +2,7 @@
 @section('LandingPage')
 
 <div class=" w-full">
-    <div class="lg:m-[70px] mx-[15px] lg:flex block  ">
+    <div class="lg:m-[150px] mx-[15px] lg:flex block  ">
         <div class="lg:w-[90%] lg:mt-[40px] w-full mt-[50px] block">
             <h1 class="font-bold text-2xl lg:w-[600px] w-full text-left">Temukan pekerjaan sesuai minat & keterampilan <br> anda. Cek lowongan di situs kami!</h1>
             <p class="mt-6 w-full">Di sini, Anda akan menemukan lingkungan kerja yang inklusif <br> dan kolaboratif, di mana setiap suara dihargai dan setiap ide didorong <br> untuk tumbuh. Kami percaya bahwa keragaman adalah kunci untuk <br> inovasi, dan kami berkomitmen untuk merangkul perbedaan agar <br> dapat menciptakan solusi yang lebih baik.</p>

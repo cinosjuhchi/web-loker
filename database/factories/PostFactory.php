@@ -26,6 +26,7 @@ class PostFactory extends Factory
             'slug' => $this->faker->slug(),
             'content' => $this->faker->sentence(mt_rand(2, 10)),
             'id_company' => mt_rand(1, 10),
+            'id_category' => mt_rand(1, 10),
             'salary' => $this->faker->numberBetween(1000000, 100000000),
         ];
     }

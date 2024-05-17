@@ -17,6 +17,7 @@
     {{-- Misal Kasih Navbar --}}
     {{-- content --}}
     @yield('cardLowongan')
+    @yield('cardProfilePerusahaan')
     <div class="regis-company">
         @yield('registerCompany')
     </div>
@@ -53,5 +54,6 @@
      {{-- content --}}
      
     {{-- Misal Kasih Footer --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -32,11 +32,11 @@
 
 @section('loginUser')
     <div class="flex h-screen">
-        <div class="lg:block min-[300px]:hidden relative h-screen">
+        <div class="lg:block hidden relative h-screen">
             <img src="{{ Vite::asset('resources/assets/login.svg') }}" alt="" class="bg-cover h-screen object-cover"
                 width="100%">
         </div>
-        <div class="h-screen mx-auto flex justify-center items-center min-[300px]:p-5">
+        <div class="h-screen mx-auto flex justify-center items-center p-5">
             <div class="font-inter">
                 <div class="flex items-center">
                     <img class="h-14" src="{{ Vite::asset('resources/assets/logo/logo_outline_text_none.png') }}"
