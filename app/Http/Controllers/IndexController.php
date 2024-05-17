@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-<<<<<<< HEAD
+
     public function uploadLamaranUser(Request $request){
         $title = "Upload Lamaran";
         return view("pages.UploadLamaranUser", compact("title"));
     }
-    public function pasangLoker(Request $request){
-=======
+   
+
     public function pasangLoker(Request $request)
     {
->>>>>>> 35d80466befe16e412cf04c145d29b564e1c18a6
+
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }

@@ -28,7 +28,6 @@
                     <h3 class="text-sm font-semibold">Deskripsi Pekerjaan :</h3>
                     <p class="text-gray-700 text-sm">Menjadi seorang tukang parkir yang jujur baik dan tidak sombong</p>
                 </div>
-<<<<<<< HEAD
                 <div>
                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                         Kategori Pekerjaan
@@ -54,7 +53,6 @@
       </div>
   </div>
   
-=======
                 <button data-modal-target="default-modal" data-modal-toggle="default-modal"
                     class="w-full bg-biru-tuwak text-white py-2 rounded-full open-modal"
                     data-post-title="{{ $post->title }}" data-company-name="{{ $post->company->company_name }}"
@@ -63,7 +61,6 @@
                                                 </div>
      @endforeach
             </div>
->>>>>>> 35d80466befe16e412cf04c145d29b564e1c18a6
 
 
 
