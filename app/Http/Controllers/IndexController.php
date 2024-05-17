@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
@@ -48,7 +50,8 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.CariLowonganKerja", compact("title", "provinces"));
+        $posts = Post::all();        
+        return view("pages.CariLowonganKerja", compact("title", "provinces", "posts"));
     }
     public function dashboardUser(Request $request){
         $title = "Work Seeker";

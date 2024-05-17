@@ -25,7 +25,8 @@ style="background-image: url({{ Vite::asset('resources/assets/bg-lowongan.png') 
 </div>
 
 <!-- card & pagination -->
-<div class="mt-4">
+
+<div class="mt-4">    
     @include('components/card.cardLowongan')
 </div>
 
