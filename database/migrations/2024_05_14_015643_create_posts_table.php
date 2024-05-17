@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug', 255);
             $table->text('content');
             $table->integer('id_company', false);
+            $table->bigInteger('salary', false)->nullable();
 
             $table->timestamps();
         });
