@@ -181,7 +181,7 @@
             </div>
         </div>
         <div class="mb-2">
-            <h3 class="text-sm font-semibold">Deskripsi Pekerjaan :</h3>
+            <h3 class="text-sm font-semibold">Deskripsi Pekerjaan</h3>
             <p class="text-gray-700 text-sm">Menjadi seorang tukang parkir yang jujur baik dan tidak sombong</p>
         </div>
            <button  data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full bg-biru-tuwak text-white py-2 rounded-full">Selengkapnya</button>

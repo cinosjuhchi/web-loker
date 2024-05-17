@@ -29,6 +29,7 @@ Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasa
 Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
+Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
 
 Route::get('/pilih-akun', function () {
     $title = 'Akun';
