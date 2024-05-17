@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -9,11 +10,13 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-    public function pasangLoker(Request $request){
+    public function pasangLoker(Request $request)
+    {
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
-    public function profilUser(Request $request){
+    public function profilUser(Request $request)
+    {
         $title = "Profil";
 
         $category = Category::all();
@@ -32,17 +35,20 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.ProfileUser", compact("title" , "category", "provinces"));
+        return view("pages.ProfileUser", compact("title", "category", "provinces"));
     }
-    public function aboutUs(Request $request){
+    public function aboutUs(Request $request)
+    {
         $title = "About Us";
         return view("pages.AboutUs", compact("title"));
     }
-    public function landingPage(Request $request){
+    public function landingPage(Request $request)
+    {
         $title = "Work Seeker";
         return view("pages.LandingPageUser", compact("title"));
     }
-    public function cariLoker(Request $request){
+    public function cariLoker(Request $request)
+    {
         $title = "Cari Loker";
         $search = $request->query('search_input');
         $province = $request->input('province');
@@ -51,7 +57,7 @@ class IndexController extends Controller
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
         $provinces = $response->successful() ? $response->json() : [];
 
-        $postsQuery = Post::query();
+        $postsQuery = Post::with('category');
 
         // Menambahkan filter pencarian berdasarkan judul
         if ($search) {
@@ -60,7 +66,7 @@ class IndexController extends Controller
 
         // Menambahkan filter pencarian berdasarkan provinsi dari company
         if ($province) {
-            $postsQuery->whereHas('company', function($query) use ($province) {
+            $postsQuery->whereHas('company', function ($query) use ($province) {
                 $query->where('province', 'like', '%' . $province . '%');
             });
         }
@@ -68,9 +74,9 @@ class IndexController extends Controller
         $posts = $postsQuery->get();
 
         return view("pages.CariLowonganKerja", compact("title", "provinces", "posts"));
-
     }
-    public function dashboardUser(Request $request){
+    public function dashboardUser(Request $request)
+    {
         $title = "Work Seeker";
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
         if ($response->successful()) {
