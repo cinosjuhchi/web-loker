@@ -86,10 +86,10 @@ Route::middleware('auth.company')->group(function () {
     });
 });
 
-// Route::get('profil-perusahaan-user', function () {
-//     $title = "profil-perusahaan-user";
-//     return view('pages.ProfilPerusahaanUser', compact('title'));
-// });
+Route::get('dashboard-company', function () {
+    $title = "dashboard-company";
+    return view('pages.company.DashboardUser', compact('title',));
+});
 
 // Route::get('disimpan-User', function () {
 //     $title = "disimpan-User";

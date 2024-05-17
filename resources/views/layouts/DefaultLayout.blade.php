@@ -19,11 +19,11 @@
     @include('components.NavbarUser')
 
     {{-- content --}}
+    
+        <div class="">
+            @yield('main')
+        </div>
 
-
-    <div class="">
-        @yield('main')
-    </div>
     <div class="profile-user">
         @yield('profileUser')
     </div>

@@ -31,6 +31,11 @@
 <div class="mt-6">
     <input type="text" id="small-input" class=" block mx-[70]  p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Pelamar">
 </div>
+
+<div>
+    <button
+    class="w-full mt-6 lg:w-20 text-white hover:bg-biru-tuwak bg-biru-baru lg:bg-biru-tuwak lg:hover:bg-biru-baru focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cari</button>
+</div>
 </div>
 
 @endsection
