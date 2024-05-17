@@ -31,7 +31,9 @@ Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profi
 Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
 Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
 Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
+Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
 Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
+Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('profileCompany');
 
 Route::get('/pilih-akun', function () {
     $title = 'Akun';

@@ -26,12 +26,18 @@
     <div class="profile-user">
         @yield('profileUser')
     </div>
+    <div class="profile-perusahaan">
+        @yield('profileCompany')
+    </div>
     <div class="detail-perusahaan-user">
         @yield('detailPerusahaanUserPage')
     </div>
     <div class="upload-lamaran">
         @yield('uploadLamaran')
     </div>
+    <div class="detail-profilUser" >
+        @yield('detailProfileUser')
+         </div>
 
  
     

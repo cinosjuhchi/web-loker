@@ -15,11 +15,14 @@ class IndexController extends Controller
         $title = "Upload Lamaran";
         return view("pages.UploadLamaranUser", compact("title"));
     }
+    public function detailProfileUser(Request $request){
+        $title = "Work Seeker";
+        return view("pages/company.DetailProfileUser", compact("title"));
+    }
    
 
     public function pasangLoker(Request $request)
     {
-
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
@@ -44,6 +47,28 @@ class IndexController extends Controller
             $provinces = [];
         }
         return view("pages.ProfileUser", compact("title", "category", "provinces"));
+    }
+    public function profileCompany(Request $request)
+    {
+        $title = "Profil Perusahaan";
+
+        $category = Category::all();
+        if ($category == null) {
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
+
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+
+
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages/company.ProfileCompany", compact("title", "category", "provinces"));
     }
 
     public function disimpanUser(Request $request){

@@ -1,5 +1,5 @@
 <nav class="bg-LightBlue w-full top-0 start-0 h-[70px] relative z-50">
-    <div class="flex flex-wrap items-center justify-between mx-11 p-4">
+    <div class="flex flex-wrap items-center justify-between mx-2 lg:mx-[70px] p-4">
         <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ Vite::asset('resources/assets/logo/logo2.png') }}" class="h-8" alt="Logo">
             <span class="self-center text-2xl font-semibold whitespace-nowrap">WorkSeeker</span>
