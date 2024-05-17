@@ -33,6 +33,10 @@ Route::get('/pilih-akun', function () {
     $title = 'Akun';
     return view('pages.PilihRegist', compact('title'));
 });
+Route::get('pelamar-kerja', function () {
+    $title = 'pelamar-kerja';
+    return view('pages.company.PelamarKerjaCompany', compact('title'));
+});
 
 
 
