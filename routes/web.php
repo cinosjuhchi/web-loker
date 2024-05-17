@@ -90,6 +90,10 @@ Route::get('dashboard-company', function () {
     $title = "dashboard-company";
     return view('pages.company.DashboardUser', compact('title',));
 });
+Route::get('loker-company', function () {
+    $title = "loker-company";
+    return view('pages.company.LowonganKerjaCompany', compact('title',));
+});
 
 // Route::get('disimpan-User', function () {
 //     $title = "disimpan-User";
