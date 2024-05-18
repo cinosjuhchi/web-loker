@@ -22,9 +22,9 @@
                                 <input id="nama" type="text" placeholder="Masukkan nama lengkap anda"
                                     class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 border-DarkWhite placeholder:text-DarkWhite placeholder:focus:text-blue-500 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
-                            <label for="telepon" class="text-lg font-semibold">Kategori  Pekerjaan</label>
+                            <label for="telepon" class="text-lg font-semibold">Estimasi gaji</label>
                             <div>
-                                <input id="telepon" type="text" placeholder="Masukkan nomor telpon anda"
+                                <input id="telepon" type="text" placeholder="Pilih estimasi gaji"
                                     class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 border-DarkWhite placeholder:text-DarkWhite placeholder:focus:text-blue-500 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
                             
@@ -33,9 +33,9 @@
                         </div>
 
                         <div class=" lg:w-[50%]">
-                            <label for="email" class="text-lg font-semibold">Estimasi Gaji</label>
+                            <label for="email" class="text-lg font-semibold">Kategori  Pekerjaan</label>
                             <div>
-                                <input id="telepon" type="text" placeholder="Masukkan nomor telpon anda"
+                                <input id="telepon" type="text" placeholder="Masukkan deskripsi pekerjaan"
                                     class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 border-DarkWhite placeholder:text-DarkWhite placeholder:focus:text-blue-500 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
                             <label for="email" class="text-lg font-semibold">Deskripsi Pekerjaan</label>
