@@ -34,15 +34,15 @@ Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->na
 Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
 Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
 Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('profileCompany');
+Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
+Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
+Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
 
 Route::get('/pilih-akun', function () {
     $title = 'Akun';
     return view('pages.PilihRegist', compact('title'));
 });
-Route::get('pelamar-kerja', function () {
-    $title = 'pelamar-kerja';
-    return view('pages.company.PelamarKerjaCompany', compact('title'));
-});
+
 
 
 
@@ -86,14 +86,14 @@ Route::middleware('auth.company')->group(function () {
     });
 });
 
-Route::get('dashboard-company', function () {
-    $title = "dashboard-company";
-    return view('pages.company.DashboardUser', compact('title',));
-});
-Route::get('loker-company', function () {
-    $title = "loker-company";
-    return view('pages.company.LowonganKerjaCompany', compact('title',));
-});
+// Route::get('dashboard-company', function () {
+//     $title = "dashboard-company";
+//     return view('pages/company.DashboardUser', compact('title'));
+// });
+// Route::get('loker-company', function () {
+//     $title = "loker-company";
+//     return view('pages/company.LowonganKerjaCompany', compact('title'));
+// });
 
 // Route::get('disimpan-User', function () {
 //     $title = "disimpan-User";
