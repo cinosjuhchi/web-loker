@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-<<<<<<< HEAD
-
     public function uploadLamaranUser(Request $request){
         $title = "Upload Lamaran";
         return view("pages.UploadLamaranUser", compact("title"));
@@ -43,13 +41,9 @@ class IndexController extends Controller
         $title = "Work Seeker";
         return view("pages/company.DetailProfileUser", compact("title"));
     }
-   
+       
 
-    public function pasangLoker(Request $request)
-    {
-=======
     public function pasangLoker(Request $request){
->>>>>>> e0afe87ecefb38713cdc470345ae8fa771eb5449
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
