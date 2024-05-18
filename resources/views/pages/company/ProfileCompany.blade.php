@@ -33,6 +33,7 @@
     </div>
 
     <div class="lg:mx-[100px] mx-5">
+        <form class="">
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2 lg:text-2xl" for="description">Deskripsi Perusahaan:</label>
             <div class="border border-gray-300 p-4 rounded-lg bg-gray-100">
@@ -50,7 +51,7 @@
 
         <div class="mb-6">
             <h2 class="text-gray-700 text-2xl  font-semibold mb-4">Informasi data perusahaan</h2>
-            <form class="">
+            
                 <div class="lg:flex w-full  gap-5">
                     <div class="lg:w-[50%]">
                         <div>

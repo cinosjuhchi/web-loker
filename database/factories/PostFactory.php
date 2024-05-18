@@ -27,7 +27,8 @@ class PostFactory extends Factory
             'content' => $this->faker->sentence(mt_rand(2, 10)),
             'id_company' => mt_rand(1, 10),
             'id_category' => mt_rand(1, 10),
-            'salary' => $this->faker->numberBetween(1000000, 100000000),
+            'min_salary' => $this->faker->numberBetween(1000000, 2000000),
+            'max_salary' => $this->faker->numberBetween(2000000, 100000000),
         ];
     }
 }

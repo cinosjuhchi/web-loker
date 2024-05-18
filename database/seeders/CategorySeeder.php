@@ -14,16 +14,16 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Pengembang Perangkat Lunak',
-            'Analisis Data',
-            'Administrator Sistem Jaringan',
-            'Ahli Keamanan Informasi',
-            'Spesialis Cloud Computing',
-            'Pengembang Aplikasi Mobile',
-            'Spesialis Kecerdasan Buatan (AI)',
-            'Ahli Robotik',
-            'Pengembang Game',
-            'Analisis Keamanan Siber',
+            'Teknologi Informasi',
+            'Keuangan dan Perbankan',
+            'Energi dan Pertambangan',
+            'Konstruksi dan Properti',
+            'Manufaktur',
+            'Telekomunikasi',
+            'Transportasi dan Logistik',
+            'Kesehatan dan Farmasi',
+            'Ritel dan E-commerce',
+            'Pariwisata dan Perhotelan',
         ];
 
         foreach ($categories as $category) {

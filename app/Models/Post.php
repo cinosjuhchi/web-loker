@@ -31,6 +31,6 @@ class Post extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'id_category', 'id');
+        return $this->belongsTo(JobCategory::class, 'id_category', 'id');
     }
 }

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('content');
             $table->integer('id_company', false);
             $table->integer('id_category', false);
-            $table->bigInteger('salary', false)->nullable();
+            $table->bigInteger('min_salary', false);
+            $table->bigInteger('max_salary', false);
 
             $table->timestamps();
         });

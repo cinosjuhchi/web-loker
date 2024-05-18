@@ -35,6 +35,7 @@
     </div>
 
     <div class="lg:mx-[100px] mx-5">
+        <form>
         <div class="mb-6">
             <label class="block lg:text-2xl text-gray-700 font-semibold mb-2" for="description">Deskripsi diri anda:</label>
             <div class="border border-gray-300 p-4 rounded-lg bg-gray-100">
@@ -67,7 +68,7 @@
 
         <div class="mb-6">
             <h2 class="text-gray-700 font-semibold mb-4 text-2xl">Informasi data diri anda</h2>
-            <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 <div>
                     <label class="block text-gray-700 mb-2 font-semibold" for="username">Username</label>
@@ -99,10 +100,10 @@
 
                 <div>
                     <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Keterampilan</label>
-                    <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md" >
-                        <option value="" >Pilih bidang perusahaan</option>
+                    <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">Pilih bidang perusahaan</option>
                         @foreach ($category as $item)
-                        <option value="{{ $item->id }}" >{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -145,28 +146,30 @@
                     </select>
                 </div>
 
-                <div class="mt-10">
-                    <div class="mr-0 lg:flex block mx-auto w-fit gap-2">
-                        <div class="">
-                            <button id="ubahDataButton" type="button"
-                                class="py-3 lg:px-6 bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white">Ubah
-                                Data</button>
-                        </div>
-                        <div id="afterClick" class="hidden">
-                            <button 
-                                class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
-                            <button
-                                class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-         
-
-
-
         </div>
+        <div class="mt-10  ">
+            <div class="mr-0 lg:flex block mx-auto w-fit gap-2">
+                <div class="">
+                    <button id="ubahDataButton" type="button"
+                        class="py-3 lg:px-6 bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white lg:justify-end">Ubah
+                        Data</button>
+                </div>
+                <div id="afterClick" class="hidden">
+                    <button
+                        class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
+                    <button
+                        class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
+                </div>
+            </div>
+        </div>
+
+        </form>
+
+
+
+
+
+
     </div>
 
 

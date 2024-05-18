@@ -93,17 +93,16 @@
                     {{-- ini user biasa --}}
                     <li>
                         <a href="/dashboard-user"
-                            class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
-                            aria-current="page">Dashboard</a>
+                            class="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent  md:hover:text-blue-700 md:p-0 {{ request()->routeIs('user.dashboard') ? 'md:text-blue-700' : '' }}">Dashboard</a>
                     </li>
                     <li>
                         <a href="/cari-loker"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Cari
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('cariLoker') ? 'md:text-blue-700' : '' }}">Cari
                             Lowongan Kerja</a>
                     </li>
                     <li>
-                        <a href="/pasang-loker"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pasang
+                        <a href="/profil-perusahaan-user"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('pasangLoker') ? 'md:text-blue-700' : '' }}">
                             Profil Perusahaan</a>
                     </li>
                     <li>
@@ -113,27 +112,37 @@
                     {{-- @endif --}}
 
                 @endauth
-                @auth
+                {{-- @auth
 
                     @can('company')
                         {{-- Pengkondisian User Company --}}
                         {{-- ini user company --}}
+<<<<<<< HEAD
                         <li>
+                            <a href="#"
+=======
+                        {{-- <li>
                             <a href="/cari-loker"
+>>>>>>> f1afac0bcbd5cd99fc9f6a24f35b6bc6736f7253
                                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Dashboard</a>
                         </li>
                         <li>
-                            <a href="/pasang-loker"
+                            <a href="/pasang-lowongan"
                                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pasang
                                 Lowongan</a>
                         </li>
                         <li>
-                            <a href="/about-us"
+                            <a href="/loker-company"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                                Lowongan Kerja</a>
+                        </li>
+                        <li>
+                            <a href="/pelamar-kerja"
                                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pelamar
                                 Kerja</a>
-                        </li>
-                    @endcan
-                @endauth
+                        </li> --}}
+                    {{-- @endcan
+                @endauth --}}
 
                 @guest
                     {{-- @if (Auth::user('guest')) --}}

@@ -42,6 +42,19 @@
     <div class="detail-profilUser" >
         @yield('detailProfileUser')
          </div>
+    <div class="ubahloker" >
+        @yield('ubahloker')
+         </div>
+
+
+
+
+
+
+
+    <div class="pasang-lowongan-kerja" >
+        @yield('pasangLowongan')
+         </div>
 
  
     
