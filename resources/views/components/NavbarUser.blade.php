@@ -117,10 +117,10 @@
                     @can('company')
                         {{-- Pengkondisian User Company --}}
                         {{-- ini user company --}}
-<<<<<<< HEAD
+
                         <li>
                             <a href="#"
-=======
+
                         {{-- <li>
                             <a href="/cari-loker"
 >>>>>>> f1afac0bcbd5cd99fc9f6a24f35b6bc6736f7253
@@ -196,7 +196,7 @@
                         Profil Perusahaan</a>
                 </li>
                 <li>
-                    <a href="/about-us"
+                    <a href="/disimpan-user"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Disimpan</a>
                 </li>
             @else

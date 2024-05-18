@@ -17,15 +17,16 @@ class IndexController extends Controller
         $title = "Upload Lamaran";
         return view("pages.UploadLamaranUser", compact("title"));
     }
-<<<<<<< HEAD
+
     public function pasangLowongan(Request $request){
         $title = "Pasang Lowongan Kerja";
         return view("pages/company.PasangLowongan", compact("title"));
-=======
+
+    }
     public function ubahLoker(Request $request){
         $title = "Ubah Loker";
         return view("pages.company.UbahLoker", compact("title"));
->>>>>>> f1afac0bcbd5cd99fc9f6a24f35b6bc6736f7253
+
     }
     public function pelamarKerja(Request $request){
         $title = "Pelamar Kerja";
