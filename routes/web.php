@@ -25,20 +25,24 @@
 
 
 
-    Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
-    Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
-    Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
-    Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
-    Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
-    Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
-    Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
+Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
+Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
+Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
+Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
+Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
+Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
+Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
+Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('profileCompany');
+Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
+Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
+Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
 
-    Route::get('/pilih-akun', function () {
-        $title = 'Akun';
-        return view('pages.PilihRegist', compact('title'));
-    });
-
-
+Route::get('/pilih-akun', function () {
+    $title = 'Akun';
+    return view('pages.PilihRegist', compact('title'));
+});
 
     Route::middleware('guest')->group(function () {
         Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
@@ -74,19 +78,23 @@
         Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
     });
 
-    // companies
-    Route::middleware('auth.company')->group(function () {
-        Route::get('/after-login', function () {
-            $title = "After-Login";
-            $company = Auth::guard('company')->user();
-            return view('pages.company.DashboardUser', compact('title', 'company',));
-        });
+// companies
+Route::middleware('auth.company')->group(function () {
+    Route::get('/after-login', function () {
+        $title = "After-Login";
+        $company = Auth::guard('company')->user();
+        return view('pages.company.DashboardUser', compact('title', 'company'));
     });
-
+});
     Route::post('/logout', [IndexController::class, 'logout']);
-// Route::get('profil-perusahaan-user', function () {
-//     $title = "profil-perusahaan-user";
-//     return view('pages.ProfilPerusahaanUser', compact('title'));
+
+// Route::get('dashboard-company', function () {
+//     $title = "dashboard-company";
+//     return view('pages/company.DashboardUser', compact('title'));
+// });
+// Route::get('loker-company', function () {
+//     $title = "loker-company";
+//     return view('pages/company.LowonganKerjaCompany', compact('title'));
 // });
 
 // Route::get('disimpan-User', function () {

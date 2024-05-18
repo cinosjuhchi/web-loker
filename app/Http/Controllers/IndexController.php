@@ -12,6 +12,29 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
+
+    public function uploadLamaranUser(Request $request){
+        $title = "Upload Lamaran";
+        return view("pages.UploadLamaranUser", compact("title"));
+    }
+    public function pelamarKerja(Request $request){
+        $title = "Pelamar Kerja";
+        return view("pages/company.PelamarKerjaCompany", compact("title"));
+    }
+    public function dashboardCompany(Request $request){
+        $title = "Dashboard Perusahaan";
+        return view("pages/company.DashboardUser", compact("title"));
+    }
+    public function lokerCompany(Request $request){
+        $title = "Lowongan Kerja Perusahaan";
+        return view("pages/company.LowonganKerjaCompany", compact("title"));
+    }
+    public function detailProfileUser(Request $request){
+        $title = "Work Seeker";
+        return view("pages/company.DetailProfileUser", compact("title"));
+    }
+   
+
     public function pasangLoker(Request $request)
     {
         $title = "Pasang Loker";
@@ -38,6 +61,28 @@ class IndexController extends Controller
             $provinces = [];
         }
         return view("pages.ProfileUser", compact("title", "category", "provinces"));
+    }
+    public function profileCompany(Request $request)
+    {
+        $title = "Profil Perusahaan";
+
+        $category = Category::all();
+        if ($category == null) {
+            $category = [
+                'name' => 'Data kosong',
+                'id' => null
+            ];
+        }
+
+        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+
+
+        if ($response->successful()) {
+            $provinces = $response->json();
+        } else {
+            $provinces = [];
+        }
+        return view("pages/company.ProfileCompany", compact("title", "category", "provinces"));
     }
 
     public function disimpanUser(Request $request)

@@ -28,6 +28,31 @@
                     <h3 class="text-sm font-semibold">Deskripsi Pekerjaan :</h3>
                     <p class="text-gray-700 text-sm">Menjadi seorang tukang parkir yang jujur baik dan tidak sombong</p>
                 </div>
+                <div>
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        Kategori Pekerjaan
+                     </p>
+                     <p class="text-sm font-semibold text-gray-900">Engineer</p>
+                </div>
+                <div>
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        Deskripsi Pekerjaan
+                     </p>
+                     <p class="text-sm font-semibold text-gray-900">Menjadi seorang tukang parkir yang jujur baik dan tidak sombong</p>
+                </div>
+                 
+                 
+              </div>
+              <!-- Modal footer -->
+              <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600 justify-end">
+                <a href="/disimpan-user"><button data-modal-hide="default-modal" type="button" class=" py-2.5 px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Simpan</button></a>
+                  <a href="/upload-lamaran"><button data-modal-hide="default-modal" type="button" class="ms-3 text-white bg-biru-tuwak hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Lamar Pekerjaan</button></a>
+             
+              </div>
+          </div>
+      </div>
+  </div>
+  
                 <button data-modal-target="default-modal" data-modal-toggle="default-modal"
                     class="w-full bg-biru-tuwak text-white py-2 rounded-full open-modal"
                     data-post-title="{{ $post->title }}" data-company-name="{{ $post->company->company_name }}"

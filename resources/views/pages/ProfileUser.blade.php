@@ -36,7 +36,7 @@
 
     <div class="lg:mx-[100px] mx-5">
         <div class="mb-6">
-            <label class="block text-gray-700 font-semibold mb-2" for="description">Deskripsi diri anda:</label>
+            <label class="block lg:text-2xl text-gray-700 font-semibold mb-2" for="description">Deskripsi diri anda:</label>
             <div class="border border-gray-300 p-4 rounded-lg bg-gray-100">
                 <p>Sebagai seorang programmer full stack, saya mampu mengembangkan aplikasi web dari tampilan antarmuka
                     (front-end) menggunakan HTML, CSS, dan JavaScript hingga logika server dan database (back-end) dengan
@@ -48,13 +48,14 @@
         </div>
 
         <div class="mb-6">
-            <label class="block text-gray-700 font-semibold mb-2" for="uploadCV">Upload CV anda:</label>
+            <label class="block text-2xl text-gray-700 font-semibold mb-2" for="uploadCV">Upload CV anda:</label>
             <div class="border-2 border-dashed border-gray-300 p-6 text-center rounded-lg bg-gray-50">
                 <p class="mb-2 text-gray-500">File dapat berbentuk pdf, docx</p>
                 <p class="text-gray-500">Ukuran maksimal 3MB</p>
                 <div class="mt-4">
                     <input type="file" id="file" name="file" class="hidden" onchange="displayFileName()">
-                    <label for="file" class="flex items-center text-base mx-auto bg-biru-tuwak w-[160px] hover:bg-LightBlue text-center px-5 py-2 select-none cursor-pointer rounded-2xl text-white">
+                    <label for="file"
+                        class="flex items-center text-base mx-auto bg-biru-tuwak w-[160px] hover:bg-LightBlue text-center px-5 py-2 select-none cursor-pointer rounded-2xl text-white">
                         <i class='bx bx-cloud-upload text-2xl'></i>
                         <span class="mx-auto">Add File</span>
                     </label>
@@ -65,53 +66,57 @@
 
 
         <div class="mb-6">
-            <h2 class="text-gray-700 font-semibold mb-4">Informasi data diri anda</h2>
+            <h2 class="text-gray-700 font-semibold mb-4 text-2xl">Informasi data diri anda</h2>
             <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="username">Username</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="username">Username</label>
                     <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
                         placeholder="Username Kamu">
                 </div>
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="fullName">Nama</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="fullName">Nama</label>
                     <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="fullName"
                         placeholder="Azka">
                 </div>
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="email">Email</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="email">Email</label>
                     <input class="w-full p-2 border border-gray-300 rounded-md" type="email" id="email"
                         placeholder="azka@gmail.com">
                 </div>
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="phoneNumber">Nomor Telepon</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="phoneNumber">Nomor Telepon</label>
                     <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="phoneNumber"
                         placeholder="0812-9292-8245">
                 </div>
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="expertise">Keterampilan</label>
-                    <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="expertise"
-                        placeholder="Software Engineering">
+                    <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Keterampilan</label>
+                    <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md" >
+                        <option value="" >Pilih bidang perusahaan</option>
+                        @foreach ($category as $item)
+                        <option value="{{ $item->id }}" >{{ $item->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="birthdate">Tanggal Lahir</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="birthdate">Tanggal Lahir</label>
                     <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="birthdate"
                         placeholder="8 Mei 2007">
                 </div>
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="education">Pendidikan Terakhir</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="education">Pendidikan Terakhir</label>
                     <select class="w-full p-2 border border-gray-300 rounded-md" id="education">
                         <option value="sma">SMA</option>
                         <option value="diploma">Diploma</option>
@@ -122,7 +127,7 @@
 
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="gender">Jenis Kelamin</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="gender">Jenis Kelamin</label>
                     <select class="w-full p-2 border border-gray-300 rounded-md" id="gender">
                         <option value="laki-laki">Laki-laki</option>
                         <option value="perempuan">Perempuan</option>
@@ -131,7 +136,7 @@
 
 
                 <div class="md:col-span-2">
-                    <label class="block text-gray-700 mb-2" for="province">Provinsi Tempat Tinggal</label>
+                    <label class="block text-gray-700 mb-2 font-semibold" for="province">Provinsi Tempat Tinggal</label>
                     <select class="lg:w-1/2 w-full p-2 border border-gray-300 rounded-md" id="province">
                         <option value="provinsi">Provinsi</option>
                         @foreach ($provinces as $province)
@@ -139,23 +144,25 @@
                         @endforeach
                     </select>
                 </div>
-            </form>
 
-            <div class="mt-10">
-                <div class="mr-0 lg:flex block mx-auto w-fit gap-2">
-                    <div class="">
-                        <button id="ubahDataButton"
-                            class="py-3 lg:px-6 bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white">Ubah
-                            Data</button>
-                    </div>
-                    <div id="afterClick" class="hidden">
-                        <button
-                            class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
-                        <button
-                            class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
+                <div class="mt-10">
+                    <div class="mr-0 lg:flex block mx-auto w-fit gap-2">
+                        <div class="">
+                            <button id="ubahDataButton" type="button"
+                                class="py-3 lg:px-6 bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white">Ubah
+                                Data</button>
+                        </div>
+                        <div id="afterClick" class="hidden">
+                            <button 
+                                class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
+                            <button
+                                class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
+         
 
 
 
@@ -165,36 +172,35 @@
 
 
     <script>
+        function displayFileName() {
+            var fileInput = document.getElementById('file');
+            var filePreview = document.getElementById('file-preview');
+            var file = fileInput.files[0];
 
-function displayFileName() {
-        var fileInput = document.getElementById('file');
-        var filePreview = document.getElementById('file-preview');
-        var file = fileInput.files[0];
-        
-        if (file) {
-            var fileName = file.name;
-            var fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-            
-            if (file.type.startsWith('image/')) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    filePreview.innerHTML = `
+            if (file) {
+                var fileName = file.name;
+                var fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+
+                if (file.type.startsWith('image/')) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        filePreview.innerHTML = `
                         <p><strong>File Name:</strong> ${fileName}</p>
                         <p><strong>File Size:</strong> ${fileSize}</p>
                         <img src="${e.target.result}" alt="Image Preview" class="mt-2 max-w-full h-auto rounded-lg border border-gray-300">
                     `;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                filePreview.innerHTML = `
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    filePreview.innerHTML = `
                     <p><strong>File Name:</strong> ${fileName}</p>
                     <p><strong>File Size:</strong> ${fileSize}</p>
                 `;
+                }
+            } else {
+                filePreview.innerHTML = '<p>No file chosen</p>';
             }
-        } else {
-            filePreview.innerHTML = '<p>No file chosen</p>';
         }
-    }
         document.addEventListener("DOMContentLoaded", function() {
             const ubahDataButton = document.getElementById("ubahDataButton");
             const afterClick = document.getElementById("afterClick");
