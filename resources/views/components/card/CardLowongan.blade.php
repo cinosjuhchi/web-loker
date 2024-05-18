@@ -2,8 +2,8 @@
 @section('cardLowongan')
     <div class="grid lg:grid-cols-4 min-[300px]:cols-6 gap-5  mx-[20px] lg:mx-[70px]  mt-8">
         @foreach ($posts as $post)
-            <div class="max-w-[400px]  mx-auto p-4 bg-white shadow-md rounded-lg">
-                <div class="flex items-center mb-4 ">
+            <div class="max-w-[400px] h-[300px] mx-auto p-4 bg-white shadow-md rounded-lg">
+                <div class="flex items-center mb-4 h-20 ">
                     <img src="{{ $post->company->photo_profile ? asset($post->company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}"
                         alt="Alfamart Logo" class="w-12 h-12 rounded-full mr-3 object-cover object-center">
 
@@ -26,7 +26,7 @@
                 </div>
                 <div class="mb-2">
                     <h3 class="text-sm font-semibold">Deskripsi Pekerjaan :</h3>
-                    <p class="text-gray-700 text-sm">{{ $post->content }}</p>
+                    <p class="text-gray-700 text-sm truncate max-w-[200px]">{{ $post->content }}</p>
                 </div>
                 {{-- <div>
                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
@@ -123,7 +123,7 @@
                                         Simpan
                                     </button>
                                 </a>
-                                <a href="/register">
+                                <a href="/upload-lamaran">
                                     <button data-modal-hide="default-modal" type="button"
                                         class="ms-3 text-white bg-biru-tuwak hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Lamar Pekerjaan

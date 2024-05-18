@@ -45,7 +45,7 @@
 
     {{-- Tableee --}}
     <div class="mb-60">
-
+        @include('components/table.TablePelamar')
     </div>
 
     {{-- riwayat lowongan --}}
@@ -62,6 +62,8 @@
     </div>
 
     {{-- card lowongan --}}
+   
     <div class="card">
+        {{-- @include('components/card.cardLowongan', ['posts' => $posts]) --}}
     </div>
 @endsection

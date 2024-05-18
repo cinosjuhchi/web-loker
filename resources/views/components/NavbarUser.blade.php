@@ -91,6 +91,7 @@
                     {{-- @if (Auth::user('auth')) --}}
                     {{-- Pengkondisian User seeker --}}
                     {{-- ini user biasa --}}
+<<<<<<< HEAD
                     @if(Auth::guard('web')->check())
                     {{-- Links untuk user --}}
                         <li>
@@ -115,6 +116,46 @@
                         {{-- Links untuk company --}}
                         <li>
                             <a href="/cari-loker"
+=======
+                    <li>
+                        <a href="/dashboard-user"
+                            class="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent  md:hover:text-blue-700 md:p-0 {{ request()->routeIs('user.dashboard') ? 'md:text-blue-700' : '' }}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/cari-loker"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('cariLoker') ? 'md:text-blue-700' : '' }}">Cari
+                            Lowongan Kerja</a>
+                    </li>
+                    <li>
+                        <a href="/profil-perusahaan-user"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('pasangLoker') ? 'md:text-blue-700' : '' }}">
+                            Profil Perusahaan</a>
+                    </li>
+                    <li>
+                        <a href="/about-us"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Disimpan</a>
+                    </li>
+                    {{-- @endif --}}
+
+                @endauth
+                {{-- @auth
+
+                    @can('company')
+                        {{-- Pengkondisian User Company --}}
+                        {{-- ini user company --}}
+<<<<<<< HEAD
+
+                        <li>
+                            <a href="#"
+
+                        {{-- <li>
+                            <a href="/cari-loker"
+>>>>>>> f1afac0bcbd5cd99fc9f6a24f35b6bc6736f7253
+=======
+                        <li>
+                            <a href="#"
+>>>>>>> e0afe87ecefb38713cdc470345ae8fa771eb5449
+>>>>>>> aacdd5008465aaaae914bd2c4b3b086fe9874268
                                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Dashboard</a>
                         </li>
                         <li>
@@ -194,7 +235,7 @@
                         Profil Perusahaan</a>
                 </li>
                 <li>
-                    <a href="/about-us"
+                    <a href="/disimpan-user"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Disimpan</a>
                 </li>
             @else

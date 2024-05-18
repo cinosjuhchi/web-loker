@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="mb-4 lg:mb-0">
-                    <button
+                    <button id="reportUser"
                         class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Laporkan</button>
 
                 </div>
@@ -88,6 +88,98 @@
 
 
     <script>
+        document.getElementById('reportUser').addEventListener('click', function() {
+            Swal.fire({
+                title: "Laporkan Perusahaan Ini!",
+                
+                html: `
+                  <div class="justify-start ">
+                    <p class="text-left">Alasan</p>
+                    <div class="justify-start flex flex-col mt-3">
+                       
+                        <div class="flex gap-1">
+                        <input type="radio" id="reason1" name="reason" value="spam" class="">
+                        <label for="reason1" class="text-start">Saya rasa ini spam </label><br>
+                        </div>
+                        <div class="flex gap-1">
+                        <input type="radio" id="reason1" name="reason" value="spam" class="">
+                        <label for="reason1" class="text-start">Saya rasa ini diskriminasi</label><br>
+                        </div>
+                        <div class="flex gap-1">
+                        <input type="radio" id="reason1" name="reason" value="spam" class="">
+                        <label for="reason1" class="text-start">Saya rasa ini penipuan</label><br>
+                        </div>
+                        <div class="flex gap-1">
+                        <input type="radio" id="reason1" name="reason" value="spam" class="">
+                        <label for="reason1" class="text-start">Saya rasa ini seperti rusak atau salah informasi</label><br>
+                        </div>
+                        
+                    </div>
+                  </div>
+                `,              
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Kirim Laporan",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Laporan anda berhasil dikirim",
+                        text: "Admin akan segera mengatasi masalah ini",
+                        icon: "success"
+                    });
+                }
+            });
+        });
+
+        // kalo gagal
+        // document.getElementById('reportUser').addEventListener('click', function() {
+        //     Swal.fire({
+        //         title: "Laporkan Perusahaan Ini!",
+                
+        //         html: `
+        //           <div class="justify-start ">
+        //             <p class="text-left">Alasan</p>
+        //             <div class="justify-start flex flex-col mt-3">
+                       
+        //                 <div class="flex gap-1">
+        //                 <input type="radio" id="reason1" name="reason" value="spam" class="">
+        //                 <label for="reason1" class="text-start">Saya rasa ini spam </label><br>
+        //                 </div>
+        //                 <div class="flex gap-1">
+        //                 <input type="radio" id="reason1" name="reason" value="spam" class="">
+        //                 <label for="reason1" class="text-start">Saya rasa ini diskriminasi</label><br>
+        //                 </div>
+        //                 <div class="flex gap-1">
+        //                 <input type="radio" id="reason1" name="reason" value="spam" class="">
+        //                 <label for="reason1" class="text-start">Saya rasa ini penipuan</label><br>
+        //                 </div>
+        //                 <div class="flex gap-1">
+        //                 <input type="radio" id="reason1" name="reason" value="spam" class="">
+        //                 <label for="reason1" class="text-start">Saya rasa ini seperti rusak atau salah informasi</label><br>
+        //                 </div>
+                        
+        //             </div>
+        //           </div>
+        //         `,              
+        //         icon: "warning",
+        //         showCancelButton: true,
+        //         confirmButtonColor: "#3085d6",
+        //         cancelButtonColor: "#d33",
+        //         confirmButtonText: "Kirim Laporan",
+        //         cancelButtonText: "Batal"
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             Swal.fire({
+        //                 title: "Laporan tidak berhasil dikirim",
+        //                 text: "Coba beberapa saat lagi",
+        //                 icon: "error"
+        //             });
+        //         }
+        //     });
+        // });
         document.addEventListener("DOMContentLoaded", function() {
             const ubahDataButton = document.getElementById("ubahDataButton");
             const afterClick = document.getElementById("afterClick");

@@ -17,6 +17,7 @@
     {{-- Misal Kasih Navbar --}}
     {{-- content --}}
     @yield('cardLowongan')
+    @yield('tablePelamar')
     @yield('cardProfilePerusahaan')
     <div class="regis-company">
         @yield('registerCompany')

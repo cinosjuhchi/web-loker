@@ -10,7 +10,46 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
+<<<<<<< HEAD
+
+    public function uploadLamaranUser(Request $request){
+        $title = "Upload Lamaran";
+        return view("pages.UploadLamaranUser", compact("title"));
+    }
+
+    public function pasangLowongan(Request $request){
+        $title = "Pasang Lowongan Kerja";
+        return view("pages/company.PasangLowongan", compact("title"));
+
+    }
+    public function ubahLoker(Request $request){
+        $title = "Ubah Loker";
+        return view("pages.company.UbahLoker", compact("title"));
+
+    }
+    public function pelamarKerja(Request $request){
+        $title = "Pelamar Kerja";
+        return view("pages/company.PelamarKerjaCompany", compact("title"));
+    }
+    public function dashboardCompany(Request $request){
+        $title = "Dashboard Perusahaan";
+        return view("pages/company.DashboardUser", compact("title"));
+    }
+    public function lokerCompany(Request $request){
+        $title = "Lowongan Kerja Perusahaan";
+        return view("pages/company.LowonganKerjaCompany", compact("title"));
+    }
+    public function detailProfileUser(Request $request){
+        $title = "Work Seeker";
+        return view("pages/company.DetailProfileUser", compact("title"));
+    }
+   
+
+    public function pasangLoker(Request $request)
+    {
+=======
     public function pasangLoker(Request $request){
+>>>>>>> e0afe87ecefb38713cdc470345ae8fa771eb5449
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
