@@ -117,8 +117,8 @@
                     @can('company')
                         {{-- Pengkondisian User Company --}}
                         {{-- ini user company --}}
-                        <li>
-                            <a href="#"
+                        {{-- <li>
+                            <a href="/cari-loker"
                                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Dashboard</a>
                         </li>
                         <li>
