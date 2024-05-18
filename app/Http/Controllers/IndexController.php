@@ -104,6 +104,11 @@ class IndexController extends Controller
         return view("pages.CariLowonganKerja", compact("title", "provinces", "posts"));
 
     }
+
+    public function profilPerusahaanUserPage(Request $request)
+    {
+        
+    }
     public function dashboardUser(Request $request){
         $title = "Work Seeker";
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');

@@ -28,18 +28,29 @@
 Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');  
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
+// ini
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
+// ini user
 Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
+// ini user
 Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+// ini user
 Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
+// ini 
 Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
+
 Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('company.user.profile');
+// ini
 Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('company.profile');
+// ini
 Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
-Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
+// ini
 Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
+// ini
 Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
+// ini
 Route::get('/pasang-lowongan', [IndexController::class, 'pasangLowongan'])->name('pasangLowongan');
+
 Route::get('/pilih-akun', function () {
     $title = 'Akun';
     return view('pages.PilihRegist', compact('title'));
@@ -88,6 +99,7 @@ Route::middleware('auth:company')->group(function () {
         return view('pages.company.DashboardUser', compact('title', 'company'));
     });
     Route::post('/logout-company', [CompanyAuthController::class, 'logout']);
+    Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
 });
 
 // Route::get('dashboard-company', function () {
