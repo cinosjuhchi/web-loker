@@ -43,6 +43,16 @@
         @yield('detailProfileUser')
          </div>
 
+
+
+
+
+
+
+    <div class="pasang-lowongan-kerja" >
+        @yield('pasangLowongan')
+         </div>
+
  
     
     {{-- content --}}

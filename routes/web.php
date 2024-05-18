@@ -39,6 +39,8 @@ Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pe
 Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
 Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
 // Route::get('/ubah-loker', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
+Route::get('/pasang-lowongan', [IndexController::class, 'pasangLowongan'])->name('pasangLowongan');
+
 
 Route::get('/pilih-akun', function () {
     $title = 'Akun';

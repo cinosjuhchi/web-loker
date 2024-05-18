@@ -6,9 +6,12 @@
     </div>
 
     <div class="flex justify-center">
-        <button type="button"
+        <a href="/pasang-lowongan">
+            <button type="button"
             class="mt-4 text-white bg-biru-tuwak hover:bg-biru-baru focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-7 py-3 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pasang
             Lowongan Pekerjaan</button>
+        </a>
+       
     </div>
     <div class="flex justify-center">
         <h1 class="font-semibold text-lg mt-3">Anda belum melengkapi Profile anda</h1>
