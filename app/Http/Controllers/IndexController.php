@@ -17,6 +17,10 @@ class IndexController extends Controller
         $title = "Upload Lamaran";
         return view("pages.UploadLamaranUser", compact("title"));
     }
+    public function ubahLoker(Request $request){
+        $title = "Ubah Loker";
+        return view("pages.company.UbahLoker", compact("title"));
+    }
     public function pelamarKerja(Request $request){
         $title = "Pelamar Kerja";
         return view("pages/company.PelamarKerjaCompany", compact("title"));

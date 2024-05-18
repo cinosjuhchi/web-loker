@@ -42,6 +42,9 @@
     <div class="detail-profilUser" >
         @yield('detailProfileUser')
          </div>
+    <div class="ubahloker" >
+        @yield('ubahloker')
+         </div>
 
  
     

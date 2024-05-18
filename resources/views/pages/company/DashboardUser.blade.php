@@ -23,7 +23,7 @@
     </div>
 
     <div class="lg:mx-[70px] mx-[15px] lg:flex">
-        <h1 class="font-semibold text-2xl mt-1 lg:mr-[750px] text-center lg:text-start">Daftar Pelamar</h1>
+        <h1 class="font-semibold text-2xl mt-1 lg:mr-[700px] text-center lg:text-start">Daftar Pelamar</h1>
         <div>
             <form class="lg:flex block items-center ">
 
@@ -60,6 +60,5 @@
 
     {{-- card lowongan --}}
     <div class="card">
-
     </div>
 @endsection
