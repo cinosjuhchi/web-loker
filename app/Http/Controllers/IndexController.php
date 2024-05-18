@@ -144,8 +144,7 @@ class IndexController extends Controller
         }
 
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-
-
+        
         if ($response->successful()) {
             $provinces = $response->json();
         } else {

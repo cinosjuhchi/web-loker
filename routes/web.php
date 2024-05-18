@@ -26,15 +26,15 @@
 
 
 Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
-Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
+Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');  
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
 Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
 Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
 Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
 Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
-Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('profilPerusahaanUserPage');
-Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('profileCompany');
+Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('company.user.profile');
+Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('company.profile');
 Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
 Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
 Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
@@ -59,7 +59,7 @@ Route::get('/pilih-akun', function () {
 
 
     // user
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth:web')->group(function () {
 
         Route::get('/dashboard-user', function () {
             $title = 'Dashboard';
@@ -80,7 +80,7 @@ Route::get('/pilih-akun', function () {
     });
 
 // companies
-Route::middleware('auth.company')->group(function () {
+Route::middleware('auth:company')->group(function () {
     Route::get('/after-login', function () {
         $title = "After-Login";
         $company = Auth::guard('company')->user();

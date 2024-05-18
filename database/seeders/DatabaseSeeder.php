@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // Menambahkan beberapa user contoh
         \App\Models\User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@gmail.com',
+            'email' => 'pacino447@gmail.com',
             'username' => 'test',
             'password' => bcrypt('12345678'),
             'number_phone' => '087732762247',
