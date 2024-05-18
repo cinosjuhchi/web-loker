@@ -48,7 +48,7 @@ class CompanyAuthController extends Controller
         ];
 
         $request->validate([
-            'company_email' => "required|email:dns|string|max:255",
+            'company_email' => "required|email|string|max:255",
             'password' => "required|min:6",
         ], $customMessages);
 
@@ -56,7 +56,7 @@ class CompanyAuthController extends Controller
         
 
         if (Auth::guard('company')->attempt($credentials)) {
-            return redirect()->intended('/');
+            return redirect()->intended('/after-login');
         }
 
         
@@ -64,6 +64,18 @@ class CompanyAuthController extends Controller
         return back()->withErrors([
             'company_email' => 'Email atau password tidak ada.',
         ])->withInput($request->except('password'));
+    }
+
+
+    public function logout(Request $request)
+    {
+        
+    if (Auth::check()) {
+        Auth::logout();
+        return redirect('/')->with('status', 'You have been logged out successfully.');
+    }
+
+    return redirect()->route('company.login')->with('error', 'You are not logged in.');
     }
 
     public function registerPost(Request $request)

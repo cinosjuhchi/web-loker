@@ -60,6 +60,7 @@ Route::get('/pilih-akun', function () {
 
     // user
     Route::middleware('auth:web')->group(function () {
+        Route::post('/logout', [IndexController::class, 'logout']);
 
         Route::get('/dashboard-user', function () {
             $title = 'Dashboard';
@@ -86,8 +87,8 @@ Route::middleware('auth:company')->group(function () {
         $company = Auth::guard('company')->user();
         return view('pages.company.DashboardUser', compact('title', 'company'));
     });
+    Route::post('/logout-company', [CompanyAuthController::class, 'logout']);
 });
-    Route::post('/logout', [IndexController::class, 'logout']);
 
 // Route::get('dashboard-company', function () {
 //     $title = "dashboard-company";

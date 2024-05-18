@@ -5,6 +5,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
@@ -79,5 +80,15 @@ class IndexController extends Controller
             $provinces = [];
         }
         return view("pages.DashboardUser", compact("title", "provinces"));
+    }
+
+    public function logout(Request $request) {
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect('/')->with('status', 'You have been logged out successfully.');
+        }
+
+        return redirect('/login')->with('error', 'You are not logged in.');
+        
     }
 }
