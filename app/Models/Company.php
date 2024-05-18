@@ -21,7 +21,10 @@ class Company extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-
+    public function getRoleAttribute()
+{
+    return 'company';
+}
     
 
 }

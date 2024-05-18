@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
 
-use Illuminate\Support\Facades\Auth;
-
 class IndexController extends Controller
 {
+<<<<<<< HEAD
 
     public function uploadLamaranUser(Request $request){
         $title = "Upload Lamaran";
@@ -48,11 +46,13 @@ class IndexController extends Controller
 
     public function pasangLoker(Request $request)
     {
+=======
+    public function pasangLoker(Request $request){
+>>>>>>> e0afe87ecefb38713cdc470345ae8fa771eb5449
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
-    public function profilUser(Request $request)
-    {
+    public function profilUser(Request $request){
         $title = "Profil";
 
         $category = Category::all();
@@ -71,111 +71,17 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.ProfileUser", compact("title", "category", "provinces"));
+        return view("pages.ProfileUser", compact("title" , "category", "provinces"));
     }
-    public function profileCompany(Request $request)
-    {
-        $title = "Profil Perusahaan";
-
-        $category = Category::all();
-        if ($category == null) {
-            $category = [
-                'name' => 'Data kosong',
-                'id' => null
-            ];
-        }
-
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-
-
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
-        return view("pages/company.ProfileCompany", compact("title", "category", "provinces"));
-    }
-
-    public function disimpanUser(Request $request)
-    {
-        $title = "Profil";
-
-        $category = Category::all();
-        if ($category == null) {
-            $category = [
-                'name' => 'Data kosong',
-                'id' => null
-            ];
-        }
-
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-
-
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
-        return view("pages.DisimpanUser", compact("title", "category", "provinces"));
-    }
-
-    public function profilPerusahaanUserPage(Request $request)
-    {
-        $title = "Profil";
-
-        $category = Category::all();
-        if ($category == null) {
-            $category = [
-                'name' => 'Data kosong',
-                'id' => null
-            ];
-        }
-
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-
-
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
-        return view("pages.ProfilPerusahaanUser", compact("title", "category", "provinces"));
-    }
-
-    public function detailPerusahaanUserPage(Request $request)
-    {
-        $title = "Work Seeker";
-
-        $category = Category::all();
-        if ($category == null) {
-            $category = [
-                'name' => 'Data kosong',
-                'id' => null
-            ];
-        }
-
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
-        return view("pages.DetailPerusahaan", compact("title", "category", "provinces"));
-    }
-
-    public function aboutUs(Request $request)
-    {
+    public function aboutUs(Request $request){
         $title = "About Us";
         return view("pages.AboutUs", compact("title"));
     }
-    public function landingPage(Request $request)
-    {
+    public function landingPage(Request $request){
         $title = "Work Seeker";
         return view("pages.LandingPageUser", compact("title"));
     }
-    public function cariLoker(Request $request)
-    {
+    public function cariLoker(Request $request){
         $title = "Cari Loker";
         $search = $request->query('search_input');
         $province = $request->input('province');
@@ -184,7 +90,7 @@ class IndexController extends Controller
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
         $provinces = $response->successful() ? $response->json() : [];
 
-        $postsQuery = Post::with('category');
+        $postsQuery = Post::query();
 
         // Menambahkan filter pencarian berdasarkan judul
         if ($search) {
@@ -193,7 +99,7 @@ class IndexController extends Controller
 
         // Menambahkan filter pencarian berdasarkan provinsi dari company
         if ($province) {
-            $postsQuery->whereHas('company', function ($query) use ($province) {
+            $postsQuery->whereHas('company', function($query) use ($province) {
                 $query->where('province', 'like', '%' . $province . '%');
             });
         }
@@ -201,9 +107,9 @@ class IndexController extends Controller
         $posts = $postsQuery->get();
 
         return view("pages.CariLowonganKerja", compact("title", "provinces", "posts"));
+
     }
-    public function dashboardUser(Request $request)
-    {
+    public function dashboardUser(Request $request){
         $title = "Work Seeker";
         $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
         if ($response->successful()) {
@@ -211,19 +117,6 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-
-        $postsQuery = Post::with('category');
-
-        $posts = $postsQuery->get();
-
-        return view("pages.DashboardUser", compact("title", "provinces", "posts"));
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
+        return view("pages.DashboardUser", compact("title", "provinces"));
     }
 }
