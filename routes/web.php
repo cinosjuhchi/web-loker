@@ -38,17 +38,8 @@ Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->na
 Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
 Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
 Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
-<<<<<<< HEAD
-
-// Route::get('/ubah-loker', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
+Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
 Route::get('/pasang-lowongan', [IndexController::class, 'pasangLowongan'])->name('pasangLowongan');
-
-Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
-
-=======
-Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
->>>>>>> e0afe87ecefb38713cdc470345ae8fa771eb5449
-
 Route::get('/pilih-akun', function () {
     $title = 'Akun';
     return view('pages.PilihRegist', compact('title'));
