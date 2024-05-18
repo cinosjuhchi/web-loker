@@ -68,5 +68,16 @@
                     icon: "success",
                 });
         });
+
+        // kalo gagal
+        // document.getElementById('submitLamaranButton').addEventListener('click', function() {
+        //         Swal.fire({
+        //             title: "Lamaran Anda Tidak Berhasil Dikirim",
+        //             text: "Coba beberapa saat lagi",
+        //             icon: "error",
+        //         });
+        // });
+
+
     </script>
 @endsection
