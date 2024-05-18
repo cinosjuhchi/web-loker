@@ -65,8 +65,13 @@
                 Swal.fire({
                     title: "Lamaran Anda Berhasil Dikirim",
                     text: "Pihak perusahaan akan segera mengkontakmu",
+<<<<<<< HEAD
                     icon: "success",
                 
+=======
+                    icon: "success", 
+                    timer: 12000
+>>>>>>> f1afac0bcbd5cd99fc9f6a24f35b6bc6736f7253
                 });
         });
 
@@ -76,6 +81,7 @@
         //             title: "Lamaran Anda Tidak Berhasil Dikirim",
         //             text: "Coba beberapa saat lagi",
         //             icon: "error",
+        //             timer:12000
         //         });
         // });
 

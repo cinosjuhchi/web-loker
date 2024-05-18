@@ -15,8 +15,4 @@ class Category extends Model
     //     return $this->hasMany(Company::class);
     // }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
 }
