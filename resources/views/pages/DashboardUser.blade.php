@@ -38,7 +38,7 @@
 </div>
 
 <div class="mt-[-30px] mb-20">
-    @include('components/card.cardLowongan')
+    @include('components/card.cardLowongan', ['posts' => $posts])
 </div>
 
 @endsection

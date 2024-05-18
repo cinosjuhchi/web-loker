@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
 
+use Illuminate\Support\Facades\Auth;
+
 class IndexController extends Controller
 {
     public function pasangLoker(Request $request)
@@ -38,7 +40,8 @@ class IndexController extends Controller
         return view("pages.ProfileUser", compact("title", "category", "provinces"));
     }
 
-    public function disimpanUser(Request $request){
+    public function disimpanUser(Request $request)
+    {
         $title = "Profil";
 
         $category = Category::all();
@@ -57,10 +60,11 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.DisimpanUser", compact("title" , "category", "provinces"));
+        return view("pages.DisimpanUser", compact("title", "category", "provinces"));
     }
 
-    public function profilPerusahaanUserPage(Request $request){
+    public function profilPerusahaanUserPage(Request $request)
+    {
         $title = "Profil";
 
         $category = Category::all();
@@ -79,10 +83,11 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.ProfilPerusahaanUser", compact("title" , "category", "provinces"));
+        return view("pages.ProfilPerusahaanUser", compact("title", "category", "provinces"));
     }
 
-    public function detailPerusahaanUserPage(Request $request){
+    public function detailPerusahaanUserPage(Request $request)
+    {
         $title = "Work Seeker";
 
         $category = Category::all();
@@ -101,10 +106,11 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.DetailPerusahaan", compact("title" , "category", "provinces"));
+        return view("pages.DetailPerusahaan", compact("title", "category", "provinces"));
     }
 
-    public function aboutUs(Request $request){
+    public function aboutUs(Request $request)
+    {
         $title = "About Us";
         return view("pages.AboutUs", compact("title"));
     }
@@ -150,6 +156,19 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.DashboardUser", compact("title", "provinces"));
+
+        $postsQuery = Post::with('category');
+
+        $posts = $postsQuery->get();
+
+        return view("pages.DashboardUser", compact("title", "provinces", "posts"));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

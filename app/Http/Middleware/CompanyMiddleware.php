@@ -21,4 +21,15 @@ class CompanyMiddleware
         }
         return $next($request);
     }
+
+    // public function handle($request, Closure $next)
+    // {
+    //     // Check if the user is authenticated and has the 'company' role
+    //     if (Auth::check() && Auth::user()->role == 'company') {
+    //         return $next($request);
+    //     }
+
+    //     // If not, redirect to home or any other page
+    //     return redirect()->route(;com);
+    // }
 }
