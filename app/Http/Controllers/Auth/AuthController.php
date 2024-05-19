@@ -93,14 +93,18 @@ class AuthController extends Controller
             ];
         }
 
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-
-
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
+        try {
+            $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+                if ($response->successful()) {
+                    $provinces = $response->json();
+                } else {
+                    $provinces = [];
+                }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'message' => 'Error jaringan: ' . $e->getMessage()
+                ], 500);
+            }
 
         return view("pages.RegisterCompany", compact("title", "category", "provinces"));
     }

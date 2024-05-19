@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
                 return redirect(RouteServiceProvider::DASHBOARD_USER);
             }
             if (Auth::guard('company')->check()) {
-                return redirect('/after-login'); // Ganti dengan halaman yang sesuai
+                return redirect('/dashboard-company'); // Ganti dengan halaman yang sesuai
             }
         }
 

@@ -2,16 +2,13 @@
 @section('profileCompany')
     <div class="">
         <div class="relative">
-            <img src="https://via.placeholder.com/1200x400" alt="Header Image" class="w-full h-64 object-cover">
-
-            <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">
-                <img src="https://via.placeholder.com/150" alt="Profile Picture"
-                    class="w-32 h-32 rounded-full border-4 border-white">
-            </div>
+            <img src="{{ $company->photo_banner ? asset($company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover">            
+            <img src="{{ $company->photo_profile ? null : Vite::asset('resources/assets/placeholder.png') }}" alt="Profile Picture"
+                    class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex left-1/2 -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white object-center object-cover">            
         </div>
 
         <div class="mt-16 text-center">
-            <h1 class="text-2xl font-semibold">Username</h1>
+            <h1 class="text-2xl font-semibold">{{ $company->company_name }}</h1>
         </div>
 
         <div class="mt-5">
@@ -23,8 +20,9 @@
                 </div>
 
                 <div class="mb-4 lg:mb-0">
-                    <button
-                        class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Keluar</button>
+                    <a href="{{ route('company.logout') }}">
+                        <button  class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Keluar</button>
+                    </a>
 
                 </div>
             </div>
@@ -37,11 +35,7 @@
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2 lg:text-2xl" for="description">Deskripsi Perusahaan:</label>
             <div class="border border-gray-300 p-4 rounded-lg bg-gray-100">
-                <p>Sebagai seorang programmer full stack, saya mampu mengembangkan aplikasi web dari tampilan antarmuka
-                    (front-end) menggunakan HTML, CSS, dan JavaScript hingga logika server dan database (back-end) dengan
-                    Python, Ruby, atau Java. Saya juga berpengalaman dalam mengelola server, bekerja dengan database SQL dan
-                    NoSQL, serta mengintegrasikan API. Dengan keahlian ini, saya dapat merancang, membangun, dan memelihara
-                    aplikasi web yang efisien dan user-friendly.</p>
+                <p>{{ $company->description ? null : 'Tidak ada deskripsi' }}</p>
                 <button class="mt-2 text-blue-600 hover:underline">Edit</button>
             </div>
         </div>
@@ -57,12 +51,12 @@
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Perusahaan</label>
                             <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
+                                value="{{ $company->company_name }}">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="phoneNumber">Nomor Telepon</label>
                             <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="phoneNumber"
-                                placeholder="0812-9292-8245">
+                                value="{{ $company->number_phone }}">
                         </div>
                     </div>
     
@@ -70,15 +64,18 @@
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="email">Email</label>
                             <input class="w-full p-2 border border-gray-300 rounded-md" type="email" id="email"
-                                placeholder="azka@gmail.com">
+                                value="{{ $company->company_email }}">
                         </div>
     
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Bidang Pekerjaan</label>
                             <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md">
-                                <option value="">Pilih bidang perusahaan</option>
+                                <option value="{{ $company->category->id }}">{{ $company->category->name }}</option>
                                 @foreach ($category as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @if ($item->name == $company->category->name)
+                                @continue
+                                @endif
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -95,40 +92,25 @@
                             <div>
                                 <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Jalan</label>
                                 <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kecamatan</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
+                                    value="{{ $company->address }}">
+                            </div>                            
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 mb-2 font-semibold" for="province">Provinsi</label>
-                                <select class=" w-full p-2 border border-gray-300 rounded-md" id="province">
-                                    <option value="provinsi">Provinsi</option>
+                                <select class="w-full p-2 border border-gray-300 rounded-md" id="province" name="province">
+                                    <option value="{{ $company->province }}" selected>{{ $company->province }}</option>
                                     @foreach ($provinces as $province)
+                                        @if ($province['name'] == $company->province)
+                                            @continue
+                                        @endif
                                         <option value="{{ $province['name'] }}">{{ $province['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Negara</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
+                            
+                            
                         </div>
 
-                        <div class="lg:w-[50%]">
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kelurahan</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kota</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
+                        <div class="lg:w-[50%]">                            
                             <div>
                                 <label class="block text-gray-700 mb-2 font-semibold" for="username">Kode Pos</label>
                                 <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
