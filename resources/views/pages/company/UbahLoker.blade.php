@@ -49,7 +49,7 @@
                             <div class="flex gap-3 lg:mt-5 mt-4 mb-10 w-full justify-end">
                                 <button
                                     class=" border px-5 border-red-500 hover:bg-red-500 py-2 text-red-500 hover:text-white transition-all duration-300 ease-in-out font-semibold rounded-full">Batal</button>
-                                <button id="submitLamaranButton" class="px-5  bg-biru-tuwak font-semibold rounded-full text-white ">Kirim</button>
+                                <button id="ubahLowongan" class="px-5  bg-biru-tuwak font-semibold rounded-full text-white ">Kirim</button>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,26 @@
 
 
 
+<script>
+     document.getElementById('ubahLowongan').addEventListener('click', function() {
+                Swal.fire({
+                    title: "Lamaran Anda Berhasil Dikirim",
+                    text: "Pihak perusahaan akan segera mengkontakmu",
+                    icon: "success",
+                    timer: 12000
+                });
+        });
 
+        // kalo gagal
+        // document.getElementById('submitLamaranButton').addEventListener('click', function() {
+        //         Swal.fire({
+        //             title: "Lamaran Anda Tidak Berhasil Dikirim",
+        //             text: "Coba beberapa saat lagi",
+        //             icon: "error",
+        //             timer:12000
+        //         });
+        // });
+</script>
 
 @endsection
 

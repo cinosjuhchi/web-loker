@@ -65,7 +65,7 @@
                 Swal.fire({
                     title: "Lamaran Anda Berhasil Dikirim",
                     text: "Pihak perusahaan akan segera mengkontakmu",
-                    icon: "success", 
+                    icon: "success",
                     timer: 12000
                 });
         });

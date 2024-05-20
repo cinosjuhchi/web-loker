@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([CategorySeeder::class, CompanySeeder::class, PostSeeder::class, JobCategorySeeder::class]);
+        $this->call([CategorySeeder::class, CompanySeeder::class, PostSeeder::class, JobCategorySeeder::class, ResumeSeeder::class,]);
 
         // Menambahkan beberapa user contoh
         \App\Models\User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@gmail.com',
+            'email' => 'pacino447@gmail.com',
             'username' => 'test',
             'password' => bcrypt('12345678'),
             'number_phone' => '087732762247',

@@ -38,4 +38,9 @@
 </div>
 </form>
 
+{{-- Tableee --}}
+<div class="mb-60">
+  @include('components/table.TablePelamar')
+</div>
+
 @endsection

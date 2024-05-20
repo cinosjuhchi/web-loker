@@ -1,17 +1,45 @@
 @extends('layouts.DefaultLayout')
 @section('profileCompany')
+<form id="companyForm">
     <div class="">
         <div class="relative">
-            <img src="https://via.placeholder.com/1200x400" alt="Header Image" class="w-full h-64 object-cover">
+            <img src="{{ $company->photo_banner ? asset($company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover"> 
+            <input type="file" id="file" name="file" class="hidden w-full h-16" onchange="displayFileName()"
+                readonly>
+            <label for="file"
+                class=" absolute right-0 top-0 flex p-3 m-5 bg-biru-tuwak rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
 
-            <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">
-                <img src="https://via.placeholder.com/150" alt="Profile Picture"
-                    class="w-32 h-32 rounded-full border-4 border-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                    fill="none">
+                    <path
+                        d="M19.6596 10.7008L21.2949 12.3361L5.19041 28.4406H3.55507V26.8052L19.6596 10.7008ZM26.0587 0C25.6143 0 25.1521 0.177754 24.8144 0.515485L21.5615 3.76838L28.2273 10.4341L31.4802 7.18125C31.645 7.0168 31.7757 6.82147 31.8649 6.60643C31.9541 6.3914 32 6.16088 32 5.92808C32 5.69528 31.9541 5.46477 31.8649 5.24973C31.7757 5.0347 31.645 4.83937 31.4802 4.67492L27.3207 0.515485C26.9652 0.159978 26.5208 0 26.0587 0ZM19.6596 5.67034L0 25.3299V31.9957H6.66576L26.3253 12.3361L19.6596 5.67034Z"
+                        fill="white" />
+                </svg>
+
+            </label> 
+            <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">          
+            <img src="{{ $company->photo_profile ? null : Vite::asset('resources/assets/placeholder.png') }}" alt="Profile Picture"
+            class="w-32 h-32 rounded-full border-4 border-white">            
+                    <input type="file" id="file" name="file" class="hidden w-full h-16"
+                    onchange="displayFileName()" readonly>
+                <label for="file"
+                    class=" absolute flex p-10 top-2 rounded-full hover:bg-gray-200 text-center  select-none cursor-pointer  text-white">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="opacity-0 hover:opacity-100"
+                        fill="none">
+                        <path
+                            d="M19.6596 10.7008L21.2949 12.3361L5.19041 28.4406H3.55507V26.8052L19.6596 10.7008ZM26.0587 0C25.6143 0 25.1521 0.177754 24.8144 0.515485L21.5615 3.76838L28.2273 10.4341L31.4802 7.18125C31.645 7.0168 31.7757 6.82147 31.8649 6.60643C31.9541 6.3914 32 6.16088 32 5.92808C32 5.69528 31.9541 5.46477 31.8649 5.24973C31.7757 5.0347 31.645 4.83937 31.4802 4.67492L27.3207 0.515485C26.9652 0.159978 26.5208 0 26.0587 0ZM19.6596 5.67034L0 25.3299V31.9957H6.66576L26.3253 12.3361L19.6596 5.67034Z"
+                            fill="white" />
+                    </svg>
+
+                </label>
             </div>
-        </div>
+
+    
+                </div>
 
         <div class="mt-16 text-center">
-            <h1 class="text-2xl font-semibold">Username</h1>
+            <h1 class="text-2xl font-semibold">{{ $company->company_name }}</h1>
         </div>
 
         <div class="mt-5">
@@ -23,8 +51,9 @@
                 </div>
 
                 <div class="mb-4 lg:mb-0">
-                    <button
-                        class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Keluar</button>
+                    <a href="{{ route('company.logout') }}">
+                        <button  class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Keluar</button>
+                    </a>
 
                 </div>
             </div>
@@ -33,16 +62,13 @@
     </div>
 
     <div class="lg:mx-[100px] mx-5">
+      
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2 lg:text-2xl" for="description">Deskripsi Perusahaan:</label>
-            <div class="border border-gray-300 p-4 rounded-lg bg-gray-100">
-                <p>Sebagai seorang programmer full stack, saya mampu mengembangkan aplikasi web dari tampilan antarmuka
-                    (front-end) menggunakan HTML, CSS, dan JavaScript hingga logika server dan database (back-end) dengan
-                    Python, Ruby, atau Java. Saya juga berpengalaman dalam mengelola server, bekerja dengan database SQL dan
-                    NoSQL, serta mengintegrasikan API. Dengan keahlian ini, saya dapat merancang, membangun, dan memelihara
-                    aplikasi web yang efisien dan user-friendly.</p>
+            <input class="border border-gray-300 p-4 rounded-lg bg-gray-100 w-full " readonly>
+                <p>{{ $company->description ? null : 'Tidak ada deskripsi' }}</p>
                 <button class="mt-2 text-blue-600 hover:underline">Edit</button>
-            </div>
+            </input>
         </div>
 
 
@@ -50,18 +76,18 @@
 
         <div class="mb-6">
             <h2 class="text-gray-700 text-2xl  font-semibold mb-4">Informasi data perusahaan</h2>
-            <form class="">
+            
                 <div class="lg:flex w-full  gap-5">
                     <div class="lg:w-[50%]">
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Perusahaan</label>
                             <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
+                                value="{{ $company->company_name }}" readonly>
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="phoneNumber">Nomor Telepon</label>
                             <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="phoneNumber"
-                                placeholder="0812-9292-8245">
+                                value="{{ $company->number_phone }}" readonly>
                         </div>
                     </div>
     
@@ -69,15 +95,18 @@
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="email">Email</label>
                             <input class="w-full p-2 border border-gray-300 rounded-md" type="email" id="email"
-                                placeholder="azka@gmail.com">
+                                value="{{ $company->company_email }}" readonly>
                         </div>
     
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Bidang Pekerjaan</label>
-                            <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md">
-                                <option value="">Pilih bidang perusahaan</option>
+                            <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md" readonly>
+                                <option value="{{ $company->category->id }}">{{ $company->category->name }}</option>
                                 @foreach ($category as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @if ($item->name == $company->category->name)
+                                @continue
+                                @endif
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -94,44 +123,29 @@
                             <div>
                                 <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Jalan</label>
                                 <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kecamatan</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
+                                    value="{{ $company->address }}" readonly>
+                            </div>                            
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 mb-2 font-semibold" for="province">Provinsi</label>
-                                <select class=" w-full p-2 border border-gray-300 rounded-md" id="province">
-                                    <option value="provinsi">Provinsi</option>
+                                <select class="w-full p-2 border border-gray-300 rounded-md" id="province" name="province" readonly>
+                                    <option value="{{ $company->province }}" selected>{{ $company->province }}</option>
                                     @foreach ($provinces as $province)
+                                        @if ($province['name'] == $company->province)
+                                            @continue
+                                        @endif
                                         <option value="{{ $province['name'] }}">{{ $province['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Negara</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
+                            
+                            
                         </div>
 
-                        <div class="lg:w-[50%]">
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kelurahan</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kota</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
-                            </div>
+                        <div class="lg:w-[50%]">                            
                             <div>
                                 <label class="block text-gray-700 mb-2 font-semibold" for="username">Kode Pos</label>
                                 <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin">
+                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin" readonly>
                             </div>
                         </div>
                     </div>
@@ -142,83 +156,54 @@
 
                 <div class="mt-10">
                     <div class="mr-0 lg:flex block mx-auto w-fit gap-2">
-                        <div class="">
+                        <div>
                             <button id="ubahDataButton" type="button"
-                                class="py-3 lg:px-6 bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white">Ubah
+                                class="py-3 lg:px-6 bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white lg:justify-end">Ubah
                                 Data</button>
                         </div>
                         <div id="afterClick" class="hidden">
-                            <button
+                            <button id="batalButton" type="button"
                                 class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
-                            <button
+                            <button type="submit"
                                 class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
                         </div>
                     </div>
                 </div>
-            </form>
-
-            
-
-
-
+            </div>
         </div>
-    </div>
+    </form>
 
 
+<script>
+    const ubahDataButton = document.getElementById('ubahDataButton');
+    const batalButton = document.getElementById('batalButton');
+    const afterClick = document.getElementById('afterClick');
+    const formElements = document.querySelectorAll('#companyForm input, #companyForm select');
 
-    <script>
-        function displayFileName() {
-            var fileInput = document.getElementById('file');
-            var filePreview = document.getElementById('file-preview');
-            var file = fileInput.files[0];
-
-            if (file) {
-                var fileName = file.name;
-                var fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-
-                if (file.type.startsWith('image/')) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        filePreview.innerHTML = `
-                    <p><strong>File Name:</strong> ${fileName}</p>
-                    <p><strong>File Size:</strong> ${fileSize}</p>
-                    <img src="${e.target.result}" alt="Image Preview" class="mt-2 max-w-full h-auto rounded-lg border border-gray-300">
-                `;
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    filePreview.innerHTML = `
-                <p><strong>File Name:</strong> ${fileName}</p>
-                <p><strong>File Size:</strong> ${fileSize}</p>
-            `;
-                }
-            } else {
-                filePreview.innerHTML = '<p>No file chosen</p>';
-            }
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            const ubahDataButton = document.getElementById("ubahDataButton");
-            const afterClick = document.getElementById("afterClick");
-
-            ubahDataButton.addEventListener("click", function() {
-                afterClick.classList.toggle("hidden");
-                ubahDataButton.classList.toggle("hidden");
-            });
+    
+    ubahDataButton.addEventListener('click', function() {
+        console.log(200);
+        ubahDataButton.style.display = 'none';
+        afterClick.classList.remove('hidden');
+        formElements.forEach(element => {
+            element.removeAttribute('readonly');
         });
+    });
+    
 
-
-        document.getElementById("status").addEventListener("change", function() {
-            var selectBox = document.getElementById("status");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            var selectElement = document.getElementById("status");
-
-            if (selectedValue === "terbuka") {
-                selectElement.classList.remove("bg-red-800");
-                selectElement.classList.add("bg-biru-tuwak");
-            } else if (selectedValue === "tidak") {
-                selectElement.classList.remove("bg-biru-tuwak");
-                selectElement.classList.add("bg-red-800");
-            }
+    batalButton.addEventListener('click', function() {
+        formElements.forEach(element => {
+            element.setAttribute('readonly', 'true');
         });
-    </script>
+        afterClick.classList.add('hidden');
+        ubahDataButton.style.display = 'block';
+    });
+    function displayFileName() {
+        const fileInput = document.getElementById('file');
+        const fileName = fileInput.files[0]?.name;
+        const filePreview = document.getElementById('file-preview');
+        
+    }
+</script>
+
 @endsection

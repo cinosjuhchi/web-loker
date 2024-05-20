@@ -38,7 +38,7 @@
    
 </div>
 </form>
-{{-- card loker --}}
+@include('components.table.TableLoker')
 <div>
 
 </div>

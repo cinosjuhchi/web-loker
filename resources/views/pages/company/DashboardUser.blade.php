@@ -1,22 +1,27 @@
 @extends('layouts.DefaultLayout')
 @section('dashboardCompany')
     <div class=" lg:mx-[70px] mx-[15px]">
-        <h1 class="mt-10 font-semibold text-3xl">Selamat datang @perusahaan</h1>
+        <h1 class="mt-10 font-semibold text-3xl">Selamat datang {{ $company->company_name }}</h1>
         <h1 class="mt-2 font-medium text-base">Cari pekerja yang anda inginkan sekarang!</h1>
     </div>
 
     <div class="flex justify-center">
-        <button type="button"
+        <a href="/pasang-lowongan">
+            <button type="button"
             class="mt-4 text-white bg-biru-tuwak hover:bg-biru-baru focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-7 py-3 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pasang
             Lowongan Pekerjaan</button>
+        </a>
+       
     </div>
+    @if ($incompleteProfile)
     <div class="flex justify-center">
         <h1 class="font-semibold text-lg mt-3">Anda belum melengkapi Profile anda</h1>
     </div>
-
+    
     <div class="flex justify-center">
-        <a href="/profil-perusahaan" class="text-biru-tuwak underline font-semibold text-lg mt-2">Lengkapi Profile</a>
+        <a href="{{ route('company.profile') }}" class="text-biru-tuwak underline font-semibold text-lg mt-2">Lengkapi Profile</a>
     </div>
+    @endif
 
     <div class="flex justify-center mt-10 mb-10">
         <hr class="lg:w-[1200px] w-full ">
@@ -42,7 +47,7 @@
 
     {{-- Tableee --}}
     <div class="mb-60">
-
+        @include('components/table.TablePelamar')
     </div>
 
     {{-- riwayat lowongan --}}
@@ -59,6 +64,8 @@
     </div>
 
     {{-- card lowongan --}}
+   
     <div class="card">
+        {{-- @include('components/card.cardLowongan', ['posts' => $posts]) --}}
     </div>
 @endsection

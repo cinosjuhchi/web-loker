@@ -22,8 +22,8 @@ class UserFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'password' => bcrypt('password'), // Default password
-            'number_phone' => $this->faker->optional()->phoneNumber,
-            'category_id' => $this->faker->optional()->numberBetween(1, 10), // Adjust range as needed
+            'number_phone' => $this->faker->phoneNumber,
+            'category_id' => $this->faker->numberBetween(1, 10), // Adjust range as needed
             'datebirth' => $this->faker->optional()->date('Y-m-d'),
             'academy' => 'SMA',
             'photo' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyAuthController extends Controller
 {
@@ -19,8 +20,7 @@ class CompanyAuthController extends Controller
         return view("pages.company.LoginCompany", compact("title"));
     }
     public function register(Request $request){
-        $title = "Register Company";
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        $title = "Register Company";        
         $category = Category::all();
         if($category == null){
             $category = [
@@ -28,13 +28,21 @@ class CompanyAuthController extends Controller
                 'id' => null
             ];
         }
-       
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
-        return view("pages.company.RegisterCompany", compact("title", "provinces", "category"));
+        $json = Storage::get('phone.json');
+        $phoneCodes = json_decode($json, true);
+
+        try {
+            $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+                if ($response->successful()) {
+                    $provinces = $response->json();
+                } else {
+                    $provinces = [];
+                }
+            } catch (\Exception $e) {
+                $message = $e->getMessage();
+                return view('exception.error500', compact('message', 'title'));
+            }
+        return view("pages.company.RegisterCompany", compact("title", "provinces", "category", "phoneCodes"));
     }
 
     public function loginPost(Request $request)
@@ -48,7 +56,7 @@ class CompanyAuthController extends Controller
         ];
 
         $request->validate([
-            'company_email' => "required|email:dns|string|max:255",
+            'company_email' => "required|email|string|max:255",
             'password' => "required|min:6",
         ], $customMessages);
 
@@ -56,7 +64,7 @@ class CompanyAuthController extends Controller
         
 
         if (Auth::guard('company')->attempt($credentials)) {
-            return redirect()->intended('/');
+            return redirect()->intended('/after-login');
         }
 
         
@@ -64,6 +72,18 @@ class CompanyAuthController extends Controller
         return back()->withErrors([
             'company_email' => 'Email atau password tidak ada.',
         ])->withInput($request->except('password'));
+    }
+
+
+    public function logout(Request $request)
+    {
+        
+    if (Auth::check()) {
+        Auth::logout();
+        return redirect('/')->with('status', 'You have been logged out successfully.');
+    }
+
+    return redirect()->route('company.login')->with('error', 'You are not logged in.');
     }
 
     public function registerPost(Request $request)
@@ -102,7 +122,7 @@ class CompanyAuthController extends Controller
         ], $customMessages);
         $image = $request->photo_profile->store("company/images/profiles");        
         $slug = Str::slug($request->company_name) . '-' . Str::random(5);
-        $status = "pending";
+        $status = "active";
         $company = Company::create([
             'company_name' => $request->company_name,
             'company_email' => $request->company_email,
