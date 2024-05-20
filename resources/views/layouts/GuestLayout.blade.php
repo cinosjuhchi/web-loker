@@ -19,6 +19,9 @@
     @yield('cardLowongan')
     @yield('tablePelamar')
     @yield('cardProfilePerusahaan')
+    <div class="error500">
+        @yield('error500')
+    </div>
     <div class="regis-company">
         @yield('registerCompany')
     </div>

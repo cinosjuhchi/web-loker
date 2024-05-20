@@ -1,9 +1,8 @@
 @extends('layouts.GuestLayout')
 @section('registerCompany')
 
-    <div class="lg:m-[50px] m-[10px]">
+<div class="lg:m-[50px] m-[10px]">
        <div>
-       
         <div class="flex items-center">
             <img class="h-14" src="{{ Vite::asset("resources/assets/logo/logo_outline_text_none.png") }}" alt="image description">
             <h2 class="text-5xl font-bold text-blue-700 font-JakartaSans">Work<span class="text-yellow-300">Seeker</span></h2>
@@ -52,12 +51,39 @@
                         </div> --}}
                         <label for="" class="text-lg font-semibold">Nomor Telepon Kantor</label>
                        
-                        <div class="mb-5">
+<<<<<<< HEAD
+                        <div class="mb-5 flex">
+                <form class="">
+                    <select id="countries" class="mr-1.5 my-auto w-16 h-[63px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected class="text-end">+1</option>
+                    </select>
+                </form>
+  
+=======
+                        <div class="mb-5 flex items-center">
+                            <button id="dropdown-phone-button" data-dropdown-toggle="dropdown-phone" class="py-4 px-3 flex-shrink-0 z-10 inline-flex items-center rounded-md text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" type="button">                                
+                            +1 <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+                            </button>
+                            <div id="dropdown-phone" class="z-10 hidden bg-white divide-y rounded-lg shadow w-52 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-phone-button">
+                                    @foreach ($phoneCodes as $code)
+                                    <li>
+                                        <button type="button" class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                                            <span class="inline-flex items-center">                                                
+                                                {{ $code['name'] }} ({{ $code['dial_code'] }})
+                                            </span>
+                                        </button>
+                                    </li>                                        
+                                    @endforeach                                    
+                                </ul>
+                            </div>
+>>>>>>> 88be156b93274d50bccf5ea0560b172414fd6a3f
                             <input type="text" name="number_phone" placeholder="Masukkan nomor telepon kantor" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                             @error('number_phone')
                                 <p class="text-red-600 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
+                        >
                         <label for="" class="text-lg font-semibold">Bidang Perusahaan</label>
                         <div class="mb-5">
                             <select name="category_id" id="" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >

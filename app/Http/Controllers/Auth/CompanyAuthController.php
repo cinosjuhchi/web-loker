@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyAuthController extends Controller
 {
@@ -27,7 +28,9 @@ class CompanyAuthController extends Controller
                 'id' => null
             ];
         }
-       
+        $json = Storage::get('phone.json');
+        $phoneCodes = json_decode($json, true);
+
         try {
             $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
                 if ($response->successful()) {
@@ -36,11 +39,10 @@ class CompanyAuthController extends Controller
                     $provinces = [];
                 }
             } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'Error jaringan: ' . $e->getMessage()
-                ], 500);
+                $message = $e->getMessage();
+                return view('exception.error500', compact('message', 'title'));
             }
-        return view("pages.company.RegisterCompany", compact("title", "provinces", "category"));
+        return view("pages.company.RegisterCompany", compact("title", "provinces", "category", "phoneCodes"));
     }
 
     public function loginPost(Request $request)
