@@ -23,6 +23,7 @@ module.exports = {
         'LightGrey' : '#A8A8A8',
         'DarkWhite' : '#E0E0E0',
         'biru-baru' : '#4FA3C6',
+        'DarkGrey' : '#6F6F6F',
       },
       fontFamily : {
         JakartaSans : ['Plus Jakarta Sans'],

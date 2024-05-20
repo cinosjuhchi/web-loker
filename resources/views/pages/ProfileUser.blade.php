@@ -2,11 +2,12 @@
 @section('profileUser')
     <div class="">
         <div class="relative">
-            <img src="https://via.placeholder.com/1200x400" alt="Header Image" class="w-full h-64 object-cover">
+            <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
+                alt="Header Image" class="w-full h-64 object-cover">
 
             <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">
-                <img src="https://via.placeholder.com/150" alt="Profile Picture"
-                    class="w-32 h-32 rounded-full border-4 border-white">
+                <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
+                    alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-white">
             </div>
         </div>
 
@@ -69,38 +70,39 @@
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="username">Username</label>
-                        <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
+                        <input class="w-full p-2 border border-gray-300 rounded-md" readonly type="text" id="username"
                             placeholder="Username Kamu" value="{{ auth()->user()->username }}">
                     </div>
 
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="fullName">Nama</label>
-                        <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="fullName"
-                            placeholder="nama kamu" value="{{ auth()->user()->name}}">
+                        <input class="w-full p-2 border border-gray-300 rounded-md" readonly  type="text" id="fullName"
+                            placeholder="nama kamu" value="{{ auth()->user()->name }}">
                     </div>
 
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="email">Email</label>
-                        <input class="w-full p-2 border border-gray-300 rounded-md" type="email" id="email"
+                        <input class="w-full p-2 border border-gray-300 rounded-md"  readonly type="email" id="email"
                             placeholder="azka@gmail.com" value="{{ auth()->user()->email }}">
                     </div>
 
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="phoneNumber">Nomor Telepon</label>
-                        <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="phoneNumber"
+                        <input class="w-full p-2 border border-gray-300 rounded-md" type="text" readonly  id="phoneNumber"
                             placeholder="0812-9292-8245" value="{{ auth()->user()->number_phone }}">
                     </div>
 
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Keterampilan</label>
-                        <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md">
+                        <select name="category_id" id="" disabled class="w-full p-2 border border-gray-300 rounded-md">
                             <option value="">Pilih bidang perusahaan</option>
+                            {{-- <option value="{{ auth()->user()->category_id }}" selected></option> --}}
                             @foreach ($category as $item)
-                                <option  selected value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option selected value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -108,14 +110,14 @@
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="birthdate">Tanggal Lahir</label>
-                        <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="birthdate"
+                        <input class="w-full p-2 border border-gray-300 rounded-md" type="text" readonly id="birthdate"
                             placeholder="8 Mei 2007" value="{{ auth()->user()->datebirth }}">
                     </div>
 
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="education">Pendidikan Terakhir</label>
-                        <select class="w-full p-2 border border-gray-300 rounded-md" id="education">
+                        <select class="w-full p-2 border border-gray-300 rounded-md" id="education" disabled>
                             <option selected value="sma">SMA</option>
                             <option value="diploma">Diploma</option>
                             <option value="sarjana">Sarjana</option>
@@ -126,7 +128,7 @@
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="gender">Jenis Kelamin</label>
-                        <select class="w-full p-2 border border-gray-300 rounded-md" id="gender">
+                        <select class="w-full p-2 border border-gray-300 rounded-md" id="gender" disabled>
                             <option value="laki-laki">Laki-laki</option>
                             <option value="perempuan">Perempuan</option>
                         </select>
@@ -136,7 +138,7 @@
                     <div class="md:col-span-2">
                         <label class="block text-gray-700 mb-2 font-semibold" for="province">Provinsi Tempat
                             Tinggal</label>
-                        <select class="lg:w-1/2 w-full p-2 border border-gray-300 rounded-md" id="province">
+                        <select class="lg:w-1/2 w-full p-2 border border-gray-300 rounded-md" id="province" disabled>
                             <option value="provinsi">Provinsi</option>
                             @foreach ($provinces as $province)
                                 <option value="{{ $province['name'] }}">{{ $province['name'] }}</option>

@@ -32,9 +32,13 @@
                 <div class="flex items-center">
                     <button type="button" class="flex text-sm gap-2 md:me-0" id="user-menu-button" aria-expanded="false"
                         data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                        <span class="sr-only">Open user menu</span>                        
-                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : $user->photo }}" class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}" alt="" srcset="">
-                        <img src="{{ auth()->user()->photo_profile == null ? Vite::asset('resources/assets/placeholder.png') : $company->photo_profile }}" class="{{ Auth::guard('company')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}" alt="" srcset="">
+                        <span class="sr-only">Open user menu</span>
+                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
+                            class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}"
+                            alt="" srcset="">
+                        <img src="{{ auth()->user()->photo_profile == null ? Vite::asset('resources/assets/placeholder.png') : $company->photo_profile }}"
+                            class="{{ Auth::guard('company')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}"
+                            alt="" srcset="">
                         <div class="grid text-left justify-center">
                             <p class="font-semibold">{{ auth()->user()->username }}</p>
                             <p class="font-semibold">{{ auth()->user()->company_name }}</p>
@@ -46,18 +50,22 @@
                         id="user-dropdown">
                         <ul class="py-2 px-3" aria-labelledby="user-menu-button">
                             <li>
-                                @if(Auth::guard('web')->check())
-                                <a href="/profile-user"
-                                    class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
-                                    <div class="bg-red-600 rounded-full relative -left-2 w-6 h-6"></div>
-                                    Profil
-                                </a>
+                                @if (Auth::guard('web')->check())
+                                    <a href="/profile-user"
+                                        class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
+                                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
+                                            class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full relative -left-2 w-6 h-6' : 'hidden' }}"
+                                            alt="" srcset="">
+                                        Profil
+                                    </a>
                                 @elseif(Auth::guard('company')->check())
-                                <a href="/profile-company"
-                                    class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
-                                    <div class="bg-red-600 rounded-full relative -left-2 w-6 h-6"></div>
-                                    Profil
-                                </a>
+                                    <a href="/profile-company"
+                                        class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
+                                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
+                                            class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full relative -left-2 w-8 h-8' : 'hidden' }}"
+                                            alt="" srcset="">
+                                        Profil
+                                    </a>
                                 @endif
                             </li>
                             <li class="flex">
@@ -73,10 +81,10 @@
                                 </a>
                             </li>
                             <li>
-                                <form action="{{ Auth::guard('company')->check() ? '/logout-company' : '/logout' }}" method="post">
+                                <form action="{{ Auth::guard('company')->check() ? '/logout-company' : '/logout' }}"
+                                    method="post">
                                     @csrf
-                                    <button
-                                        class="flex items-center px-6 py-2 text-sm font-semibold text-red-800">
+                                    <button class="flex items-center px-6 py-2 text-sm font-semibold text-red-800">
                                         <svg class="w-6 h-6 relative -left-2 text-red-800 dark:text-red-800 hidden md:block"
                                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" fill="none" viewBox="0 0 24 24">
@@ -96,55 +104,55 @@
         </div>
         <div class="hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
             <ul
-                class="flex flex-col p-4 md:p-0 bg-LightBlue mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">                
-                    {{-- @if (Auth::user('auth')) --}}
-                    {{-- Pengkondisian User seeker --}}
-                    {{-- ini user biasa --}}
-                    @if(Auth::guard('web')->check())
+                class="flex flex-col p-4 md:p-0 bg-LightBlue mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                {{-- @if (Auth::user('auth')) --}}
+                {{-- Pengkondisian User seeker --}}
+                {{-- ini user biasa --}}
+                @if (Auth::guard('web')->check())
                     {{-- Links untuk user --}}
-                        <li>
-                            <a href="/dashboard-user"
-                                class="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent  md:hover:text-blue-700 md:p-0 {{ request()->routeIs('user.dashboard') ? 'md:text-blue-700' : '' }}">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="/cari-loker"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('cariLoker') ? 'md:text-blue-700' : '' }}">Cari
-                                Lowongan Kerja</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('company.user.profile') }}"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('pasangLoker') ? 'md:text-blue-700' : '' }}">
-                                Profil Perusahaan</a>
-                        </li>
-                        <li>
-                            <a href="/about-us"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Disimpan</a>
-                        </li>
-                    @elseif(Auth::guard('company')->check())
-                        {{-- Links untuk company --}}
-                        <li>
-                            <a href="/cari-loker"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="/pasang-lowongan"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pasang
-                                Lowongan</a>
-                        </li>
-                        <li>
-                            <a href="/loker-company"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
-                                Lowongan Kerja</a>
-                        </li>
-                        <li>
-                            <a href="/pelamar-kerja"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pelamar
-                                Kerja</a>
-                        </li>                     
-                    @endif
-                    
-                
-                
+                    <li>
+                        <a href="/dashboard-user"
+                            class="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent  md:hover:text-blue-700 md:p-0 {{ request()->routeIs('user.dashboard') ? 'md:text-blue-700' : '' }}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/cari-loker"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('cariLoker') ? 'md:text-blue-700' : '' }}">Cari
+                            Lowongan Kerja</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('company.user.profile') }}"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 {{ request()->routeIs('pasangLoker') ? 'md:text-blue-700' : '' }}">
+                            Profil Perusahaan</a>
+                    </li>
+                    <li>
+                        <a href="/about-us"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Disimpan</a>
+                    </li>
+                @elseif(Auth::guard('company')->check())
+                    {{-- Links untuk company --}}
+                    <li>
+                        <a href="/cari-loker"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/pasang-lowongan"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pasang
+                            Lowongan</a>
+                    </li>
+                    <li>
+                        <a href="/loker-company"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                            Lowongan Kerja</a>
+                    </li>
+                    <li>
+                        <a href="/pelamar-kerja"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pelamar
+                            Kerja</a>
+                    </li>
+                @endif
+
+
+
 
                 @guest
                     {{-- @if (Auth::user('guest')) --}}

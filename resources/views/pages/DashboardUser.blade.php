@@ -33,7 +33,7 @@
 
 <div class="mb-10 mx-[20px] lg:mx-[70px]">
     <h1 class="flex justify-center font-semibold text-xl lg:text-2xl text-center">Anda belum melengkapi Profile anda</h1>
-    <a class="underline text-biru-tuwak font-semibold text-lg lg:text-xl mb-10 lg:mb-16 justify-center flex mt-1 lg:mt-4" href="#">Lengkapi Profile</a>
+    <a class="underline text-biru-tuwak font-semibold text-lg lg:text-xl mb-10 lg:mb-16 justify-center flex mt-1 lg:mt-4" href="/profile-user">Lengkapi Profile</a>
     <h1 class="font-semibold text-2xl lg:text-3xl">Rekomendasi Lowongan Kerja Untukmu</h1>
 </div>
 

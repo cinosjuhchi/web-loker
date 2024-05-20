@@ -1,4 +1,4 @@
-@props(['paginator'])
+{{-- @props(['paginator']) --}}
 
 <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">

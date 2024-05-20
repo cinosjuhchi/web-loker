@@ -51,7 +51,7 @@ class IndexController extends Controller
 
 
         // Get all resumes sent to the company
-        $resumes = $company->resumes()->with('user', 'posts')->paginate(5); // Ambil semua resume yang terkait dengan perusahaan yang login         
+        $resumes = $company->resumes()->with('user', 'posts')->paginate(5); // Ambil semua resume yang terkait dengan perusahaan yang login, itu gak error aseli     
         return view('pages.company.DashboardUser', compact('title', 'company', 'resumes', 'company', 'incompleteProfile'));
     }
 
@@ -207,7 +207,7 @@ class IndexController extends Controller
             });
         }
 
-        $posts = $postsQuery->get();
+        $posts = $postsQuery->paginate(8);
 
         return view("pages.CariLowonganKerja", compact("title", "provinces", "posts"));
     }
