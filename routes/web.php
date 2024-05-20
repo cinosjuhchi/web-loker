@@ -29,7 +29,6 @@
     Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
     Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
     // ini
-    Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
     // ini user
     Route::get('/detail-perusahaan/{id_company}/posts', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
     // ini user
@@ -95,6 +94,7 @@ Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoke
     Route::middleware('auth:web')->group(function () {
         Route::post('/logout', [IndexController::class, 'logout']);
         Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
+        Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
         Route::get('/dashboard-user', function () {
             $title = 'Dashboard';
             $user = Auth::user();
