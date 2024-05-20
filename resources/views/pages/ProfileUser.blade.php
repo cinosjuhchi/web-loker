@@ -77,10 +77,8 @@
                     <p class="mb-2 text-gray-500">File dapat berbentuk pdf, docx</p>
                     <p class="text-gray-500">Ukuran maksimal 3MB</p>
                     <div class="mt-4">
-                        <input type="file" id="file" name="file" class="hidden" onchange="displayFileName()"
-                            readonly>
-                        <label for="file"
-                            class="flex items-center text-base mx-auto bg-biru-tuwak w-[160px] hover:bg-LightBlue text-center px-5 py-2 select-none cursor-pointer rounded-2xl text-white">
+                        <input type="file" id="file" name="file" class="hidden" onchange="displayFileName()" readonly>
+                        <label for="file" class="flex items-center text-base mx-auto bg-biru-tuwak w-[160px] hover:bg-LightBlue text-center px-5 py-2 select-none cursor-pointer rounded-2xl text-white">
                             <i class='bx bx-cloud-upload text-2xl'></i>
                             <span class="mx-auto">Add File</span>
                         </label>
@@ -88,6 +86,7 @@
                     <div id="file-preview" class="mt-4 text-gray-500"></div>
                 </div>
             </div>
+            
 
             <div class="mb-6">
                 <h2 class="text-gray-700 font-semibold mb-4 text-2xl">Informasi data diri anda</h2>
@@ -205,9 +204,13 @@
 
         // Display the selected file name for the CV upload input
         function displayFileName() {
-            const fileInput = document.getElementById('file');
-            const fileName = fileInput.files[0]?.name;
-            const filePreview = document.getElementById('file-preview');        
-        }
+        const fileInput = document.getElementById('file');
+        const filePreview = document.getElementById('file-preview');
+        const fileName = fileInput.files[0].name;
+        
+        filePreview.textContent = fileName;
+        filePreview.classList.remove('hidden');
+        fileInput.classList.add('hidden');
+    }
     </script>
 @endsection
