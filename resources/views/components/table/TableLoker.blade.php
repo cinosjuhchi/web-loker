@@ -28,8 +28,8 @@
               <td class="py-2 px-4 border">{!! Str::limit($post->content, 50) !!}</td>
               <td class="py-2 px-4 border">{{ $post->company->company_name }}</td>
               <td class="py-2 px-4 border">{{ $post->category->name }}</td>
-              <td class="py-2 px-4 border">{{ number_format($post->min_salary) }}</td>
-              <td class="py-2 px-4 border">{{ number_format($post->max_salary) }}</td>
+              <td class="py-2 px-4 border">Rp{{ number_format($post->min_salary, 2, ',', '.') }}</td>
+              <td class="py-2 px-4 border">Rp{{ number_format($post->max_salary, 2, ',', '.') }}</td>
               <td class="py-2 px-4 border">
                   <a href="/detail-posting/{{ $post->id }}">
                       <button class="bg-biru-tuwak text-white px-2 py-1 rounded">
