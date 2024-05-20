@@ -74,9 +74,8 @@ class IndexController extends Controller
                     $provinces = [];
                 }
             } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'Error jaringan: ' . $e->getMessage()
-                ], 500);
+                $message = $e->getMessage();
+                return view('exception.error500', compact('message', 'title'));
             }
 
 
@@ -125,9 +124,8 @@ class IndexController extends Controller
                 $provinces = [];
             }
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error jaringan: ' . $e->getMessage()
-            ], 500);
+            $message = $e->getMessage();
+                return view('exception.error500', compact('message', 'title'));
         }
         return view("pages.company.ProfileCompany", compact("title", "category", "provinces", "company"));
     }
@@ -157,9 +155,8 @@ class IndexController extends Controller
                     $provinces = [];
                 }
             } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'Error jaringan: ' . $e->getMessage()
-                ], 500);
+                $message = $e->getMessage();
+                return view('exception.error500', compact('message', 'title'));
             }
         return view("pages.ProfileUser", compact("title" , "category", "provinces"));
     }
@@ -188,9 +185,8 @@ class IndexController extends Controller
                     $provinces = [];
                 }
             } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'Error jaringan: ' . $e->getMessage()
-                ], 500);
+                $message = $e->getMessage();
+                return view('exception.error500', compact('message', 'title'));
             }
 
         $postsQuery = Post::query();
