@@ -1,9 +1,8 @@
 @extends('layouts.GuestLayout')
 @section('registerCompany')
 
-    <div class="lg:m-[50px] m-[10px]">
+<div class="lg:m-[50px] m-[10px]">
        <div>
-       
         <div class="flex items-center">
             <img class="h-14" src="{{ Vite::asset("resources/assets/logo/logo_outline_text_none.png") }}" alt="image description">
             <h2 class="text-5xl font-bold text-blue-700 font-JakartaSans">Work<span class="text-yellow-300">Seeker</span></h2>
