@@ -50,20 +50,18 @@
                             <input type="text" name="number_phone" placeholder="Masukkan nomor telepon penanggung jawab" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                         </div> --}}
                         <label for="" class="text-lg font-semibold">Nomor Telepon Kantor</label>
-                       
-                        <div class="mb-5 flex">
-                <form class="">
-                    <select id="countries" class=" mr-1.5 my-auto w-fit h-[63px] bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected >+62</option>
-                    </select>
-                </form>
+                 <div class="mb-5 flex">
+                        <form class="">
+                             <select id="countries" class=" mr-1.5 my-auto w-fit h-[63px] bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  dark:focus:border-blue-500">
+                              <option option selected >+62</option>
+                         </select>
+                    </form>
   
                             <input type="text" name="number_phone" placeholder="Masukkan nomor telepon kantor" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                             @error('number_phone')
                                 <p class="text-red-600 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
-                        >
                         <label for="" class="text-lg font-semibold">Bidang Perusahaan</label>
                         <div class="mb-5">
                             <select name="category_id" id="" class="py-4 px-5 w-full rounded-md mt-3 mb-2 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
