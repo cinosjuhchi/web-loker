@@ -25,12 +25,37 @@
 
 
 
+    Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
+    Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');
+    Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
+    // ini
+    Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
+    // ini user
+    Route::get('/detail-perusahaan/{id_company}/posts', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
+    // ini user
+    Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+    // ini user
+    Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
+    // ini 
+    Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
+
+    Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('company.user.profile');
+    // ini
+    Route::get('/profil-perusahaan', [IndexController::class, 'profileCompany'])->name('company.profile');
+    // ini
+    Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
+    // ini
+    Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
+    // ini
+    Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
+    // ini
+    Route::get('/pasang-lowongan', [IndexController::class, 'pasangLowongan'])->name('pasangLowongan');
 Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');  
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
 // ini
 Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
 // ini user
-Route::get('/detail-perusahaan', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
+Route::get('/detail-perusahaan/{id_company}/posts', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
 // ini user
 Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
 // ini user
@@ -47,10 +72,10 @@ Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->
 Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
 // ini
 
-Route::get('/pilih-akun', function () {
-    $title = 'Akun';
-    return view('pages.PilihRegist', compact('title'));
-});
+    Route::get('/pilih-akun', function () {
+        $title = 'Akun';
+        return view('pages.PilihRegist', compact('title'));
+    });
 
     Route::middleware('guest')->group(function () {
         Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
@@ -83,7 +108,7 @@ Route::get('/pilih-akun', function () {
             $postsQuery = Post::with('category');
 
             $posts = $postsQuery->get();
-            return view('pages.DashboardUser', compact('title', 'user', 'provinces','posts'));
+            return view('pages.DashboardUser', compact('title', 'user', 'provinces', 'posts'));
         })->name('user.dashboard');
         Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
     });

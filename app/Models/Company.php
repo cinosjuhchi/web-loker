@@ -25,7 +25,7 @@ class Company extends Authenticatable
         return $this->hasMany(Post::class, 'id_company', 'id');
     }
 
-    
+
 
     /**
      * Get all of the comments for the Company
@@ -47,11 +47,7 @@ class Company extends Authenticatable
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
     public function getRoleAttribute()
-{
-    return 'company';
-}
-
-
-    
-
+    {
+        return 'company';
+    }
 }
