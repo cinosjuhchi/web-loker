@@ -50,6 +50,27 @@
     Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
     // ini
     Route::get('/pasang-lowongan', [IndexController::class, 'pasangLowongan'])->name('pasangLowongan');
+Route::get('/pasang-loker', [IndexController::class, 'pasangLoker'])->name('pasangLoker');  
+Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('aboutUs');
+// ini
+Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
+// ini user
+Route::get('/detail-perusahaan/{id_company}/posts', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
+// ini user
+Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+// ini user
+Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
+// ini 
+
+Route::get('/profil-perusahaan-user', [IndexController::class, 'profilPerusahaanUserPage'])->name('company.user.profile');
+// ini
+
+// ini
+// ini
+Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('dashboardCompany');
+// ini
+Route::get('/ubah-loker', [IndexController::class, 'ubahLoker'])->name('ubahLoker');
+// ini
 
     Route::get('/pilih-akun', function () {
         $title = 'Akun';
@@ -57,6 +78,7 @@
     });
 
     Route::middleware('guest')->group(function () {
+        Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
         Route::get('/login-company', [CompanyAuthController::class, 'login'])->name('company.login');
         Route::get('/register-company', [CompanyAuthController::class, 'register'])->name('company.register');
         Route::post('register-company-post', [CompanyAuthController::class, 'registerPost'])->name('company.register.post');
@@ -72,7 +94,7 @@
     // user
     Route::middleware('auth:web')->group(function () {
         Route::post('/logout', [IndexController::class, 'logout']);
-
+        Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
         Route::get('/dashboard-user', function () {
             $title = 'Dashboard';
             $user = Auth::user();
@@ -82,7 +104,7 @@
             } else {
                 $provinces = [];
             }
-
+            
             $postsQuery = Post::with('category');
 
             $posts = $postsQuery->get();
@@ -92,15 +114,19 @@
     });
 
     // companies
-    Route::middleware('auth:company')->group(function () {
-        Route::get('/after-login', function () {
-            $title = "After-Login";
-            $company = Auth::guard('company')->user();
-            return view('pages.company.DashboardUser', compact('title', 'company'));
-        });
-        Route::post('/logout-company', [CompanyAuthController::class, 'logout']);
-        Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
-    });
+Route::middleware('auth:company')->group(function () {
+    Route::get('/', [IndexController::class, 'landingPage'])->name('landingPage');
+    Route::get('/pasang-lowongan', [IndexController::class, 'pasangLowongan'])->name('pasangLowongan');
+    Route::get('/dashboard-company', [IndexController::class, 'dashboardCompany'])->name('company.dashboard');
+    Route::post('/logout-company', [CompanyAuthController::class, 'logout'])->name('company.logout');
+    Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
+    Route::get('/profile-company', [IndexController::class, 'profileCompany'])->name('company.profile');
+    Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
+    Route::get('/detail-profile-user/{resumeId}', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
+    Route::post('/post-store', [IndexController::class, 'postLowongan'])->name('company.post.store');
+
+
+});
 
 // Route::get('dashboard-company', function () {
 //     $title = "dashboard-company";

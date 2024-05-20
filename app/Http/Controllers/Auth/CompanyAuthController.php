@@ -19,8 +19,7 @@ class CompanyAuthController extends Controller
         return view("pages.company.LoginCompany", compact("title"));
     }
     public function register(Request $request){
-        $title = "Register Company";
-        $response = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        $title = "Register Company";        
         $category = Category::all();
         if($category == null){
             $category = [
@@ -29,11 +28,18 @@ class CompanyAuthController extends Controller
             ];
         }
        
-        if ($response->successful()) {
-            $provinces = $response->json();
-        } else {
-            $provinces = [];
-        }
+        try {
+            $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+                if ($response->successful()) {
+                    $provinces = $response->json();
+                } else {
+                    $provinces = [];
+                }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'message' => 'Error jaringan: ' . $e->getMessage()
+                ], 500);
+            }
         return view("pages.company.RegisterCompany", compact("title", "provinces", "category"));
     }
 
@@ -114,7 +120,7 @@ class CompanyAuthController extends Controller
         ], $customMessages);
         $image = $request->photo_profile->store("company/images/profiles");        
         $slug = Str::slug($request->company_name) . '-' . Str::random(5);
-        $status = "pending";
+        $status = "active";
         $company = Company::create([
             'company_name' => $request->company_name,
             'company_email' => $request->company_email,

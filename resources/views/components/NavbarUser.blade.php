@@ -32,8 +32,9 @@
                 <div class="flex items-center">
                     <button type="button" class="flex text-sm gap-2 md:me-0" id="user-menu-button" aria-expanded="false"
                         data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                        <span class="sr-only">Open user menu</span>
-                        <div class="bg-red-600 rounded-full w-8 h-8"></div>
+                        <span class="sr-only">Open user menu</span>                        
+                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : $user->photo }}" class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}" alt="" srcset="">
+                        <img src="{{ auth()->user()->photo_profile == null ? Vite::asset('resources/assets/placeholder.png') : $company->photo_profile }}" class="{{ Auth::guard('company')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}" alt="" srcset="">
                         <div class="grid text-left justify-center">
                             <p class="font-semibold">{{ auth()->user()->username }}</p>
                             <p class="font-semibold">{{ auth()->user()->company_name }}</p>
@@ -45,11 +46,19 @@
                         id="user-dropdown">
                         <ul class="py-2 px-3" aria-labelledby="user-menu-button">
                             <li>
+                                @if(Auth::guard('web')->check())
                                 <a href="/profile-user"
                                     class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
                                     <div class="bg-red-600 rounded-full relative -left-2 w-6 h-6"></div>
                                     Profil
                                 </a>
+                                @elseif(Auth::guard('company')->check())
+                                <a href="/profile-company"
+                                    class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
+                                    <div class="bg-red-600 rounded-full relative -left-2 w-6 h-6"></div>
+                                    Profil
+                                </a>
+                                @endif
                             </li>
                             <li class="flex">
                                 <a href="#" class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
