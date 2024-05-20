@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'datebirth' => $this->faker->optional()->date('Y-m-d'),
             'academy' => 'SMA',
             'photo' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image
+            'photo_banner' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image
             'description' => $this->faker->optional()->paragraph,
             'status' => $this->faker->randomElement(['active', 'pending', 'suspend']),
             'created_at' => now(),

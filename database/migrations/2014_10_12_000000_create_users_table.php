@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('datebirth')->nullable();
             $table->string('academy', 100)->nullable();
             $table->string('photo', 255)->nullable();
+            $table->string('photo_banner', 255)->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['active', 'pending', 'suspend']);
             $table->timestamps();
