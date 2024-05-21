@@ -122,10 +122,12 @@
         Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
         Route::get('/profile-company', [IndexController::class, 'profileCompany'])->name('company.profile');
         Route::post('/profile-company-update', [IndexController::class, 'updateCompany'])->name('company.profile.update');
+        Route::get('/simpan-pelamar/{id}', [IndexController::class, 'simpanPelamar'])->name('company.simpanPelamar.store');
+        Route::get('/hapus-pelamar/{id}', [IndexController::class, 'hapusPelamar'])->name('company.simpanPelamar.delete');
         Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
         Route::get('/detail-profile-user/{resumeId}', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
         Route::post('/post-store', [IndexController::class, 'postLowongan'])->name('company.post.store');
-
+        Route::get('/pdf-preview/{id}', [IndexController::class, 'pdfPreview'])->name('company.preview.pdf');
 
     });
 

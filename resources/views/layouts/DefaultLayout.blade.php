@@ -69,7 +69,28 @@
     @include('components.NavbarUser')
 
     {{-- content --}}
-    
+    @if(session('success'))
+<script>    
+    document.addEventListener('DOMContentLoaded', function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'green',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+        });
+
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+        });
+    });
+</script>
+@endif
+
         <div class="">
             @yield('main')
         </div>

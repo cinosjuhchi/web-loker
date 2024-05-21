@@ -6,9 +6,11 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Resume;
 use App\Models\Company;
+use App\Models\Bookmark;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\CompanyBookmark;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -104,7 +106,8 @@ class IndexController extends Controller
         public function detailProfileUser(Request $request){
             $title = "Work Seeker";
             $resumes = Resume::findOrFail($request->resumeId);
-            return view("pages.company.DetailProfileUser", compact("title", "resumes"));
+            $company = Auth::guard('company')->user();
+            return view("pages.company.DetailProfileUser", compact("title", "resumes", "company"));
         }
        
     public function profileCompany(Request $request) {
@@ -349,6 +352,7 @@ class IndexController extends Controller
             $company_update->address = $request->input('address');
             $company_update->province = $request->input('province');
             $company_update->number_phone = $request->input('number_phone');
+            $company_update->code_post = $request->input('code_post');
             $company_update->category_id = $request->input('category_id');
             $company_update->description = $request->input('description');
             if ($request->hasFile('photo_profile')) {
@@ -359,9 +363,31 @@ class IndexController extends Controller
                 $company_update->photo_banner = $request->file('photo_banner')->store('company/images/banners');
             }
             $company_update->save();
-            return redirect()->route('company.profile')->with('success', 'Profil perusahaan berhasil diperbarui.');
+            return back()->with('success', 'Profil berhasil diperbarui..');
 
         }
 
+        public function simpanPelamar(Request $request)
+        {
+            $company = Auth::guard('company')->user();
+            $userId = $request->route('id');            
+            $bookmark = new CompanyBookmark();
+            $bookmark->company_id = $company->id;
+            $bookmark->user_id = $userId;
+            $bookmark->save();
+            return back()->with('success', 'Pelamar ditambahkan ke daftar pelamar..');
+        }
+        public function hapusPelamar(Request $request)
+        {  
+            $bookmark = CompanyBookmark::findOrFail($request->route('id'));            
+            $bookmark->delete();
+            return back()->with('success', 'Pelamar dihapus dari daftar pelamar..');
+        }
+        public function pdfPreview(Request $request)
+        {
+            $title = "Preview PDF";
+            $resume = Resume::findOrFail($request->route('id'));
+            return view("preview.pdf", compact("title", "resume"));
+        }
 }
 

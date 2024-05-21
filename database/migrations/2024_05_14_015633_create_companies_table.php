@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('photo_banner', 255)->nullable();
             $table->text('description')->nullable();
             $table->string('category_id', 255);
+            $table->string('code_post')->nullable();
             $table->enum('status', ['active', 'pending', 'suspend']);
 
 
