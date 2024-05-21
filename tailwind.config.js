@@ -12,6 +12,9 @@ module.exports = {
         'smaller' : [
           {'min': '100px', 'max': '768px'}
         ],
+        'larger' : [
+          {'min': '1300px', 'max': '2400px'}
+        ],
       },
       colors : {
         'LightBlue' : '#B8D8E5',

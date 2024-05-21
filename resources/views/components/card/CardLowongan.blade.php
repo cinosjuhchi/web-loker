@@ -1,20 +1,18 @@
-@extends('layouts.GuestLayout')
-@section('cardLowongan')
     @if ($posts->count() == 0)
         <h1 class="font-bold text-2xl mb-5 text-center text-gray-300">kosong</h1>
     @endif
-    <div class="grid smaller:grid-cols-1 lg:grid-cols-4 min-[200px]:cols-6 gap-10  mx-[20px] lg:mx-[70px]  mt-8">
+    <div class="grid smaller:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 larger:grid-cols-4 gap-10 mx-[20px] lg:mx-[70px]  mt-8">
 
 
         @foreach ($posts as $post)
-            <div class="lg:w-[370px] smaller:w-full h-[370px] mx-auto pt-4 pb-0 ps-4 pe-4 bg-white shadow-md rounded-lg border-2 border-LightGrey">
+            <div class="lg:w-[300px] md:w-[370px] lg:max-w-fit smaller:w-full h-[370px] mx-auto pt-4 pb-0 ps-4 pe-4 bg-white shadow-md rounded-lg border-2 border-LightGrey">
                 <div class="flex w-full items-center mb-4 h-20 ">
                     <img src="{{ $post->company->photo_profile ? asset($post->company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}"
                         alt="Company Logo" class="w-12 h-12 rounded-full mr-3 object-cover object-center">
 
                     <div>
                         <h2 class="text-lg font-semibold">{{ $post->title }}</h2>
-                        <p class="text-gray-500 text-sm">{{ $post->company->company_name }}</p>
+                        <p class="text-gray-500 text-sm whitespace-nowrap">{{ $post->company->company_name }}</p>
                     </div>
                 </div>
                 <hr class="w-full border border-LightGrey">
@@ -24,7 +22,7 @@
                             <path d="M14.9998 6.59961V23.3996M19.1998 11.4996C19.1998 9.56761 17.3196 7.99961 14.9998 7.99961C12.68 7.99961 10.7998 9.56761 10.7998 11.4996C10.7998 13.4316 12.68 14.9996 14.9998 14.9996C17.3196 14.9996 19.1998 16.5676 19.1998 18.4996C19.1998 20.4316 17.3196 21.9996 14.9998 21.9996C12.68 21.9996 10.7998 20.4316 10.7998 18.4996" stroke="#161616" stroke-width="2" stroke-linecap="round"/>
                             <path d="M8 2.87322C10.1273 1.64248 12.5423 0.99623 15 1.00002C22.7322 1.00002 29 7.26782 29 15C29 22.7322 22.7322 29 15 29C7.2678 29 1 22.7322 1 15C1 12.4506 1.6818 10.058 2.8732 8.00002" stroke="#161616" stroke-width="2" stroke-linecap="round"/>
                         </svg>                        
-                        <p class="text-sm font-medium text-gray-900 ms-2">Rp{{ number_format($post->min_salary, 2, ',', '.') }}
+                        <p class="text-sm font-medium text-gray-900 ms-2 whitespace-nowrap">Rp{{ number_format($post->min_salary, 2, ',', '.') }}
                             - Rp{{ number_format($post->max_salary, 2, ',', '.') }}</p>
                     </div>
                     <div class="flex items-center mt-2">
@@ -246,4 +244,3 @@
             }
         });
     </script>
-@endsection
