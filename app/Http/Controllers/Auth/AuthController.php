@@ -81,6 +81,41 @@ class AuthController extends Controller
         return back()->with('error', 'Email atau password tidak ada.');
     }
 
+    public function updateUser(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,|max:5096',
+            'email' => 'required|string|email|max:255',
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Temukan pengguna berdasarkan ID
+        $user = User::findOrFail($id);
+
+        // Perbarui data pengguna
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        // Tangani upload foto jika ada
+        if ($request->hasFile('photo')) {
+            // Hapus foto lama jika ada
+            if ($user->photo) {
+                Storage::delete('public/photos/' . $user->photo);
+            }
+
+            // Upload foto baru
+            $photoPath = $request->file('photo')->store('public/photos');
+            $user->photo = basename($photoPath);
+        }
+
+        // Simpan perubahan
+        $user->save();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('user.edit', $user->id)->with('success', 'Profile updated successfully.');
+    }
+}
 
     public function registerCompany(Request $request)
     {

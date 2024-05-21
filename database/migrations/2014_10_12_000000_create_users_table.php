@@ -20,10 +20,13 @@ return new class extends Migration
             $table->string('number_phone', 30)->nullable();
             $table->integer('category_id', false)->nullable();            
             $table->date('datebirth')->nullable();
-            $table->string('academy', 100)->nullable();
+            $table->enum('jk', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->enum('academy', ['SMA', 'Diploma', 'Sarjana', 'Magister'] )->nullable();
             $table->string('photo', 255)->nullable();
             $table->string('photo_banner', 255)->nullable();
+            $table->string('default_cv', 255)->nullable();
             $table->text('description')->nullable();
+            $table->text('province')->nullable();
             $table->enum('status', ['active', 'pending', 'suspend']);
             $table->timestamps();
         });
