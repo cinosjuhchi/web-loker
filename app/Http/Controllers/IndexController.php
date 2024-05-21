@@ -52,9 +52,19 @@ class IndexController extends Controller
             }
         }
 
-
+        $search = $request->query('search_input');
         // Get all resumes sent to the company
-        $resumes = $company->resumes()->with('user', 'posts')->paginate(5); // Ambil semua resume yang terkait dengan perusahaan yang login, itu gak error aseli     
+        $resumesQuery = $company->resumes()->with('user', 'posts');
+
+// Jika ada input pencarian, tambahkan filter berdasarkan nama user
+        if ($search) {
+            $resumesQuery->whereHas('user', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Terapkan pagination pada query akhir
+        $resumes = $resumesQuery->paginate(5);
         return view('pages.company.DashboardUser', compact('title', 'company', 'resumes', 'company', 'incompleteProfile'));
     }
 
