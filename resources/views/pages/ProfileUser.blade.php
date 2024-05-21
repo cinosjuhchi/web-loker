@@ -123,116 +123,6 @@
                             value="{{ auth()->user()->number_phone }}">
                     </div>
 
-<<<<<<< HEAD
-                    
-                    <div x-data="{ open: false }" @click.away="open = false" class="relative">
-                        <!-- Trigger -->
-                        <p class="block text-gray-700 mb-2 font-semibold">Keahlian</p>
-                        <button @click="open = !open" type="button"
-                            class="px-4 py-2 flex items-center w-full justify-between bg-white rounded-md border border-gray-300 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                            Pilih Bidang Keahlian
-                            <!-- Icon -->
-                            <svg :class="{ 'rotate-180': open }" class="w-4 h-4 ml-2 transform transition-transform"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <!-- Dropdown Body -->
-                        <div x-show="open" x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-300"
-                            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                            class="absolute z-50 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1 overflow-y-scroll h-[200px]">
-                                <!-- Options -->
-                                    <label
-                                        class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="programming" value="Programming"
-                                            class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Programming
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="Pemrograman dan Pengembangan Software" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Pemrograman dan Pengembangan Software
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Jaringan dan Keamanan Siber
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Desain Grafis dan Multimedia
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Manajemen Proyek
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Copywriting
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Analisis keuangan dan perencanaan
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Pajak dan audit
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Investasi dan manajemen portofolio
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Manajemen hubungan pelanggan (CRM)
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Penjualan langsung dan teknik closing
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Riset pasar dan analisis kompetitor
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Fotografi
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Penulisan skenario
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Storytelling
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Teknik literasi visual
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Terjemahan dan interpretasi
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Penulisan dan pengeditan dalam berbagai bahasa
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Personal training
-                                    </label>
-                                    <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                        <input type="checkbox" name="" value="" class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj">
-                                        Yoga dan pilates
-                                    </label>
-                            </div>
-                        </div>
-                    </div>
-=======
                     {{-- <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Keterampilan</label>
                         <select name="category_id" id="expertise" class="w-full p-2 border border-gray-300 rounded-md"
@@ -241,7 +131,6 @@
                             <!-- Option elements dynamically populated here -->
                         </select>
                     </div> --}}
->>>>>>> 717927675a769c08fedffa8b3302ca5d4582b5c9
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="birthdate">Tanggal Lahir</label>
