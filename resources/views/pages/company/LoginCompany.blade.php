@@ -19,7 +19,7 @@
                         <div>
                             <label for="" class="text-lg font-semibold">Alamat Email</label>
                             <div>
-                                <input type="text" name="company_email" placeholder="example@gmail.com" class="py-4 px-5 w-full rounded-md mt-3 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
+                                <input type="text" name="company_email" value="{{ old('company_email') }}" placeholder="example@gmail.com" class="py-4 px-5 w-full rounded-md mt-3 text-black border-2 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-10" >
                                 @error('company_email')
                                 <p class="text-red-600 text-sm">{{ $message }}</p>
                                 @enderror

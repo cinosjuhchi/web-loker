@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Resume;
-use App\Models\Category;
-use App\Models\Company;
 use App\Models\User;
+use App\Models\Resume;
+use App\Models\Company;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
@@ -310,5 +311,58 @@ class IndexController extends Controller
             $post->save();
             return redirect()->route('company.dashboard')->with('success', 'Lowongan berhasil diposting.');
         }
+
+
+        public function updateCompany(Request $request) {
+            $company = Auth::guard('company')->user();
+            $customMessages = [                
+                'company_name.max' => '*Nama perusahaan tidak boleh lebih dari 255 karakter.',
+                'company_name.unique' => '*Nama perusahaan sudah terdaftar.',                
+                'company_email.email' => '*Email perusahaan harus berupa alamat email yang valid.',
+                'company_email.max' => '*Email perusahaan tidak boleh lebih dari 100 karakter.',
+                'company_email.unique' => '*Email perusahaan sudah terdaftar.',                
+                'password.min' => '*Password harus minimal 6 karakter.',                                                
+                'number_phone.max' => '*Nomor telepon tidak boleh lebih dari 30 karakter.',
+                'photo_profile.image' => '*Foto profil harus berupa gambar.',
+                'photo_profile.file' => '*Foto profil harus berupa file.',
+                'photo_profile.max' => '*Foto profil tidak boleh lebih dari 3 MB.',                
+                'photo_banner.image' => '*Foto profil harus berupa gambar.',
+                'photo_banner.file' => '*Foto profil harus berupa file.',
+                'photo_banner.max' => '*Foto profil tidak boleh lebih dari 3 MB.',                
+            ];
+            $company_update = Company::findOrFail($company->id);            
+             
+            $request->validate([
+                'company_name' => 'string|max:255|unique:companies,company_name,' . $company_update->id,
+                'company_email' => 'string|email|max:100|unique:companies,company_email,' . $company_update->id,       
+                'password' => 'string|min:6',
+                'address' => 'string',
+                'province' => 'string',
+                'number_phone' => 'string|max:30',
+                'photo_profile.*' => 'image|file|max:3014',        
+                'photo_banner.*' => 'image|file|max:10014',        
+                'category_id' => 'integer',
+                'description' => 'nullable|string',                
+            ], $customMessages);
+            $company_update->company_name = $request->input('company_name');
+            $company_update->company_email = $request->input('company_email');
+            $company_update->password = bcrypt($request->input('password'));
+            $company_update->address = $request->input('address');
+            $company_update->province = $request->input('province');
+            $company_update->number_phone = $request->input('number_phone');
+            $company_update->category_id = $request->input('category_id');
+            $company_update->description = $request->input('description');
+            if ($request->hasFile('photo_profile')) {
+                $company_update->photo_profile = $request->file('photo_profile')->store('company/images/profiles');
+            }
+            
+            if ($request->hasFile('photo_banner')) {
+                $company_update->photo_banner = $request->file('photo_banner')->store('company/images/banners');
+            }
+            $company_update->save();
+            return redirect()->route('company.profile')->with('success', 'Profil perusahaan berhasil diperbarui.');
+
+        }
+
 }
 
