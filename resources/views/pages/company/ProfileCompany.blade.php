@@ -3,8 +3,8 @@
 <form id="companyForm" method="POST" enctype="multipart/form-data">
     <div class="">
         <div class="relative">
-            <img src="{{ $company->photo_banner ? asset($company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover"> 
-            <input type="file" id="file" name="photo_banner" class="hidden w-full h-16" onchange="displayFileName()"
+            <img src="{{ $company->photo_banner ? asset($company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover" id="banner"> 
+            <input type="file" id="file_banner" name="photo_banner" accept=”.jpg, .jpeg, .png” class="hidden w-full h-16" onchange="displayFileName()"
                 disabled>
             <label for="file"
                 class=" absolute right-0 top-0 flex p-3 m-5 bg-biru-tuwak rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
@@ -18,10 +18,10 @@
 
             </label> 
             <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">          
-            <img src="{{ $company->photo_profile ? null : Vite::asset('resources/assets/placeholder.png') }}" alt="Profile Picture"
-            class="w-32 h-32 rounded-full border-4 border-white object-cover object-center">            
-                    <input type="file" id="file" name="photo_profile" class="hidden w-full h-16"
-                    onchange="displayFileName()" disabled>
+            <img id="profile" src="{{ $company->photo_profile ? null : Vite::asset('resources/assets/placeholder.png') }}" accept=”.jpg, .jpeg, .png” alt="Profile Picture"
+            class="w-32 h-32 rounded-full border-4 border-white object-cover object-center" id="profile">            
+                    <input type="file" id="file_profile" name="photo_profile" class="hidden w-full h-16"
+                     disabled>
                 <label for="file"
                     class=" absolute flex p-10 top-2 rounded-full hover:bg-gray-200 text-center  select-none cursor-pointer  text-white">
 
@@ -201,6 +201,21 @@
         const filePreview = document.getElementById('file-preview');
         
     }
+
+    function displayFileNameProfile() {
+            const input = document.getElementById('photo_profile');
+            const profile = document.getElementById('profile');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    profile.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 
 @endsection
