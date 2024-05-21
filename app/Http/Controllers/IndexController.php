@@ -343,8 +343,7 @@ class IndexController extends Controller
                 'description' => 'nullable|string',                
             ], $customMessages);
             $company_update->company_name = $request->input('company_name');
-            $company_update->company_email = $request->input('company_email');
-            $company_update->password = bcrypt($request->input('password'));
+            $company_update->company_email = $request->input('company_email');            
             $company_update->address = $request->input('address');
             $company_update->province = $request->input('province');
             $company_update->number_phone = $request->input('number_phone');

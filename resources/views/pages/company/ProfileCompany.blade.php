@@ -1,5 +1,6 @@
 @extends('layouts.DefaultLayout')
 @section('profileCompany')
+
 <form id="companyForm" action="{{ route('company.profile.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="">
@@ -65,13 +66,10 @@
       
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2 lg:text-2xl" for="description">Deskripsi Perusahaan:</label>
-                <input class="border mb-4 border-gray-300 p-4 rounded-lg bg-gray-100 w-full" 
-                id="description" 
+                <input class="border mb-4 border-gray-300 p-4 rounded-lg bg-gray-100 w-full"                 
                 value="{{ $company->description ?? 'Tidak ada deskripsi' }}" 
                 disabled readonly>                
-                <input id="input_description" type="hidden" name="description" class="py-4 px-5 w-full rounded-md mt-0 mb-2 border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10">
-                <trix-editor class="mb-2 hidden" id="trix_editor" input="input_description"></trix-editor>
-                {{-- <button class="mt-2 text-blue-600 hover:underline" type="button" id="enableDescription">Edit</button> --}}
+                <textarea name="description" id="description" cols="30" rows="10" class="border border-gray-300 p-4 rounded-lg bg-gray-100 w-full">{{ $company->description }}</textarea>                
         </div>
 
 
@@ -172,7 +170,7 @@
 
 
 <script>
-    const toolbar = document.getElementById('trix-toolbar-1');
+    
     const ubahDataButton = document.getElementById('ubahDataButton');
     const batalButton = document.getElementById('batalButton');
     const labelBanner = document.getElementById('label_banner');
@@ -180,8 +178,8 @@
     const afterClick = document.getElementById('afterClick');
     
     const formElements = document.querySelectorAll('#companyForm input, #companyForm select');
-    const editor = document.getElementById('trix_editor');
-    toolbar.classList.add('hidden')
+    const editor = document.getElementById('description');
+    editor.classList.add('hidden');
 
     
     ubahDataButton.addEventListener('click', function() {
@@ -192,9 +190,7 @@
             element.removeAttribute('disabled');
         });
         labelBanner.classList.add('hover:bg-LightBlue');
-        labelProfile.classList.add('hover:bg-LightBlue');
-        
-        toolbar.classList.remove('hidden');
+        labelProfile.classList.add('hover:bg-LightBlue');                
         editor.classList.remove('hidden');
     });
     
@@ -206,8 +202,7 @@
             element.setAttribute('readonly', 'true');
         });
         banner.src = photoBanner;
-        profile.src = photoProfile;        
-        toolbar.classList.add('hidden');
+        profile.src = photoProfile;                
         editor.classList.add('hidden');
         afterClick.classList.add('hidden');
         ubahDataButton.style.display = 'block';

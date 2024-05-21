@@ -36,7 +36,7 @@
                         <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
                             class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}"
                             alt="" srcset="">
-                        <img src="{{ auth()->user()->photo_profile == null ? Vite::asset('resources/assets/placeholder.png') : asset('storage/' . $company->photo_profile) }}"
+                        <img src="{{ auth()->user()->photo_profile == null ? Vite::asset('resources/assets/placeholder.png') : asset('storage/' . auth()->user()->photo_profile) }}"
                             class="{{ Auth::guard('company')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}"
                             alt="" srcset="">
                         <div class="grid text-left justify-center">
