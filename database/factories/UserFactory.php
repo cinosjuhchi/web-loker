@@ -25,10 +25,12 @@ class UserFactory extends Factory
             'number_phone' => $this->faker->phoneNumber,
             'category_id' => $this->faker->numberBetween(1, 10), // Adjust range as needed
             'datebirth' => $this->faker->optional()->date('Y-m-d'),
-            'academy' => 'SMA',
+            'jk' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
+            'academy' => $this->faker->randomElement(['SMA', 'Diploma', 'Sarjana', 'Magister']),
             'photo' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image
             'photo_banner' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image
             'description' => $this->faker->optional()->paragraph,
+            'province' => 'DKI Jakarta',
             'status' => $this->faker->randomElement(['active', 'pending', 'suspend']),
             'created_at' => now(),
             'updated_at' => now(),

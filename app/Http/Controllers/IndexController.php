@@ -148,6 +148,8 @@ class IndexController extends Controller
             ];
         }
 
+        $selectedProvince = auth()->user()->province;
+
         try {
             $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
                 if ($response->successful()) {
@@ -159,7 +161,7 @@ class IndexController extends Controller
                 $message = $e->getMessage();
                 return view('exception.error500', compact('message', 'title'));
             }
-        return view("pages.ProfileUser", compact("title" , "category", "provinces"));
+        return view("pages.ProfileUser", compact("title" , "category", "provinces", "selectedProvince"));
     }
     public function aboutUs(Request $request)
     {
