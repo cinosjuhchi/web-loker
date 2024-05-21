@@ -1,11 +1,11 @@
 @extends('layouts.DefaultLayout')
 @section('profileCompany')
-<form id="companyForm">
+<form id="companyForm" method="POST" enctype="multipart/form-data">
     <div class="">
         <div class="relative">
-            <img src="{{ $company->photo_banner ? asset($company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover"> 
-            <input type="file" id="file" name="file" class="hidden w-full h-16" onchange="displayFileName()"
-                readonly>
+            <img src="{{ $company->photo_banner ? asset($company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover" id="banner"> 
+            <input type="file" id="file_banner" name="photo_banner" accept=”.jpg, .jpeg, .png” class="hidden w-full h-16" onchange="displayFileName()"
+                disabled>
             <label for="file"
                 class=" absolute right-0 top-0 flex p-3 m-5 bg-biru-tuwak rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
 
@@ -18,10 +18,10 @@
 
             </label> 
             <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">          
-            <img src="{{ $company->photo_profile ? null : Vite::asset('resources/assets/placeholder.png') }}" alt="Profile Picture"
-            class="w-32 h-32 rounded-full border-4 border-white">            
-                    <input type="file" id="file" name="file" class="hidden w-full h-16"
-                    onchange="displayFileName()" readonly>
+            <img id="profile" src="{{ $company->photo_profile ? null : Vite::asset('resources/assets/placeholder.png') }}" accept=”.jpg, .jpeg, .png” alt="Profile Picture"
+            class="w-32 h-32 rounded-full border-4 border-white object-cover object-center" id="profile">            
+                    <input type="file" id="file_profile" name="photo_profile" class="hidden w-full h-16"
+                     disabled>
                 <label for="file"
                     class=" absolute flex p-10 top-2 rounded-full hover:bg-gray-200 text-center  select-none cursor-pointer  text-white">
 
@@ -65,10 +65,11 @@
       
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2 lg:text-2xl" for="description">Deskripsi Perusahaan:</label>
-            <input class="border border-gray-300 p-4 rounded-lg bg-gray-100 w-full " readonly>
-                <p>{{ $company->description ? null : 'Tidak ada deskripsi' }}</p>
-                <button class="mt-2 text-blue-600 hover:underline">Edit</button>
-            </input>
+                <input class="border border-gray-300 p-4 rounded-lg bg-gray-100 w-full" 
+                id="description" 
+                value="{{ $company->description ?? 'Tidak ada deskripsi' }}" 
+                disabled>                
+                {{-- <button class="mt-2 text-blue-600 hover:underline" type="button" id="enableDescription">Edit</button> --}}
         </div>
 
 
@@ -77,35 +78,32 @@
         <div class="mb-6">
             <h2 class="text-gray-700 text-2xl  font-semibold mb-4">Informasi data perusahaan</h2>
             
-                <div class="lg:flex w-full  gap-5">
+                <div class="lg:flex w-full gap-5">
                     <div class="lg:w-[50%]">
                         <div>
-                            <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Perusahaan</label>
-                            <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                value="{{ $company->company_name }}" readonly>
+                            <label class="block text-gray-700 mb-2 font-semibold" for="company_name">Nama Perusahaan</label>
+                            <input class="w-full p-2 disabled:bg-gray-400 border border-gray-300 rounded-md" type="text" id="company_name"
+                                value="{{ $company->company_name }}" disabled>
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="phoneNumber">Nomor Telepon</label>
-                            <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="phoneNumber"
-                                value="{{ $company->number_phone }}" readonly>
+                            <input class="w-full p-2 border border-gray-300 disabled:bg-gray-400 rounded-md" type="text" id="phoneNumber"
+                                value="{{ $company->number_phone }}" name="number_phone" disabled>
                         </div>
                     </div>
     
                     <div class="lg:w-[50%]">
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="email">Email</label>
-                            <input class="w-full p-2 border border-gray-300 rounded-md" type="email" id="email"
-                                value="{{ $company->company_email }}" readonly>
+                            <input class="w-full p-2 border border-gray-300 disabled:bg-gray-400 rounded-md" type="email" name="company_email" id="email"
+                                value="{{ $company->company_email }}" disabled>
                         </div>
     
                         <div>
                             <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Bidang Pekerjaan</label>
-                            <select name="category_id" id="" class="w-full p-2 border border-gray-300 rounded-md" readonly>
+                            <select name="category_id" id="" class="w-full p-2 border disabled:bg-gray-400 border-gray-300 rounded-md" disabled>
                                 <option value="{{ $company->category->id }}">{{ $company->category->name }}</option>
-                                @foreach ($category as $item)
-                                @if ($item->name == $company->category->name)
-                                @continue
-                                @endif
+                                @foreach ($category as $item)                                                            
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
@@ -122,17 +120,14 @@
                         <div class="lg:w-[50%] w-full ">
                             <div>
                                 <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Jalan</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    value="{{ $company->address }}" readonly>
+                                <input class="w-full p-2 border border-gray-300 rounded-md disabled:bg-gray-400" type="text" id="address" name="address"
+                                    value="{{ $company->address }}" disabled>
                             </div>                            
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 mb-2 font-semibold" for="province">Provinsi</label>
-                                <select class="w-full p-2 border border-gray-300 rounded-md" id="province" name="province" readonly>
+                                <select class="w-full p-2 border border-gray-300 rounded-md disabled:bg-gray-400" id="province" name="province" disabled>
                                     <option value="{{ $company->province }}" selected>{{ $company->province }}</option>
-                                    @foreach ($provinces as $province)
-                                        @if ($province['name'] == $company->province)
-                                            @continue
-                                        @endif
+                                    @foreach ($provinces as $province)                                                                                    
                                         <option value="{{ $province['name'] }}">{{ $province['name'] }}</option>
                                     @endforeach
                                 </select>
@@ -143,9 +138,9 @@
 
                         <div class="lg:w-[50%]">                            
                             <div>
-                                <label class="block text-gray-700 mb-2 font-semibold" for="username">Kode Pos</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" id="username"
-                                    placeholder="PT. Azka Auliarahma maju jaya abadi aamiin" readonly>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="code_post">Kode Pos</label>
+                                <input class="w-full p-2 border border-gray-300 rounded-md disabled:bg-gray-400" type="number" name="code_post" id="code_post"
+                                    placeholder="Masukan Kode Pos Kantor Anda" disabled>
                             </div>
                         </div>
                     </div>
@@ -162,9 +157,9 @@
                                 Data</button>
                         </div>
                         <div id="afterClick" class="hidden">
-                            <button id="batalButton" type="button"
+                            <button id="batalButton" type="button" name="batal"
                                 class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
-                            <button type="submit"
+                            <button type="submit"                
                                 class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
                         </div>
                     </div>
@@ -181,12 +176,14 @@
     const formElements = document.querySelectorAll('#companyForm input, #companyForm select');
 
     
+
+    
     ubahDataButton.addEventListener('click', function() {
         console.log(200);
         ubahDataButton.style.display = 'none';
         afterClick.classList.remove('hidden');
         formElements.forEach(element => {
-            element.removeAttribute('readonly');
+            element.removeAttribute('disabled');
         });
     });
     
@@ -204,6 +201,21 @@
         const filePreview = document.getElementById('file-preview');
         
     }
+
+    function displayFileNameProfile() {
+            const input = document.getElementById('photo_profile');
+            const profile = document.getElementById('profile');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    profile.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 
 @endsection
