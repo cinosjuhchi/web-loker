@@ -7,7 +7,7 @@
         @foreach ($posts as $post)
             <div class="lg:w-[300px] md:w-[370px] lg:max-w-fit smaller:w-full h-[370px] mx-auto pt-4 pb-0 ps-4 pe-4 bg-white shadow-md rounded-lg border-2 border-LightGrey">
                 <div class="flex w-full items-center mb-4 h-20 ">
-                    <img src="{{ $post->company->photo_profile ? asset($post->company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}"
+                    <img src="{{ $post->company->photo_profile ? asset('storage/' . $post->company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}"
                         alt="Company Logo" class="w-12 h-12 rounded-full mr-3 object-cover object-center">
 
                     <div>

@@ -121,6 +121,7 @@
         Route::post('/logout-company', [CompanyAuthController::class, 'logout'])->name('company.logout');
         Route::get('/loker-company', [IndexController::class, 'lokerCompany'])->name('lokerCompany');
         Route::get('/profile-company', [IndexController::class, 'profileCompany'])->name('company.profile');
+        Route::post('/profile-company-update', [IndexController::class, 'updateCompany'])->name('company.profile.update');
         Route::get('/pelamar-kerja', [IndexController::class, 'pelamarKerja'])->name('pelamarKerja');
         Route::get('/detail-profile-user/{resumeId}', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
         Route::post('/post-store', [IndexController::class, 'postLowongan'])->name('company.post.store');
