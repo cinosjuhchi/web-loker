@@ -115,7 +115,7 @@ class AuthController extends Controller
         // Redirect kembali dengan pesan sukses
         return redirect()->route('user.edit', $user->id)->with('success', 'Profile updated successfully.');
     }
-}
+
 
     public function registerCompany(Request $request)
     {
