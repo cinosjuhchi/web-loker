@@ -7,10 +7,10 @@
             <div class="relative">
                 <img src="{{ optional(auth()->user())->photo_banner ? asset(optional(auth()->user())->photo_banner) : asset('resources/assets/placeholder.png') }}"
                     alt="Header Image" id="banner" class="w-full h-64 object-cover">
-                <input type="file" id="file" name="file" class="hidden w-full h-16"
-                    onchange="displayFileNameBanner()" disabled>
-                <label for="file"
-                    class=" absolute right-0 top-0 flex p-3 m-5 bg-biru-tuwak rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
+                <input type="file" id="file-banner" name="file-banner" class="hidden w-full h-16"
+                    onchange="displayPreviewBanner()" disabled>
+                <label id="edit-banner" for="file-banner"
+                    class=" absolute right-0 top-0 flex p-3 m-5 bg-gray-300 rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                         fill="none">
@@ -21,15 +21,16 @@
 
                 </label>
                 <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">
-                    <img src="https://via.placeholder.com/150" alt="Profile Picture"
+                    <img src="{{ optional(auth()->user())->photo ? asset(optional(auth()->user())->photo) : asset('resources/assets/placeholder.png') }}"
+                        alt="Profile Picture" id="PP"
                         class="w-32 h-32 rounded-full border-4 border-white object-cover object-center">
-                    <input type="file" id="file" name="file" class="hidden w-full h-16"
-                        onchange="displayFileName()" readonly>
-                    <label for="file"
-                        class=" absolute flex p-10 top-2 rounded-full hover:bg-gray-200 text-center  select-none cursor-pointer  text-white">
+                    <input type="file" id="file-PP" disabled name="file-PP" class="hidden w-full h-16"
+                        onchange="displayPreviewPP()">
+                    <label id="edit-profile" for="file-PP"
+                        class=" absolute flex p-10 top-2 rounded-full hover:bg-gray-300 text-center  select-none cursor-pointer  text-white">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                            class="opacity-0 hover:opacity-100" fill="none">
+                        <svg id="icon-edit-profile" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                            viewBox="0 0 32 32" class="opacity-0" fill="none">
                             <path
                                 d="M19.6596 10.7008L21.2949 12.3361L5.19041 28.4406H3.55507V26.8052L19.6596 10.7008ZM26.0587 0C25.6143 0 25.1521 0.177754 24.8144 0.515485L21.5615 3.76838L28.2273 10.4341L31.4802 7.18125C31.645 7.0168 31.7757 6.82147 31.8649 6.60643C31.9541 6.3914 32 6.16088 32 5.92808C32 5.69528 31.9541 5.46477 31.8649 5.24973C31.7757 5.0347 31.645 4.83937 31.4802 4.67492L27.3207 0.515485C26.9652 0.159978 26.5208 0 26.0587 0ZM19.6596 5.67034L0 25.3299V31.9957H6.66576L26.3253 12.3361L19.6596 5.67034Z"
                                 fill="white" />
@@ -179,7 +180,12 @@
             </div>
         </div>
     </form>
-
+    {{-- for calling a source image of banner before edited, DONT REMOVE --}}
+    <input type="hidden" id="original-banner"
+        value="{{ auth()->user()->photo_banner ? auth()->user()->photo_banner : asset('resources/assets/placeholder.png') }}">
+    <input type="hidden" id="original-PP"
+        value="{{ auth()->user()->photo ? auth()->user()->photo : asset('resources/assets/placeholder.png') }}">
+    </div>
 
     <script>
         const ubahDataButton = document.getElementById('ubahDataButton');
@@ -191,24 +197,58 @@
         ubahDataButton.addEventListener('click', function() {
             formElements.forEach(element => {
                 element.removeAttribute('readonly');
-                element.removeAttribute('disabled');
             });
             ubahDataButton.style.display = 'none';
             afterClick.classList.remove('hidden');
+
+
+            // configuration for edit banner
+            document.getElementById('file-banner').removeAttribute('disabled')
+            const editbanner = document.getElementById('edit-banner')
+            editbanner.classList.replace('bg-gray-300', 'bg-biru-tuwak');
+
+
+            // configuration for edit PP
+            document.getElementById('file-PP').removeAttribute('disabled');
+            document.getElementById('edit-profile').classList.replace('hover:bg-gray-300', 'hover:bg-biru-tuwak');
         });
+
+
+        // edit photo profile effect, DONT TOUCH OR EDIT ANYTHING BELOW THIS LINE
+        document.getElementById('edit-profile').addEventListener('mouseover', function() {
+            document.getElementById('icon-edit-profile').classList.replace('opacity-0', 'opacity-100');
+        })
+        document.getElementById('edit-profile').addEventListener('mouseout', function() {
+            document.getElementById('icon-edit-profile').classList.replace('opacity-100', 'opacity-0');
+        })
 
         // Revert form fields and buttons to the initial state
         batalButton.addEventListener('click', function() {
-            const placeholderUrl = "{{ url(Vite::asset('resources/assets/placeholder.png')) }}";
-            const banner = document.getElementById('banner')
+            // const placeholderUrl = inherit;
             formElements.forEach(element => {
                 element.setAttribute('readonly', 'true');
             });
-            banner.setAttribute('disabled', 'true')
-            // document.getElementById('photo-banner').src(url({{ 'resources/assets/placeholder.png' }}))
-            banner.src = placeholderUrl;
             afterClick.classList.add('hidden');
             ubahDataButton.style.display = 'block';
+
+            // buyback banner from database
+            const originalbanner = document.getElementById('original-banner').value
+            const banner = document.getElementById('banner')
+            banner.src = originalbanner;
+            banner.setAttribute('disabled', 'true')
+
+            // buyback PP from database
+            const PP = document.getElementById('PP')
+            const originalPP = document.getElementById('original-PP').value
+            PP.src = originalPP;
+
+            // button edit banner effect config
+            const editbanner = document.getElementById('edit-banner')
+            editbanner.classList.replace('bg-biru-tuwak', 'bg-gray-300');
+
+            // button edit PP effect config
+            document.getElementById('file-PP').setAttribute('disabled', 'true');
+            document.getElementById('edit-profile').classList.replace('hover:bg-biru-tuwak', 'hover:bg-gray-300');
         });
 
         // Display the selected file name for the CV upload input
@@ -222,9 +262,24 @@
             fileInput.classList.add('hidden');
         }
 
-        function displayFileNameBanner() {
-            const input = document.getElementById('file');
+        function displayPreviewBanner() {
+            const input = document.getElementById('file-banner');
             const banner = document.getElementById('banner');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    banner.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function displayPreviewPP() {
+            const input = document.getElementById('file-PP');
+            const banner = document.getElementById('PP');
 
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
