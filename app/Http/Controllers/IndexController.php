@@ -98,9 +98,33 @@ class IndexController extends Controller
         return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
     }    
     public function lokerCompany(Request $request){
-        $title = "Lowongan Kerja";
         $company = Auth::guard('company')->user();
-        $posts = $company->posts()->latest()->paginate(5);        
+        $title = "Lowongan Kerja";
+        $search = $request->query('search_input');
+        $time = $request->input('time');
+        $year = $request->input('year');
+
+        // Mulai dengan query dasar tanpa memanggil ->latest()
+        $postsQuery = $company->posts();
+
+        // Filter berdasarkan pencarian judul
+        if ($search) {
+            $postsQuery->where('title', 'like', '%' . $search . '%');
+        }
+
+        // Filter berdasarkan tahun
+        if ($year) {
+            $postsQuery->whereYear('created_at', $year);
+        }
+
+        // Urutkan berdasarkan waktu
+        if ($time == 'oldest') {
+            $postsQuery->oldest();
+        } elseif ($time == 'latest') {
+            $postsQuery->latest();
+        }
+        $posts = $postsQuery->paginate(5);
+
         return view("pages.company.LowonganKerjaCompany", compact("title", "posts"));
     }
         public function detailProfileUser(Request $request){
