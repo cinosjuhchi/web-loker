@@ -104,7 +104,33 @@ class IndexController extends Controller
     public function pelamarKerja(Request $request)
     {
         $title = "Pelamar Kerja";
-        $resumes = Auth::guard('company')->user()->resumes()->latest()->paginate(5);
+        $search = $request->query('search_input');
+        $time = $request->input('time');
+        $year = $request->input('year');
+        
+        $resumes = Auth::guard('company')->user()->resumes();
+        // Mulai dengan query dasar tanpa memanggil ->latest()
+        $resumesQuery = $resumes;
+
+        // Filter berdasarkan pencarian judul
+        if ($search) {
+            $resumesQuery->whereHas('user', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+        });
+
+        if ($year) {
+            $resumesQuery->whereYear('created_at', $year);
+        }
+
+        // Urutkan berdasarkan waktu
+        if ($time == 'oldest') {
+            $resumesQuery->oldest();
+        } elseif ($time == 'latest') {
+            $resumesQuery->latest();
+        }
+
+        $resumes = $resumesQuery->paginate(5);
+    }
         return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
     }    
     public function lokerCompany(Request $request){
