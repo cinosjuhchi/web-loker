@@ -132,7 +132,8 @@
         Route::post('/post-store', [IndexController::class, 'postLowongan'])->name('company.post.store');
         Route::get('/pdf-preview/{id}', [IndexController::class, 'pdfPreview'])->name('company.preview.pdf');
         Route::get('/detail-postingan/{id}', [IndexController::class, 'detailPost'])->name('company.detail.post');
-
+        Route::post('/update-loker', [IndexController::class, 'updateLoker'])->name('company.loker.update');
+        
     });
 
     // Route::get('dashboard-company', function () {

@@ -14,12 +14,15 @@
 
         <div class="">
             <div class="">
-                <form action="" class="mt-5 lg:flex  w-full gap-5 smaller:mt-3">
+                <form action="{{ route('company.loker.update') }}" method="POST" class="mt-5 lg:flex  w-full gap-5 smaller:mt-3">
+                    @csrf
                     <div class="lg:flex  w-full gap-5">
                         <div class=" lg:w-[50%]">
+                            <input type="hidden" value="{{ $post->id }}" name="id">
                             <label for="nama" class="text-lg font-semibold">Nama Pekerjaan</label>
                             <div>
                                 <input id="nama" type="text" placeholder="Masukkan nama pekerjaan lengkap anda"
+                                    name="title"
                                     value="{{ $post->title }}"    
                                     class="py-4 px-5 w-full rounded-md mt-3 mb-5 text-black border-2 border-DarkWhite placeholder:text-LightGrey placeholder:focus:text-blue-500 ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
@@ -77,7 +80,7 @@
                             <label for="email" class="text-lg font-semibold">Deskripsi Pekerjaan</label>
                             
                             <div>
-                                <textarea id="email" type="email" placeholder="contohemail@gmail.com"
+                                <textarea id="email" name="content" type="text" placeholder="contohemail@gmail.com"
                                     class="pb-28 w-full h-36 border-2 border-DarkWhite placeholder:text-LightGrey placeholder:focus:text-blue-500 text-wrap rounded-md mt-3 text-black ring-2 ring-gray-200 focus:border-blue-500 outline-none focus:outline-none focus:ring-2 relative focus:ring-blue-500 overflow-auto scrollbar-hide" >{{ $post->content }}</textarea>
                             </div>
                           
