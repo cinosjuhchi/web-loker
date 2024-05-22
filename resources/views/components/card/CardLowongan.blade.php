@@ -49,7 +49,8 @@
                         data-min_salary="Rp{{ $post->min_salary }}" data-address="{{ $post->company->address }}"
                         data-max_salary="Rp{{ $post->max_salary }}" data-address="{{ $post->company->address }}"
                         data-category-id="{{ $post->category->name }}"
-                        data-job-description="{!! $post->content !!}">Selengkapnya</button>
+                        data-job-description="{!! $post->content !!} "
+                        ">Selengkapnya</button>
                 </div>
             </div>
         @endforeach
@@ -135,7 +136,7 @@
                             <path d="M21.0001 33.3757C21.6202 33.3757 22.123 32.8729 22.123 32.2528C22.123 31.6326 21.6202 31.1299 21.0001 31.1299C20.3799 31.1299 19.8772 31.6326 19.8772 32.2528C19.8772 32.8729 20.3799 33.3757 21.0001 33.3757Z" fill="#FC2828" stroke="#FC2828" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>                        
                     </button>
-                    <a href="/upload-lamaran">
+                    <a href="/upload-lamaran/{{$post->id}}/{{$post->company->id}}">
                         <button data-modal-hide="default-modal" type="button"
                             class="ms-3 text-white bg-biru-tuwak hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Lamar Pekerjaan

@@ -32,11 +32,13 @@
     </div>
 
     <div class="mb-10 mx-[20px] lg:mx-[70px]">
-
         <h1 class="font-semibold text-2xl lg:text-3xl">Rekomendasi Perusahaan Terbaik</h1>
     </div>
-
+    
     <div>
         @include('components/card.cardProfilePerusahaan')
+    </div>
+    <div class="mb-10 mx-[20px] lg:mx-[70px]">
+        {{ $companies->links() }}
     </div>
 @endsection

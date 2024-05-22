@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('photo', 255)->nullable();
             $table->string('photo_banner', 255)->nullable();
             $table->string('default_cv', 255)->nullable();
-            $table->text('description')->nullable();
+            $table->string('description', 255)->nullable();
+            $table->json('interest')->nullable();
             $table->text('province')->nullable();
             $table->enum('status', ['active', 'pending', 'suspend']);
             $table->timestamps();

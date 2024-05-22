@@ -44,7 +44,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Resume::class, 'user_id', 'id');
     }
-    
+
 
     /**
      * The attributes that should be cast.
@@ -53,6 +53,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'interest'=> 'array',
     ];
 
     /**
@@ -63,5 +64,22 @@ class User extends Authenticatable
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+
+    
+    /**
+     * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function JobCategory(): HasMany
+    {
+        return $this->hasMany(JobCategory::class, 'category_id', 'id');
+    }
+
+    public function save(array $options = [])
+    {
+        parent::save($options);
     }
 }

@@ -33,7 +33,7 @@
                     <button type="button" class="flex text-sm gap-2 md:me-0" id="user-menu-button" aria-expanded="false"
                         data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : auth()->user()->photo }}"
+                        <img src="{{ optional(auth()->user())->photo_banner ? asset('storage/' . auth()->user()->photo) : Vite::asset('resources/assets/placeholder.png') }}"
                             class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full w-8 h-8' : 'hidden' }}"
                             alt="" srcset="">
                         <img src="{{ auth()->user()->photo_profile == null ? Vite::asset('resources/assets/placeholder.png') : asset('storage/' . $company->photo_profile) }}"
@@ -53,17 +53,19 @@
                                 @if (Auth::guard('web')->check())
                                     <a href="/profile-user"
                                         class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
-                                        <img src="{{ auth()->user()->photo == null ? Vite::asset('resources/assets/placeholder.png') : asset('storage/' . auth()->user()->photo) }}"
+                                        <img src="{{ optional(auth()->user())->photo ? asset('storage/' . auth()->user()->photo) : Vite::asset('resources/assets/placeholder.png') }}"
                                             class="{{ Auth::guard('web')->check() ? 'object-cover object-center rounded-full relative -left-2 w-6 h-6' : 'hidden' }}"
                                             alt="" srcset="">
                                         Profil
                                     </a>
                                 @elseif(Auth::guard('company')->check())
                                     <a href="/profile-company"
-                                        class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 relative -left-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                          </svg>
+                                        class="flex items-center px-6 py-2 text-sm font-semibold text-gray-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 relative -left-2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        </svg>
                                         Profil
                                     </a>
                                 @endif
@@ -76,7 +78,7 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2"
                                             d="m17 21-5-4-5 4V3.889a.92.92 0 0 1 .244-.629.808.808 0 0 1 .59-.26h8.333a.81.81 0 0 1 .589.26.92.92 0 0 1 .244.63V21Z" />
-                                    </svg>                                                                          
+                                    </svg>
                                     Disimpan
                                 </a>
                             </li>
