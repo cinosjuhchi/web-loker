@@ -57,7 +57,7 @@
     // ini user
     Route::get('/detail-perusahaan/{id_company}/posts', [IndexController::class, 'detailPerusahaanUserPage'])->name('detailPerusahaanUserPage');
     // ini user
-    Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+    
     // ini user
     Route::get('/upload-lamaran', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
     // ini 
@@ -98,6 +98,9 @@
         Route::get('/profile-user', [IndexController::class, 'profilUser'])->name('profilUser');
         Route::put('/profile-user', [IndexController::class, 'profilUser'])->name('puu');
         Route::put('/profile-user', [AuthController::class, 'updateUser'])->name('puu');
+        Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
+        Route::get('/disimpan-user/{id}', [IndexController::class, 'simpanPost'])->name('disimpanUserPost');
+        Route::get('/dihapus-user/{id}', [IndexController::class, 'hapusUserPost'])->name('hapusUserPost');
         Route::get('/dashboard-user', function () {
             $title = 'Dashboard';
             $user = Auth::user();
@@ -108,10 +111,12 @@
                 $provinces = [];
             }
 
+            $user = Auth::user();
+
             $postsQuery = Post::with('category');
 
             $posts = $postsQuery->get();
-            return view('pages.DashboardUser', compact('title', 'user', 'provinces', 'posts'));
+            return view('pages.DashboardUser', compact('title', 'user', 'provinces', 'posts', 'user'));
         })->name('user.dashboard');
         Route::get('/cari-loker', [IndexController::class, 'cariLoker'])->name('cariLoker');
     });

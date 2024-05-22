@@ -136,7 +136,7 @@ class IndexController extends Controller
 
     public function updateLoker(Request $request)
     {
-        $post = Post::findOrFail($request->id);        
+        $post = Post::findOrFail($request->id);
 
         // $request->validate([
         //     'title' => 'string|max:255',
@@ -152,7 +152,6 @@ class IndexController extends Controller
         $post->content = $request->content;
         $post->save();
         return redirect()->back()->with('success', 'Lowongan berhasil diupdate.');
-
     }
     public function pelamarKerja(Request $request)
     {
@@ -190,7 +189,7 @@ class IndexController extends Controller
     {
         $title = "Detail Loker";
         $post = Post::findOrFail($request->route('id'));
-        $category = Category::all();      
+        $category = Category::all();
         return view("pages.company.UbahLoker", compact("title", "post", "category"));
     }
     public function lokerCompany(Request $request)
@@ -496,9 +495,28 @@ class IndexController extends Controller
         $bookmark->save();
         return back()->with('success', 'Pelamar ditambahkan ke daftar pelamar..');
     }
+    public function simpanPost(Request $request)
+    {
+        // $user = Auth::user();
+
+        $bookmark = new Bookmark();
+        $user = Auth::user();
+        $postId = $request->route('id');
+        // $userId = $request->route('id');
+        $bookmark->post_id = $postId;
+        $bookmark->user_id = $user->id;
+        $bookmark->save();
+        return back()->with('success', 'Postingan berhasil ditambahkan ke bookmark');
+    }
     public function hapusPelamar(Request $request)
     {
         $bookmark = CompanyBookmark::findOrFail($request->route('id'));
+        $bookmark->delete();
+        return back()->with('success', 'Pelamar dihapus dari daftar pelamar..');
+    }
+    public function hapusUserPost(Request $request)
+    {
+        $bookmark = Bookmark::findOrFail($request->route('id'));
         $bookmark->delete();
         return back()->with('success', 'Pelamar dihapus dari daftar pelamar..');
     }

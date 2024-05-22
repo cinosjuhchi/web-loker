@@ -77,9 +77,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(JobCategory::class, 'category_id', 'id');
     }
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(Bookmark::class, 'user_id', 'id');
+    }
 
     public function save(array $options = [])
     {
         parent::save($options);
     }
+    
 }
