@@ -13,13 +13,84 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
         <link rel="stylesheet" href="sweetalert2.min.css">
         <link rel="shortcut icon" type="image/x-icon" href="{{ Vite::asset("resources/assets/logo/favicon.ico") }}" />
+        <style>
+            .trix-editor {
+            width: 100%;
+        }
+        
+        .trix-editor h1 {
+            font-size: 1.25rem !important;
+            line-height: 1.25rem !important;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .trix-editor a:not(.no-underline) {
+            text-decoration: underline;
+        }
+        
+        .trix-editor a:visited {
+            color: green;
+        }
+        
+        .trix-editor ul {
+            list-style-type: disc;
+            padding-left: 1rem;
+        }
+        
+        .trix-editor ol {
+            list-style-type: decimal;
+            padding-left: 1rem;
+        }
+        
+        .trix-editor pre {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+            font-family: monospace;
+            font-size: 1.5em;
+            padding: 0.5em;
+            white-space: pre;
+            background-color: #eee;
+            overflow-x: auto;
+        }
+        
+        .trix-editor blockquote {
+            border: 0 solid #ccc;
+            border-left-width: 0px;
+            border-left-width: 0.3em;
+            margin-left: 0.3em;
+            padding-left: 0.6em;
+        }
+        </style>
     </head>
 <body class="font-JakartaSans">
     {{-- Misal Kasih Navbar --}}
     @include('components.NavbarUser')
 
     {{-- content --}}
-    
+    @if(session('success'))
+<script>    
+    document.addEventListener('DOMContentLoaded', function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'green',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+        });
+
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+        });
+    });
+</script>
+@endif
+
         <div class="">
             @yield('main')
         </div>

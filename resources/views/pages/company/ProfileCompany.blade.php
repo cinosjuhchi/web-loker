@@ -2,31 +2,34 @@
 @section('profileCompany')
 <form id="companyForm" action="{{ route('company.profile.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
+
     <div class="">
         <div class="relative">
-            <img src="{{ $company->photo_banner ? asset('storage/' . $company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}" alt="Header Image" class="w-full h-64 object-cover" id="banner"> 
-            <input type="file" id="file_banner" name="photo_banner" accept=".jpg, .jpeg, .png” class="hidden w-full h-16"
-                disabled onchange="displayFileNameBanner()">
-            <label for="file_banner" id="label_banner"
-                class=" absolute right-0 top-0 flex p-3 m-5 bg-biru-tuwak rounded-full text-center  select-none cursor-pointer  text-white">                
+            <img src="{{ $company->photo_banner ? asset('storage/' . $company->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}"
+                alt="Header Image" id="banner" class="w-full h-64 object-cover">
+            <input type="file" id="file-banner" name="photo_banner" accept=".jpg, .jpeg, .png” class="hidden w-full h-16"
+                onchange="displayPreviewBanner()" disabled>
+            <label id="edit-banner" for="file-banner"
+                class=" absolute right-0 top-0 flex p-3 m-5 bg-gray-300 rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                    fill="none">
+                    fill="none">    
                     <path
                         d="M19.6596 10.7008L21.2949 12.3361L5.19041 28.4406H3.55507V26.8052L19.6596 10.7008ZM26.0587 0C25.6143 0 25.1521 0.177754 24.8144 0.515485L21.5615 3.76838L28.2273 10.4341L31.4802 7.18125C31.645 7.0168 31.7757 6.82147 31.8649 6.60643C31.9541 6.3914 32 6.16088 32 5.92808C32 5.69528 31.9541 5.46477 31.8649 5.24973C31.7757 5.0347 31.645 4.83937 31.4802 4.67492L27.3207 0.515485C26.9652 0.159978 26.5208 0 26.0587 0ZM19.6596 5.67034L0 25.3299V31.9957H6.66576L26.3253 12.3361L19.6596 5.67034Z"
                         fill="white" />
                 </svg>
 
-            </label> 
-            <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">          
-            <img id="profile" src="{{ $company->photo_profile ? asset('storage/' . $company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}"  alt="Profile Picture"
-            class="w-32 h-32 rounded-full border-4 border-white object-cover object-center" id="profile">            
-                    <input type="file" accept=”.jpg, .jpeg, .png” id="file_profile" name="photo_profile" class="hidden w-full h-16"
-                     disabled onchange="displayFileNameProfile()">
-                <label for="file_profile" id="label_profile"
-                    class=" absolute flex p-10 top-2 rounded-full text-center select-none cursor-pointer text-white">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" id="edit_icon" height="32" viewBox="0 0 32 32" class="hidden opacity-0 hover:opacity-100"
-                        fill="none">
+            </label>
+            <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">
+                <img src="{{ $company->photo_profile ? asset('storage/' . $company->photo_profile) : Vite::asset('resources/assets/placeholder.png') }}"
+                    alt="Profile Picture" id="PP"
+                    class="w-32 h-32 rounded-full border-4 border-white object-cover object-center">
+                <input type="file" id="file-PP" disabled name="photo_profile" accept=".jpg, .jpeg, .png” class="hidden w-full h-16"
+                    onchange="displayPreviewPP()">
+                <label id="edit-profile" for="file-PP"
+                    class=" absolute flex p-10 top-2 rounded-full hover:bg-gray-300 text-center  select-none cursor-pointer  text-white">
+                    <svg id="icon-edit-profile" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        viewBox="0 0 32 32" class="opacity-0" fill="none">
                         <path
                             d="M19.6596 10.7008L21.2949 12.3361L5.19041 28.4406H3.55507V26.8052L19.6596 10.7008ZM26.0587 0C25.6143 0 25.1521 0.177754 24.8144 0.515485L21.5615 3.76838L28.2273 10.4341L31.4802 7.18125C31.645 7.0168 31.7757 6.82147 31.8649 6.60643C31.9541 6.3914 32 6.16088 32 5.92808C32 5.69528 31.9541 5.46477 31.8649 5.24973C31.7757 5.0347 31.645 4.83937 31.4802 4.67492L27.3207 0.515485C26.9652 0.159978 26.5208 0 26.0587 0ZM19.6596 5.67034L0 25.3299V31.9957H6.66576L26.3253 12.3361L19.6596 5.67034Z"
                             fill="white" />
@@ -34,16 +37,14 @@
 
                 </label>
             </div>
-
-    
-                </div>
+        </div>
 
         <div class="mt-16 text-center">
-            <h1 class="text-2xl font-semibold">{{ $company->company_name }}</h1>
+            <h1 class="text-2xl font-semibold">{{ auth()->user()->name }}</h1>
         </div>
 
         <div class="mt-5">
-            <div class=" justify-center lg:flex block w-fit mx-auto gap-2">
+            <div class="justify-center lg:flex block w-fit mx-auto gap-2">
                 <div class="mb-4 lg:mb-0 ">
                     <button class=" bg-biru-tuwak rounded-full focus:ring-0 p-3 border-none text-white">Tambahkan
                         Lowongan</button>
@@ -51,27 +52,25 @@
                 </div>
 
                 <div class="mb-4 lg:mb-0">
-                    <a href="{{ route('company.logout') }}">
-                        <button  class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Keluar</button>
-                    </a>
-
+                    <button type="button"
+                        class="border border-red-800 py-3 lg:px-6 rounded-full text-red-800 px-4 w-full hover:bg-red-800 hover:text-white">Keluar</button>
                 </div>
             </div>
-
         </div>
+
     </div>
+
+    
+    
 
     <div class="lg:mx-[100px] mx-5">
       
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2 lg:text-2xl" for="description">Deskripsi Perusahaan:</label>
-                <input class="border mb-4 border-gray-300 p-4 rounded-lg bg-gray-100 w-full" 
-                id="description" 
-                value="{{ $company->description ?? 'Tidak ada deskripsi' }}" 
-                disabled readonly>                
-                <input id="input_description" type="hidden" name="description" class="py-4 px-5 w-full rounded-md mt-0 mb-2 border-0 ring-0  focus:border-blue-500 outline-none focus:outline-none focus:ring-10">
-                <trix-editor class="mb-2 hidden" id="trix_editor" input="input_description"></trix-editor>
-                {{-- <button class="mt-2 text-blue-600 hover:underline" type="button" id="enableDescription">Edit</button> --}}
+                <input class="border mb-4 border-gray-300 p-4 rounded-lg bg-gray-100 w-full"                 
+                value="{{ $company->description ?? 'Tidak ada deskripsi' }}" name="description" 
+                disabled>                
+                
         </div>
 
 
@@ -141,7 +140,7 @@
                         <div class="lg:w-[50%]">                            
                             <div>
                                 <label class="block text-gray-700 mb-2 font-semibold" for="code_post">Kode Pos</label>
-                                <input class="w-full p-2 border border-gray-300 rounded-md disabled:bg-gray-400" type="number" name="code_post" id="code_post"
+                                <input class="w-full p-2 border border-gray-300 rounded-md disabled:bg-gray-400" type="text" pattern="^-?\d+(-\d+)*$" value="{{ $company->code_post }}" name="code_post" id="numberInput"
                                     placeholder="Masukan Kode Pos Kantor Anda" disabled>
                             </div>
                         </div>
@@ -172,31 +171,34 @@
 
 
 <script>
-    const toolbar = document.getElementById('trix-toolbar-1');
+    
     const ubahDataButton = document.getElementById('ubahDataButton');
     const batalButton = document.getElementById('batalButton');
     const labelBanner = document.getElementById('label_banner');
     const labelProfile = document.getElementById('label_profile');
     const afterClick = document.getElementById('afterClick');
     
-    const formElements = document.querySelectorAll('#companyForm input, #companyForm select');
-    const editor = document.getElementById('trix_editor');
-    toolbar.classList.add('hidden')
+    const formElements = document.querySelectorAll('#companyForm input, #companyForm select');    
 
     
     ubahDataButton.addEventListener('click', function() {
-        console.log(200);
-        ubahDataButton.style.display = 'none';
-        afterClick.classList.remove('hidden');
-        formElements.forEach(element => {
-            element.removeAttribute('disabled');
+            formElements.forEach(element => {
+                element.removeAttribute('disabled');
+            });
+            ubahDataButton.style.display = 'none';
+            afterClick.classList.remove('hidden');
+
+
+            // configuration for edit banner
+            document.getElementById('file-banner').removeAttribute('disabled')
+            const editbanner = document.getElementById('edit-banner')
+            editbanner.classList.replace('bg-gray-300', 'bg-biru-tuwak');
+
+
+            // configuration for edit PP
+            document.getElementById('file-PP').removeAttribute('disabled');
+            document.getElementById('edit-profile').classList.replace('hover:bg-gray-300', 'hover:bg-biru-tuwak');
         });
-        labelBanner.classList.add('hover:bg-LightBlue');
-        labelProfile.classList.add('hover:bg-LightBlue');
-        
-        toolbar.classList.remove('hidden');
-        editor.classList.remove('hidden');
-    });
     
 
     batalButton.addEventListener('click', function() {
@@ -206,8 +208,7 @@
             element.setAttribute('readonly', 'true');
         });
         banner.src = photoBanner;
-        profile.src = photoProfile;        
-        toolbar.classList.add('hidden');
+        profile.src = photoProfile;                
         editor.classList.add('hidden');
         afterClick.classList.add('hidden');
         ubahDataButton.style.display = 'block';
@@ -220,24 +221,32 @@
         const filePreview = document.getElementById('file-preview');
         
     }
+    
+    function displayPreviewBanner() {
+        const input = document.getElementById('file-banner');
+        const banner = document.getElementById('banner');
 
-    function displayFileNameProfile() {
-            const input = document.getElementById('file_profile');
-            const profile = document.getElementById('profile');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
 
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
+            reader.onload = function(e) {
+                banner.src = e.target.result;
+            };
 
-                reader.onload = function(e) {
-                    profile.src = e.target.result;
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
+            reader.readAsDataURL(input.files[0]);
         }
-    function displayFileNameBanner() {
-            const input = document.getElementById('file_banner');
-            const banner = document.getElementById('banner');
+    }
+
+        document.getElementById('edit-profile').addEventListener('mouseover', function() {
+            document.getElementById('icon-edit-profile').classList.replace('opacity-0', 'opacity-100');
+        })
+        document.getElementById('edit-profile').addEventListener('mouseout', function() {
+            document.getElementById('icon-edit-profile').classList.replace('opacity-100', 'opacity-0');
+        })
+
+        function displayPreviewPP() {        
+            const input = document.getElementById('file-PP');
+            const banner = document.getElementById('PP');
 
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -249,6 +258,15 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        document.getElementById('numberInput').addEventListener('input', function (e) {
+        var value = e.target.value;
+        if (!/^-?\d+(-\d+)*$/.test(value)) {
+            e.target.setCustomValidity('Hanya angka dan tanda minus yang diperbolehkan');
+        } else {
+            e.target.setCustomValidity('');
+        }
+        });
+        
 </script>
 
 @endsection

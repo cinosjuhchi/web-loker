@@ -23,7 +23,7 @@ class ResumeFactory extends Factory
             'user_id' => mt_rand(1, 11),
             'company_id' => mt_rand(1, 10),
             'post_id' => mt_rand(1, 30),
-            'cv' => $this->faker->url, // Assuming cv is a URL to the CV document
+            'cv' => "pdf/proposal.pdf", // Assuming cv is a URL to the CV document
             'description' => $this->faker->paragraph,
             'number_phone' => $this->faker->phoneNumber,
         ];

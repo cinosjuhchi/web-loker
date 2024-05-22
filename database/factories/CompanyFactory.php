@@ -50,11 +50,12 @@ class CompanyFactory extends Factory
             'address' => $this->faker->streetAddress . ', ' . $this->faker->randomElement($cities) . ', ' . $this->faker->randomElement($provinces),
             'province' => $this->faker->randomElement($provinces),
             'number_phone' => $this->faker->phoneNumber,
-            'photo_profile' => $this->faker->optional()->imageUrl(640, 480, 'business', true, 'Profile'),
-            'photo_banner' => $this->faker->optional()->imageUrl(1280, 720, 'business', true, 'Banner'),
+            'photo_profile' => null,
+            'photo_banner' => null,
             'description' => $this->faker->optional()->paragraph,
+            'code_post' => $this->faker->postcode,
             'category_id' => $this->faker->numberBetween(1, 10), // Adjust category_id as needed
-            'status' => $this->faker->randomElement(['active', 'pending', 'suspend']),
+            'status' => $this->faker->randomElement(['active', 'pending']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

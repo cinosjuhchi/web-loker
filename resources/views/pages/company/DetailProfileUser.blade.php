@@ -3,11 +3,11 @@
     <div class="lg:mx-[70px] mb-10 mx-[15px] mt-5">
         <h1 class="text-2xl font-bold mb-4 mt-9">Detail Pelamar {{ $resumes->posts->title }}</h1>
         <div class="border-t-4 lg:my-10 my-5"></div>
-        <div class="">
+        <div class="mb-10">
             <div class="flex flex-col items-center">
-                <img src="{{ $resumes->user->photo == null ? Vite::asset('resources/assets/placeholder.png') : $resumes->user->photo     }}" alt="Profile Picture" class="w-40 h-40 rounded-full mb-4 object-cover object-center">
+                <img src="{{ $resumes->user->photo == null ? Vite::asset('resources/assets/placeholder.png') : asset('storage/' . $resumes->user->photo) }}" alt="Profile Picture" class="w-40 h-40 rounded-full mb-4 object-cover object-center">
                 <div class="flex space-x-4 mb-4">
-                    <a href="{{ $resumes->cv }}" target="_blank" class="bg-biru-tuwak text-white px-4 py-2 rounded-full">Lihat CV</a>
+                    <a href="{{ route('company.preview.pdf', [$resumes->id]) }}" target="_blank" class="bg-biru-tuwak text-white px-4 py-2 rounded-full">Lihat CV</a>                    
                     <button id="reportUser"
                         class="border border-red-800 text-red-800 px-4 py-2 rounded-full">Report</button>
                 </div>
@@ -52,6 +52,11 @@
                 <p class="font-bold max-w-md text-pretty">{{ $resumes->description }}</p>
             </div>
         </div>
+        @if($company->bookmarks->contains('user_id', $resumes->user->id))
+        <a href="{{ route('company.simpanPelamar.delete', ['id' => $company->bookmarks->where('user_id', $resumes->user->id)->first()->id]) }}" class="bg-red-600 text-white px-4 py-2 rounded-md">Hapus dari Bookmark</a>
+        @else
+        <a href="{{ route('company.simpanPelamar.store', ['id' => $resumes->user->id]) }}" class="bg-biru-tuwak text-white px-4 py-2 rounded-md">Tambahkan ke Bookmark</a>
+        @endif
     </div>
 
 

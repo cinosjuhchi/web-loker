@@ -36,6 +36,10 @@ class Company extends Authenticatable
     {
         return $this->hasMany(Resume::class, 'company_id', 'id');
     }
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(CompanyBookmark::class, 'company_id', 'id');
+    }
 
     /**
      * Get the user that owns the Company
@@ -46,6 +50,7 @@ class Company extends Authenticatable
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
     public function getRoleAttribute()
     {
         return 'company';
