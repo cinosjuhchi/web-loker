@@ -27,8 +27,8 @@ class UserFactory extends Factory
             'datebirth' => $this->faker->optional()->date('Y-m-d'),
             'jk' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'academy' => $this->faker->randomElement(['SMA', 'Diploma', 'Sarjana', 'Magister']),
-            'photo' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image
-            'photo_banner' => $this->faker->optional()->imageUrl(640, 480, 'people', true, 'Faker'), // Placeholder image
+            'photo' => null, // Placeholder image
+            'photo_banner' => null, // Placeholder image
             'description' => $this->faker->optional()->paragraph,
             'province' => 'DKI Jakarta',
             'status' => $this->faker->randomElement(['active', 'pending', 'suspend']),
