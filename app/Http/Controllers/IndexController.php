@@ -167,7 +167,7 @@ class IndexController extends Controller
             $resumesQuery->whereHas('user', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
         });
-
+        }
         if ($year) {
             $resumesQuery->whereYear('created_at', $year);
         }
@@ -179,10 +179,12 @@ class IndexController extends Controller
             $resumesQuery->latest();
         }
 
-        $resumes = $resumesQuery->paginate(5);
-    }
+        $resumes = $resumesQuery->paginate(5);    
         return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
-    }    
+    }
+
+
+
     public function detailPost(Request $request) {
         $title = "Detail Loker";
         $post = Post::findOrFail($request->route('id'));
