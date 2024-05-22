@@ -96,6 +96,27 @@ class IndexController extends Controller
         return view("pages.company.PasangLowongan", compact("title", "category"));        
 
     }    
+
+    public function updateLoker(Request $request)
+    {
+        $post = Post::findOrFail($request->id);        
+
+        // $request->validate([
+        //     'title' => 'string|max:255',
+        //     'content' => 'string|max:255',       
+        //     'max_salary' => 'integer',
+        //     'min_salary' => 'integer',
+        //     'id_category' => 'integer',                        
+        // ]);
+        $post->title = $request->title;
+        $post->min_salary = $request->min_salary;
+        $post->max_salary = $request->max_salary;
+        $post->id_category = $request->id_category;
+        $post->content = $request->content;
+        $post->save();
+        return redirect()->back()->with('success', 'Lowongan berhasil diupdate.');
+
+    }
     public function pelamarKerja(Request $request)
     {
         $title = "Pelamar Kerja";
@@ -130,7 +151,7 @@ class IndexController extends Controller
     }    
     public function detailPost(Request $request) {
         $title = "Detail Loker";
-        $post = Post::findOrFail($request->route('id'));          
+        $post = Post::findOrFail($request->route('id'));
         $category = Category::all();      
         return view("pages.company.UbahLoker", compact("title", "post", "category"));
     }
