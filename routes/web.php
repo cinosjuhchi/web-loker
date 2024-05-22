@@ -110,7 +110,7 @@
             } else {
                 $provinces = [];
             }
-
+            
             $user = Auth::user();
 
             $postsQuery = Post::with('category');

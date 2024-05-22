@@ -168,26 +168,27 @@ class IndexController extends Controller
         if ($search) {
             $resumesQuery->whereHas('user', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
-        });
+            });
         }
         if ($year) {
             $resumesQuery->whereYear('created_at', $year);
         }
 
-            // Urutkan berdasarkan waktu
-            if ($time == 'oldest') {
-                $resumesQuery->oldest();
-            } elseif ($time == 'latest') {
-                $resumesQuery->latest();
-            }
+        // Urutkan berdasarkan waktu
+        if ($time == 'oldest') {
+            $resumesQuery->oldest();
+        } elseif ($time == 'latest') {
+            $resumesQuery->latest();
+        }
 
-        $resumes = $resumesQuery->paginate(5);    
-        return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
+        $resumes = $resumesQuery->paginate(5);
+        return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));
     }
 
 
 
-    public function detailPost(Request $request) {
+    public function detailPost(Request $request)
+    {
         $title = "Detail Loker";
         $post = Post::findOrFail($request->route('id'));
         $category = Category::all();
@@ -341,7 +342,8 @@ class IndexController extends Controller
         $posts = Post::where('id_company', $id_company)->with(['company', 'category']) // Untuk memuat relasi terkait
             ->get();
         $company = Company::find($id_company);
-        return view("pages.DetailPerusahaan", compact("title", "posts", "company"));
+        $user  = Auth::user();
+        return view("pages.DetailPerusahaan", compact("title", "posts", "company", 'user'));
     }
 
     public function profilPerusahaanUserPage(Request $request)
@@ -508,6 +510,15 @@ class IndexController extends Controller
         $bookmark->user_id = $user->id;
         $bookmark->save();
         return back()->with('success', 'Postingan berhasil ditambahkan ke bookmark');
+    }
+
+    public function disimpanUser(Request $request)
+    {
+        $title = 'Disimpan';
+        $user = Auth::user();
+        $bookmark = Bookmark::where('user_id', $user->id)->get();
+        $posts = Post::where('id_company', $user->id)->get();
+        return view("pages.DisimpanUser", compact('user', 'bookmark', 'posts', 'title'));
     }
     public function hapusPelamar(Request $request)
     {
