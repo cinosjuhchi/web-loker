@@ -168,11 +168,11 @@ class IndexController extends Controller
         if ($search) {
             $resumesQuery->whereHas('user', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
-            });
-
-            if ($year) {
-                $resumesQuery->whereYear('created_at', $year);
-            }
+        });
+        }
+        if ($year) {
+            $resumesQuery->whereYear('created_at', $year);
+        }
 
             // Urutkan berdasarkan waktu
             if ($time == 'oldest') {
@@ -181,12 +181,13 @@ class IndexController extends Controller
                 $resumesQuery->latest();
             }
 
-            $resumes = $resumesQuery->paginate(5);
-        }
-        return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));
+        $resumes = $resumesQuery->paginate(5);    
+        return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
     }
-    public function detailPost(Request $request)
-    {
+
+
+
+    public function detailPost(Request $request) {
         $title = "Detail Loker";
         $post = Post::findOrFail($request->route('id'));
         $category = Category::all();
