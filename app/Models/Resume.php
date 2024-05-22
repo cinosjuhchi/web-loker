@@ -19,7 +19,7 @@ class Resume extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
@@ -27,5 +27,9 @@ class Resume extends Model
     public function posts(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id', 'id');
+    }
+    public function save(array $options = [])
+    {
+        parent::save($options);
     }
 }
