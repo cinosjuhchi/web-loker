@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+// use App\Models\resume;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Resume;
 use App\Models\Company;
 use App\Models\Bookmark;
 use App\Models\Category;
+use App\Models\JobCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\CompanyBookmark;
@@ -18,33 +20,64 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-    public function uploadLamaranUser(Request $request)
+    public function uploadLamaranUser(Request $request, $post_id, $company_id)
     {
+
+        $post = Post::findOrFail($post_id);
+        $company = Company::findOrFail($company_id);
         $title = "Upload Lamaran";
-        return view("pages.UploadLamaranUser", compact("title"));
+        // $post = Post::find($request->post_id);
+        // $company = Company::find($request->company_id);
+        return view("pages.UploadLamaranUser", compact("title", "post", "company"))->with('success', 'File uploaded successfully.');
     }
 
+    public function prosesupLamaranUser(Request $request)
+    {
+        if ($request->hasfile('cv')) {
+            $cv = $request->file('cv')->store('storage\app\public\user\cv');
+        }
+        
+        $post = Post::findOrFail('id');
+        $company = Company::findOrFail('id');
+        $resume = new Resume();
+        dd($resume);
+        $resume->user_id = auth()->user()->id;
+        $resume->company_id = $company->id;
+        $resume->post_id = $post->id;
+        $resume->description = $request->input('description');
+        $resume->nomor_telepon = $request->input('nomor_telepon');
+        $resume->save();
+
+        // Resume::create([
+        //     'post_id' => $post->id,
+        //     // 'cv' => $cv,
+        //     'description' => $request->input('description'),
+        //     'nomort_telepon' => $request->input('nomor_telepon'),
+        // ]);
+
+        return view("pages.dashboardUser", compact("title"))->with('success', 'File uploaded successfully.');
+    }
 
     public function dashboardCompany(Request $request)
     {
         $title = "Dashboard";
         $company = Auth::guard('company')->user();
-     
 
-    // Daftar kolom yang wajib diisi
-            $requiredFields = [
-                'company_name', 
-                'company_email', 
-                'slug', 
-                'password', 
-                'address', 
-                'province', 
-                'number_phone', 
-                'category_id'
-            ];
 
-            // Cek jika ada kolom yang kosong atau null
-            $incompleteProfile = false;
+        // Daftar kolom yang wajib diisi
+        $requiredFields = [
+            'company_name',
+            'company_email',
+            'slug',
+            'password',
+            'address',
+            'province',
+            'number_phone',
+            'category_id'
+        ];
+
+        // Cek jika ada kolom yang kosong atau null
+        $incompleteProfile = false;
         foreach ($requiredFields as $field) {
             if (!empty($company->$field)) {
                 $incompleteProfile = true;
@@ -68,7 +101,9 @@ class IndexController extends Controller
         return view('pages.company.DashboardUser', compact('title', 'company', 'resumes', 'company', 'incompleteProfile'));
     }
 
-    public function pasangLowongan(Request $request){
+
+    public function pasangLowongan(Request $request)
+    {
         $title = "Pasang Lowongan Kerja";
         $category = Category::all();
 
@@ -81,20 +116,19 @@ class IndexController extends Controller
 
         try {
             $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-                if ($response->successful()) {
-                    $provinces = $response->json();
-                } else {
-                    $provinces = [];
-                }
-            } catch (\Exception $e) {
-                $message = $e->getMessage();
-                return view('exception.error500', compact('message', 'title'));
+            if ($response->successful()) {
+                $provinces = $response->json();
+            } else {
+                $provinces = [];
             }
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            return view('exception.error500', compact('message', 'title'));
+        }
 
 
 
-        return view("pages.company.PasangLowongan", compact("title", "category"));        
-
+        return view("pages.company.PasangLowongan", compact("title", "category"));
     }    
 
     public function updateLoker(Request $request)
@@ -185,25 +219,27 @@ class IndexController extends Controller
 
         return view("pages.company.LowonganKerjaCompany", compact("title", "posts"));
     }
-        public function detailProfileUser(Request $request){
-            $title = "Work Seeker";
-            $resumes = Resume::findOrFail($request->resumeId);
+    public function detailProfileUser(Request $request)
+    {
+        $title = "Work Seeker";
+        $resumes = Resume::findOrFail($request->resumeId);
             $company = Auth::guard('company')->user();
-            return view("pages.company.DetailProfileUser", compact("title", "resumes", "company"));
-        }
-       
-    public function profileCompany(Request $request) {
+        return view("pages.company.DetailProfileUser", compact("title", "resumes", "company"));
+    }
+
+    public function profileCompany(Request $request)
+    {
         $title = "Profil Perusahaan";
         $category = Category::all();
         $company = Auth::guard('company')->user();
-        if($category == null){
+        if ($category == null) {
             $category = [
                 'name' => 'Data kosong',
                 'id' => null
             ];
         }
         try {
-        $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+            $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
             if ($response->successful()) {
                 $provinces = $response->json();
             } else {
@@ -211,42 +247,37 @@ class IndexController extends Controller
             }
         } catch (\Exception $e) {
             $message = $e->getMessage();
-                return view('exception.error500', compact('message', 'title'));
+            return view('exception.error500', compact('message', 'title'));
         }
         return view("pages.company.ProfileCompany", compact("title", "category", "provinces", "company"));
     }
 
-    public function pasangLoker(Request $request){
+    public function pasangLoker(Request $request)
+    {
         $title = "Pasang Loker";
         return view("pages.PasangLoker", compact("title"));
     }
 
-    
-    public function profilUser(Request $request){
-        $title = "Profil";
 
-        $category = Category::all();
-        if ($category == null) {
-            $category = [
-                'name' => 'Data kosong',
-                'id' => null
-            ];
-        }
+    public function profilUser(Request $request)
+    {
+        $title = "Profil";
+        $jobcategory = JobCategory::all();
 
         $selectedProvince = auth()->user()->province;
 
         try {
             $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-                if ($response->successful()) {
-                    $provinces = $response->json();
-                } else {
-                    $provinces = [];
-                }
-            } catch (\Exception $e) {
-                $message = $e->getMessage();
-                return view('exception.error500', compact('message', 'title'));
+            if ($response->successful()) {
+                $provinces = $response->json();
+            } else {
+                $provinces = [];
             }
-        return view("pages.ProfileUser", compact("title" , "category", "provinces", "selectedProvince"));
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            return view('exception.error500', compact('message', 'title'));
+        }
+        return view("pages.ProfileUser", compact("title", "jobcategory", "provinces", "selectedProvince"));
     }
     public function aboutUs(Request $request)
     {
@@ -267,15 +298,15 @@ class IndexController extends Controller
         // Mengambil data provinsi dari API
         try {
             $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-                if ($response->successful()) {
-                    $provinces = $response->json();
-                } else {
-                    $provinces = [];
-                }
-            } catch (\Exception $e) {
-                $message = $e->getMessage();
-                return view('exception.error500', compact('message', 'title'));
+            if ($response->successful()) {
+                $provinces = $response->json();
+            } else {
+                $provinces = [];
             }
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            return view('exception.error500', compact('message', 'title'));
+        }
 
         $postsQuery = Post::query();
 
@@ -333,7 +364,7 @@ class IndexController extends Controller
             });
         }
 
-        $companies = Company::inRandomOrder()->get();
+        $companies = Company::inRandomOrder()->paginate(8);
         return view("pages.ProfilPerusahaanUser", compact("title", "provinces", "companies", "postsQuery"));
     }
     public function dashboardUser(Request $request)
@@ -345,7 +376,7 @@ class IndexController extends Controller
         } else {
             $provinces = [];
         }
-        return view("pages.DashboardUser", compact("title", "provinces",));
+        return view("pages.DashboardUser", compact("title", "provinces", 'posts'));
     }
 
     public function logout(Request $request)
@@ -359,43 +390,44 @@ class IndexController extends Controller
     }
 
 
-    public function postLowongan(Request $request) {
-            $validatedData = $request->validate([
-                'title' => 'required|max:255',
-                'content' => 'required',
-                'id_category' => 'required|integer',
-                'min_salary' => 'required|integer|min:0',
-                'max_salary' => 'integer|min:0|gte:min_salary',
-            ], [
-                'title.required' => 'Judul lowongan harus diisi.',
-                'title.max' => 'Judul lowongan maksimal 255 karakter.',
-                'content.required' => 'Konten lowongan harus diisi.',
-                'id_category.required' => 'Kategori harus dipilih.',
-                'id_category.integer' => 'Kategori tidak valid.',
-                'min_salary.required' => 'Gaji minimum harus diisi.',
-                'min_salary.integer' => 'Gaji minimum harus berupa angka.',
-                'min_salary.min' => 'Gaji minimum tidak boleh negatif.',
-                'max_salary.required' => 'Gaji maksimum harus diisi.',
-                'max_salary.integer' => 'Gaji maksimum harus berupa angka.',
-                'max_salary.min' => 'Gaji maksimum tidak boleh negatif.',
-                'max_salary.gte' => 'Gaji maksimum harus lebih besar atau sama dengan gaji minimum.',
-            ]);
+    public function postLowongan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'id_category' => 'required|integer',
+            'min_salary' => 'required|integer|min:0',
+            'max_salary' => 'integer|min:0|gte:min_salary',
+        ], [
+            'title.required' => 'Judul lowongan harus diisi.',
+            'title.max' => 'Judul lowongan maksimal 255 karakter.',
+            'content.required' => 'Konten lowongan harus diisi.',
+            'id_category.required' => 'Kategori harus dipilih.',
+            'id_category.integer' => 'Kategori tidak valid.',
+            'min_salary.required' => 'Gaji minimum harus diisi.',
+            'min_salary.integer' => 'Gaji minimum harus berupa angka.',
+            'min_salary.min' => 'Gaji minimum tidak boleh negatif.',
+            'max_salary.required' => 'Gaji maksimum harus diisi.',
+            'max_salary.integer' => 'Gaji maksimum harus berupa angka.',
+            'max_salary.min' => 'Gaji maksimum tidak boleh negatif.',
+            'max_salary.gte' => 'Gaji maksimum harus lebih besar atau sama dengan gaji minimum.',
+        ]);
 
-            // Buat slug dari title
-            $slug = Str::slug($validatedData['title'], '-');
+        // Buat slug dari title
+        $slug = Str::slug($validatedData['title'], '-');
 
-            // Simpan data yang sudah valid ke database
-            $post = new Post();
-            $post->title = $validatedData['title'];
-            $post->slug = $slug;
-            $post->content = $validatedData['content'];
-            $post->id_company = auth()->guard('company')->user()->id; // Asumsikan bahwa company yang login akan mengisi kolom ini
-            $post->id_category = $validatedData['id_category'];
-            $post->min_salary = $validatedData['min_salary'];
-            $post->max_salary = $validatedData['max_salary'];
-            $post->save();
-            return redirect()->route('company.dashboard')->with('success', 'Lowongan berhasil diposting.');
-        }
+        // Simpan data yang sudah valid ke database
+        $post = new Post();
+        $post->title = $validatedData['title'];
+        $post->slug = $slug;
+        $post->content = $validatedData['content'];
+        $post->id_company = auth()->guard('company')->user()->id; // Asumsikan bahwa company yang login akan mengisi kolom ini
+        $post->id_category = $validatedData['id_category'];
+        $post->min_salary = $validatedData['min_salary'];
+        $post->max_salary = $validatedData['max_salary'];
+        $post->save();
+        return redirect()->route('company.dashboard')->with('success', 'Lowongan berhasil diposting.');
+    }
 
 
         public function updateCompany(Request $request) {
@@ -472,4 +504,3 @@ class IndexController extends Controller
             return view("preview.pdf", compact("title", "resume"));
         }
 }
-

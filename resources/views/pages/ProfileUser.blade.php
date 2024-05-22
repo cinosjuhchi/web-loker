@@ -1,14 +1,14 @@
 @extends('layouts.DefaultLayout')
 
 @section('profileUser')
-    <form id="userForm" action="" method="POST">
+    <form id="userForm" action="{{ route('puu') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="">
             <div class="relative">
-                <img src="{{ optional(auth()->user())->photo_banner ? asset(optional(auth()->user())->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}"
+                <img src="{{ optional(auth()->user())->photo_banner ? asset('storage/' . auth()->user()->photo_banner) : Vite::asset('resources/assets/placeholder.png') }}"
                     alt="Header Image" id="banner" class="w-full h-64 object-cover">
-                <input type="file" id="file-banner" name="file-banner" class="hidden w-full h-16"
+                <input type="file" id="file-banner" name="file_banner" class="hidden w-full h-16"
                     onchange="displayPreviewBanner()" disabled>
                 <label id="edit-banner" for="file-banner"
                     class=" absolute right-0 top-0 flex p-3 m-5 bg-gray-300 rounded-full hover:bg-LightBlue text-center  select-none cursor-pointer  text-white">
@@ -22,7 +22,9 @@
 
                 </label>
                 <div class="absolute inset-x-0 bottom-0 transform translate-y-1/2 flex justify-center ">
-                    <img src="{{ optional(auth()->user())->photo ? asset(optional(auth()->user())->photo) : Vite::asset('resources/assets/placeholder.png') }}"
+                    <img src="{{ optional(auth()->user())->photo
+                        ? asset('storage/' . auth()->user()->photo)
+                        : Vite::asset('resources/assets/placeholder.png') }}"
                         alt="Profile Picture" id="PP"
                         class="w-32 h-32 rounded-full border-4 border-white object-cover object-center">
                     <input type="file" id="file-PP" disabled name="file-PP" class="hidden w-full h-16"
@@ -68,7 +70,7 @@
                 <label class="block lg:text-2xl text-gray-700 font-semibold mb-2" for="description">Deskripsi diri
                     anda:</label>
                 <input class="border border-gray-300 p-4 rounded-lg bg-gray-100 w-full" placeholder="Deskripsikan diri anda"
-                    value="{{ auth()->user()->description }}" readonly>
+                    name="description" value="{{ auth()->user()->description }}" readonly>
 
                 </input>
             </div>
@@ -90,7 +92,9 @@
                         </label>
                     </div>
                     <div id="file-preview" class="text-gray-500 my-5">{{ auth()->user()->default_cv }}</div>
-                    <embed class="w-1/2 h-[80%] mx-auto" id="preview_cv" src="" type="application/pdf">
+                    <embed class="w-1/2 h-[80%] mx-auto my-3" id="preview_cv"
+                        src="{{ auth()->user()->default_cv ? asset('storage/' . auth()->user()->default_cv) : '' }}"
+                        type="application/pdf">
                 </div>
             </div>
 
@@ -101,7 +105,7 @@
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="username">Nama Pengguna</label>
                         <input class="w-full p-2 border border-gray-300 rounded-md" type="text" name="nama_pengguna"
-                            id="username" placeholder="Nama pengguna" readonly>
+                            id="username" placeholder="Nama pengguna" value="{{ auth()->user()->username }}" readonly>
                     </div>
 
                     <div>
@@ -123,6 +127,43 @@
                             value="{{ auth()->user()->number_phone }}">
                     </div>
 
+
+                    <div x-data="{ open: false }" @click.away="open = false" class="relative">
+                        <!-- Trigger -->
+                        <p class="block text-gray-700 mb-2 font-semibold">Keahlian</p>
+                        <button @click="open = !open" type="button"
+                            class="px-4 py-2 flex items-center w-full justify-between bg-white rounded-md border border-gray-300 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            Pilih Bidang Keahlian
+                            <!-- Icon -->
+                            <svg :class="{ 'rotate-180': open }" class="w-4 h-4 ml-2 transform transition-transform"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- Dropdown Body -->
+                        <div x-show="open" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                            class="absolute z-50 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1 overflow-y-scroll h-[200px]">
+                                <!-- Options -->
+
+                                @foreach ($jobcategory as $item)
+                                    <label
+                                        class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                                        <input type="checkbox" name="interest[]" value="{{ $item->name }}"
+                                            class="mr-3 text-sidebarunj border-gray-300 rounded focus:ring-sidebarunj"
+                                            {{ in_array($item->name, old('interest', auth()->user()->interest ?? [])) ? 'checked' : '' }}>
+                                        {{ $item->name }}
+                                    </label>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
                     {{-- <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="expertise">Keterampilan</label>
                         <select name="category_id" id="expertise" class="w-full p-2 border border-gray-300 rounded-md"
@@ -135,12 +176,13 @@
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="birthdate">Tanggal Lahir</label>
                         <input class="w-full p-2 border border-gray-300 rounded-md" type="date" id="birthdate"
-                            placeholder="8 Mei 2007" readonly value="{{ auth()->user()->datebirth }}">
+                            name="datebirth" placeholder="8 Mei 2007" readonly value="{{ auth()->user()->datebirth }}">
                     </div>
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="education">Pendidikan Terakhir</label>
-                        <select class="w-full p-2 border border-gray-300 rounded-md" id="education" readonly>
+                        <select class="w-full p-2 border border-gray-300 rounded-md" id="education" name="academy"
+                            readonly>
                             <option value="SMA" {{ auth()->user()->academy == 'SMA' ? 'selected' : '' }}>SMA</option>
                             <option value="Diploma" {{ auth()->user()->academy == 'Diploma' ? 'selected' : '' }}>Diploma
                             </option>
@@ -153,7 +195,8 @@
 
                     <div>
                         <label class="block text-gray-700 mb-2 font-semibold" for="gender">Jenis Kelamin</label>
-                        <select class="w-full p-2 border border-gray-300 rounded-md" id="gender" readonly>
+                        <select class="w-full p-2 border border-gray-300 rounded-md" id="gender" name="jk"
+                            readonly>
                             <option value="Laki-laki" {{ auth()->user()->jk == 'Laki-laki' ? 'selected' : '' }}>Laki-laki
                             </option>
                             <option value="Perempuan" {{ auth()->user()->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan
@@ -164,7 +207,8 @@
                     <div class="md:col-span-2">
                         <label class="block text-gray-700 mb-2 font-semibold" for="province">Provinsi Tempat
                             Tinggal</label>
-                        <select id="province" class="lg:w-1/2 w-full p-2 border border-gray-300 rounded-md" readonly>
+                        <select id="province" name="province"
+                            class="lg:w-1/2 w-full p-2 border border-gray-300 rounded-md" readonly>
                             <option value="provinsi">Provinsi</option>
                             <!-- Option elements dynamically populated here -->
                             @foreach ($provinces as $province)
@@ -187,7 +231,7 @@
                         <div id="afterClick" class="hidden">
                             <button id="batalButton" type="button"
                                 class="border border-red-800 py-3 lg:px-6 rounded-full px-4 text-red-800 hover:bg-red-800 hover:text-white">Batal</button>
-                            <button type="submit"
+                            <button type="submit" name="submit"
                                 class="py-3 lg:px-4 bg-biru-tuwak rounded-full focus:ring-0 px-4 border-none text-white">Ubah</button>
                         </div>
                     </div>
@@ -204,7 +248,8 @@
 
 
     <div id="keahlian" class="z-10 hidden bg-white rounded-lg shadow w-full">
-        <input id="keahlian" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+        <input id="keahlian" type="checkbox" value=""
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
     </div>
 
 
@@ -351,8 +396,4 @@
             updateWrapper()
         })
     </script>
-
-    
-
-
 @endsection

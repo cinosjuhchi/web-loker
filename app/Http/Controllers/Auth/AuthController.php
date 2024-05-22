@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+
 
 class AuthController extends Controller
 {
@@ -81,42 +83,63 @@ class AuthController extends Controller
         return back()->with('error', 'Email atau password tidak ada.');
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(Request $request)
     {
-        // Validasi input
+        $user = Auth::user();
+
+        // Validasi
         $request->validate([
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,|max:5096',
-            'email' => 'required|string|email|max:255',
-            'name' => 'required|string|max:255',
+            'file_banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5124',
+            'file-PP' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5124',
+            'file-CV' => 'nullable|PDF|mimes:pdf|max:5124',
+            'description' => 'nullable|string|max:255',
+            'nama_pengguna' => 'nullable|string|max:255',
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'number_phone' => 'nullable|string|max:15',
+            'datebirth' => 'nullable|date',
+            'academy' => 'nullable|string',
+            'jk' => 'nullable|string',
+            'province' => 'nullable|string',
         ]);
 
-        // Temukan pengguna berdasarkan ID
-        $user = User::findOrFail($id);
-
-        // Perbarui data pengguna
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-
-        // Tangani upload foto jika ada
-        if ($request->hasFile('photo')) {
-            // Hapus foto lama jika ada
-            if ($user->photo) {
-                Storage::delete('public/photos/' . $user->photo);
-            }
-
-            // Upload foto baru
-            $photoPath = $request->file('photo')->store('public/photos');
-            $user->photo = basename($photoPath);
+        // Simpan banner
+        if ($request->hasFile('file_banner')) {
+            $user->photo_banner = $request->file('file_banner')->store('user/images/banners');
         }
 
-        // Simpan perubahan
-        $user->save();
+        // Simpan foto profil
+        if ($request->hasFile('file-PP')) {
+            $user->photo = $request->file('file-PP')->store('user\images\profiles');
+        }
+        if ($request->hasFile('file-cv')) {
+            $user->default_cv = $request->file('file-cv')->store('user\cv');
+        }
 
-        // Redirect kembali dengan pesan sukses
-        return redirect()->route('user.edit', $user->id)->with('success', 'Profile updated successfully.');
+        $user->description = $request->input('description');
+        $user->username = $request->input('nama_pengguna');
+        $user->name = $request->input('nama');
+        $user->email = $request->input('email');
+        $user->number_phone = $request->input('nomor_telepon');
+        $user->datebirth = $request->input('datebirth');
+        $user->academy = $request->input('academy');
+        $user->jk = $request->input('jk');
+        $user->province = $request->input('province');
+        $user->interest = $request->input('interest', []);
+
+        /** @var \App\Models\User $user **/
+        // Simpan data
+        $user->save();
+        // dd($user);
+        return redirect()->route('puu')->with('success', 'Profil berhasil diperbarui.');
     }
 
-
+    private function getProvincesFromAPI()
+    {
+        // Contoh pemanggilan API (sesuaikan dengan API yang Anda gunakan)
+        $response = Http::get('https://api.example.com/provinces');
+        return $response->json();
+    }
     public function registerCompany(Request $request)
     {
         $title = "Register Company Page";
@@ -130,16 +153,16 @@ class AuthController extends Controller
 
         try {
             $response = Http::timeout(10)->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
-                if ($response->successful()) {
-                    $provinces = $response->json();
-                } else {
-                    $provinces = [];
-                }
-            } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'Error jaringan: ' . $e->getMessage()
-                ], 500);
+            if ($response->successful()) {
+                $provinces = $response->json();
+            } else {
+                $provinces = [];
             }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error jaringan: ' . $e->getMessage()
+            ], 500);
+        }
 
         return view("pages.RegisterCompany", compact("title", "category", "provinces"));
     }
