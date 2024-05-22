@@ -95,12 +95,7 @@ class IndexController extends Controller
 
         return view("pages.company.PasangLowongan", compact("title", "category"));        
 
-    }
-    public function ubahLoker(Request $request)
-    {
-        $title = "Ubah Loker";
-        return view("pages.company.UbahLoker", compact("title"));
-    }
+    }    
     public function pelamarKerja(Request $request)
     {
         $title = "Pelamar Kerja";
@@ -133,6 +128,12 @@ class IndexController extends Controller
     }
         return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
     }    
+    public function detailPost(Request $request) {
+        $title = "Detail Loker";
+        $post = Post::findOrFail($request->route('id'));          
+        $category = Category::all();      
+        return view("pages.company.UbahLoker", compact("title", "post", "category"));
+    }
     public function lokerCompany(Request $request){
         $company = Auth::guard('company')->user();
         $title = "Lowongan Kerja";
