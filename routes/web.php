@@ -35,7 +35,7 @@
     Route::get('/disimpan-user', [IndexController::class, 'disimpanUser'])->name('disimpanUser');
     // ini user
     Route::get('/upload-lamaran/{post}/{company}', [IndexController::class, 'uploadLamaranUser'])->name('uploadLamaranUser');
-    Route::post('/upload-lamaran-post', [IndexController::class, 'prosesupLamaranUser'])->name('pulu');
+    Route::post('/upload-lamaran-post', [IndexController::class, 'prosesupLamaranUser'])->name('postlamaran');
     // ini 
     Route::get('/detail-profile-user', [IndexController::class, 'detailProfileUser'])->name('detailProfileUser');
 

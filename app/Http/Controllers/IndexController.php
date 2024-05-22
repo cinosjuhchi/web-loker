@@ -33,29 +33,32 @@ class IndexController extends Controller
 
     public function prosesupLamaranUser(Request $request)
     {
-        if ($request->hasfile('cv')) {
-            $cv = $request->file('cv')->store('storage\app\public\user\cv');
-        }
-        
-        $post = Post::findOrFail('id');
-        $company = Company::findOrFail('id');
         $resume = new Resume();
-        dd($resume);
         $resume->user_id = auth()->user()->id;
-        $resume->company_id = $company->id;
-        $resume->post_id = $post->id;
+        $resume->company_id = $request->input('company_id');
+        $resume->post_id = $request->input('post_id');
+        if ($request->hasfile('cv')) {
+            $resume->cv = $request->file('cv')->store('user/cv');
+        }
         $resume->description = $request->input('description');
-        $resume->nomor_telepon = $request->input('nomor_telepon');
+        $resume->number_phone = $request->input('nomor_telepon');
+        // dd($resume);
+        // $request->validate([
+        //     'company_id' => 'required|integer|exists:companies,id',
+        //     'post_id' => 'required|integer|exists:posts,id',
+        //     'cv' => 'required|file|mimes:pdf,doc,docx|max:2048',
+        //     'description' => 'required|string|max:255',
+        //     'nomor_telepon' => 'required|string|max:15',
+        // ]);
         $resume->save();
 
+        return redirect()->back();
         // Resume::create([
         //     'post_id' => $post->id,
         //     // 'cv' => $cv,
         //     'description' => $request->input('description'),
         //     'nomort_telepon' => $request->input('nomor_telepon'),
         // ]);
-
-        return view("pages.dashboardUser", compact("title"))->with('success', 'File uploaded successfully.');
     }
 
     public function dashboardCompany(Request $request)
@@ -89,7 +92,7 @@ class IndexController extends Controller
         // Get all resumes sent to the company
         $resumesQuery = $company->resumes()->with('user', 'posts');
 
-// Jika ada input pencarian, tambahkan filter berdasarkan nama user
+        // Jika ada input pencarian, tambahkan filter berdasarkan nama user
         if ($search) {
             $resumesQuery->whereHas('user', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
@@ -129,7 +132,7 @@ class IndexController extends Controller
 
 
         return view("pages.company.PasangLowongan", compact("title", "category"));
-    }    
+    }
 
     public function updateLoker(Request $request)
     {
@@ -157,7 +160,7 @@ class IndexController extends Controller
         $search = $request->query('search_input');
         $time = $request->input('time');
         $year = $request->input('year');
-        
+
         $resumes = Auth::guard('company')->user()->resumes();
         // Mulai dengan query dasar tanpa memanggil ->latest()
         $resumesQuery = $resumes;
@@ -172,12 +175,12 @@ class IndexController extends Controller
             $resumesQuery->whereYear('created_at', $year);
         }
 
-        // Urutkan berdasarkan waktu
-        if ($time == 'oldest') {
-            $resumesQuery->oldest();
-        } elseif ($time == 'latest') {
-            $resumesQuery->latest();
-        }
+            // Urutkan berdasarkan waktu
+            if ($time == 'oldest') {
+                $resumesQuery->oldest();
+            } elseif ($time == 'latest') {
+                $resumesQuery->latest();
+            }
 
         $resumes = $resumesQuery->paginate(5);    
         return view("pages.company.PelamarKerjaCompany", compact("title", "resumes"));        
@@ -191,7 +194,8 @@ class IndexController extends Controller
         $category = Category::all();      
         return view("pages.company.UbahLoker", compact("title", "post", "category"));
     }
-    public function lokerCompany(Request $request){
+    public function lokerCompany(Request $request)
+    {
         $company = Auth::guard('company')->user();
         $title = "Lowongan Kerja";
         $search = $request->query('search_input');
@@ -225,7 +229,7 @@ class IndexController extends Controller
     {
         $title = "Work Seeker";
         $resumes = Resume::findOrFail($request->resumeId);
-            $company = Auth::guard('company')->user();
+        $company = Auth::guard('company')->user();
         return view("pages.company.DetailProfileUser", compact("title", "resumes", "company"));
     }
 
@@ -432,77 +436,77 @@ class IndexController extends Controller
     }
 
 
-        public function updateCompany(Request $request) {
-            $company = Auth::guard('company')->user();
-            $customMessages = [                
-                'company_name.max' => '*Nama perusahaan tidak boleh lebih dari 255 karakter.',
-                'company_name.unique' => '*Nama perusahaan sudah terdaftar.',                
-                'company_email.email' => '*Email perusahaan harus berupa alamat email yang valid.',
-                'company_email.max' => '*Email perusahaan tidak boleh lebih dari 100 karakter.',
-                'company_email.unique' => '*Email perusahaan sudah terdaftar.',                
-                'password.min' => '*Password harus minimal 6 karakter.',                                                
-                'number_phone.max' => '*Nomor telepon tidak boleh lebih dari 30 karakter.',
-                'photo_profile.image' => '*Foto profil harus berupa gambar.',
-                'photo_profile.file' => '*Foto profil harus berupa file.',
-                'photo_profile.max' => '*Foto profil tidak boleh lebih dari 3 MB.',                
-                'photo_banner.image' => '*Foto profil harus berupa gambar.',
-                'photo_banner.file' => '*Foto profil harus berupa file.',
-                'photo_banner.max' => '*Foto profil tidak boleh lebih dari 3 MB.',                
-            ];
-            $company_update = Company::findOrFail($company->id);            
-             
-            $request->validate([
-                'company_name' => 'string|max:255|unique:companies,company_name,' . $company_update->id,
-                'company_email' => 'string|email|max:100|unique:companies,company_email,' . $company_update->id,       
-                'password' => 'string|min:6',
-                'address' => 'string',
-                'province' => 'string',
-                'number_phone' => 'string|max:30',
-                'photo_profile.*' => 'image|file|max:3014',        
-                'photo_banner.*' => 'image|file|max:10014',        
-                'category_id' => 'integer',
-                'description' => 'nullable|string',                
-            ], $customMessages);
-            $company_update->company_name = $request->input('company_name');
-            $company_update->company_email = $request->input('company_email');            
-            $company_update->address = $request->input('address');
-            $company_update->province = $request->input('province');
-            $company_update->number_phone = $request->input('number_phone');
-            $company_update->code_post = $request->input('code_post');
-            $company_update->category_id = $request->input('category_id');
-            $company_update->description = $request->input('description');
-            if ($request->hasFile('photo_profile')) {
-                $company_update->photo_profile = $request->file('photo_profile')->store('company/images/profiles');
-            }
-            
-            if ($request->hasFile('photo_banner')) {
-                $company_update->photo_banner = $request->file('photo_banner')->store('company/images/banners');
-            }
-            $company_update->save();
-            return back()->with('success', 'Profil berhasil diperbarui..');
+    public function updateCompany(Request $request)
+    {
+        $company = Auth::guard('company')->user();
+        $customMessages = [
+            'company_name.max' => '*Nama perusahaan tidak boleh lebih dari 255 karakter.',
+            'company_name.unique' => '*Nama perusahaan sudah terdaftar.',
+            'company_email.email' => '*Email perusahaan harus berupa alamat email yang valid.',
+            'company_email.max' => '*Email perusahaan tidak boleh lebih dari 100 karakter.',
+            'company_email.unique' => '*Email perusahaan sudah terdaftar.',
+            'password.min' => '*Password harus minimal 6 karakter.',
+            'number_phone.max' => '*Nomor telepon tidak boleh lebih dari 30 karakter.',
+            'photo_profile.image' => '*Foto profil harus berupa gambar.',
+            'photo_profile.file' => '*Foto profil harus berupa file.',
+            'photo_profile.max' => '*Foto profil tidak boleh lebih dari 3 MB.',
+            'photo_banner.image' => '*Foto profil harus berupa gambar.',
+            'photo_banner.file' => '*Foto profil harus berupa file.',
+            'photo_banner.max' => '*Foto profil tidak boleh lebih dari 3 MB.',
+        ];
+        $company_update = Company::findOrFail($company->id);
 
+        $request->validate([
+            'company_name' => 'string|max:255|unique:companies,company_name,' . $company_update->id,
+            'company_email' => 'string|email|max:100|unique:companies,company_email,' . $company_update->id,
+            'password' => 'string|min:6',
+            'address' => 'string',
+            'province' => 'string',
+            'number_phone' => 'string|max:30',
+            'photo_profile.*' => 'image|file|max:3014',
+            'photo_banner.*' => 'image|file|max:10014',
+            'category_id' => 'integer',
+            'description' => 'nullable|string',
+        ], $customMessages);
+        $company_update->company_name = $request->input('company_name');
+        $company_update->company_email = $request->input('company_email');
+        $company_update->address = $request->input('address');
+        $company_update->province = $request->input('province');
+        $company_update->number_phone = $request->input('number_phone');
+        $company_update->code_post = $request->input('code_post');
+        $company_update->category_id = $request->input('category_id');
+        $company_update->description = $request->input('description');
+        if ($request->hasFile('photo_profile')) {
+            $company_update->photo_profile = $request->file('photo_profile')->store('company/images/profiles');
         }
 
-        public function simpanPelamar(Request $request)
-        {
-            $company = Auth::guard('company')->user();
-            $userId = $request->route('id');            
-            $bookmark = new CompanyBookmark();
-            $bookmark->company_id = $company->id;
-            $bookmark->user_id = $userId;
-            $bookmark->save();
-            return back()->with('success', 'Pelamar ditambahkan ke daftar pelamar..');
+        if ($request->hasFile('photo_banner')) {
+            $company_update->photo_banner = $request->file('photo_banner')->store('company/images/banners');
         }
-        public function hapusPelamar(Request $request)
-        {  
-            $bookmark = CompanyBookmark::findOrFail($request->route('id'));            
-            $bookmark->delete();
-            return back()->with('success', 'Pelamar dihapus dari daftar pelamar..');
-        }
-        public function pdfPreview(Request $request)
-        {
-            $title = "Preview PDF";
-            $resume = Resume::findOrFail($request->route('id'));
-            return view("preview.pdf", compact("title", "resume"));
-        }
+        $company_update->save();
+        return back()->with('success', 'Profil berhasil diperbarui..');
+    }
+
+    public function simpanPelamar(Request $request)
+    {
+        $company = Auth::guard('company')->user();
+        $userId = $request->route('id');
+        $bookmark = new CompanyBookmark();
+        $bookmark->company_id = $company->id;
+        $bookmark->user_id = $userId;
+        $bookmark->save();
+        return back()->with('success', 'Pelamar ditambahkan ke daftar pelamar..');
+    }
+    public function hapusPelamar(Request $request)
+    {
+        $bookmark = CompanyBookmark::findOrFail($request->route('id'));
+        $bookmark->delete();
+        return back()->with('success', 'Pelamar dihapus dari daftar pelamar..');
+    }
+    public function pdfPreview(Request $request)
+    {
+        $title = "Preview PDF";
+        $resume = Resume::findOrFail($request->route('id'));
+        return view("preview.pdf", compact("title", "resume"));
+    }
 }

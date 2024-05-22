@@ -8,8 +8,11 @@
 
             <div class="">
                 <div class="">
-                    <form action="{{ route('pulu') }}" method="post" class="mt-5 lg:flex  w-full gap-5">
+                    <form action="{{ route('postlamaran')}}" method="POST" enctype="multipart/form-data"
+                        class="mt-5 lg:flex  w-full gap-5">
                         @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <input type="hidden" name="company_id" value="{{ $company->id }}">
                         <div class="lg:flex  w-full gap-5">
                             <div class=" lg:w-[50%]">
                                 <label for="nama" class="text-lg font-semibold">Nama lengkap</label>
